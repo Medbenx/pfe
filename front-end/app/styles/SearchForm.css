@@ -1,0 +1,61 @@
+  /* Search Box Container */
+
+.searchBox {
+  display: flex;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  max-width: 850px; /* Limit width for better readability */
+  margin: 0 auto; /* Center the search box */
+}
+
+/* Input Fields */
+.searchBox input {
+  flex: 1; /* Distribute available space equally */
+  color: black;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.searchBox input:focus {
+  border-color: #ff5a5f; /* Highlight color on focus */
+  box-shadow: 0 0 5px rgba(255, 90, 95, 0.5); /* Glow effect on focus */
+}
+
+/* Date and Number Inputs */
+.searchBox input[type="date"],
+.searchBox input[type="number"] {
+  min-width: 150px; /* Ensure date and number inputs have enough space */
+}
+
+/* Search Button */
+.searchBox button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff5a5f; /* Vibrant red color */
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.searchBox button:hover {
+  background-color: #e04a4f; /* Darker red on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+.searchBox button:active {
+  transform: translateY(0); /* Reset lift effect on click */
+}
+
+input::placeholder{
+  color: black;
+}

@@ -1,0 +1,83 @@
+/* styles/HeroSection.css */
+
+/* Hero Container */
+.Hero {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 71px); /* Full viewport height */
+  overflow: hidden;
+}
+
+
+/* Morocco Text at Top Right */
+.morocco {
+  position: absolute;
+  top: 50px;
+  left: 40px;
+  text-align: right;
+  color: white;
+  z-index: 10; /* Ensure it's above the carousel */
+}
+
+.morocco h1 {
+  font-size: 4rem;
+  margin-right: 75px;
+  font-weight: bold;
+}
+
+.morocco h2 {
+  font-size: 2rem;
+  margin: 0;
+  font-weight: normal;
+}
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 10; /* Ensure it's above the carousel */
+}
+
+.overlay h1 {
+  font-size: 3rem;
+  margin-bottom: 5px;
+  margin-top: 40px;
+}
+
+.overlay p {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+/* Search Box */
+.searchBox {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchBox input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.searchBox button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff5a5f;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.searchBox button:hover {
+  background-color: #e04a4f;
+}

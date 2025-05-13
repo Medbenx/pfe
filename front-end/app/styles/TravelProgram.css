@@ -1,0 +1,178 @@
+/* app/styles/Experience.css */
+.experience-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: white; /* Set main background to white */
+  }
+  
+  .hero-section {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 20px 0;
+    border-bottom: 1px solid #eaeaea; /* Subtle divider */
+  }
+  
+  .hero-section h1 {
+    font-size: 2rem;
+    color: #591b12;
+    font-weight: 400;
+    font-style: italic;
+    margin: 0;
+  }
+  
+  .content-wrapper {
+    display: flex;
+    gap: 40px;
+  }
+  
+  .filters-section {
+    width: 280px;
+    padding: 25px;
+    background-color: white;
+    border-radius: 8px;
+    height: fit-content;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Subtle shadow */
+    border: 1px solid #f0f0f0; /* Light border */
+  }
+  
+  .filter-group {
+    margin-bottom: 30px;
+  }
+  
+  .filter-group h2 {
+    color: #591b12;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .dropdown {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: white;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+  }
+  
+  .duration-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .duration-option {
+    display: flex;
+    align-items: center;
+  }
+  
+  .duration-option input[type="radio"] {
+    margin-right: 12px;
+    accent-color: #591b12; /* Match brand color */
+  }
+  
+  .duration-option label {
+    font-size: 0.95rem;
+    color: #555;
+  }
+  
+  .destinations-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  
+  .destination-card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+  }
+  
+  .destination-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  }
+  
+  .destination-image {
+    position: relative;
+    height: 220px;
+    width: 100%;
+  }
+  
+  .image {
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .destination-card:hover .image {
+    transform: scale(1.03);
+  }
+  
+  .duration-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #591b12;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+  
+  .destination-info {
+    padding: 20px;
+    background-color: white;
+  }
+  
+  .destination-info h3 {
+    margin: 0 0 8px 0;
+    color: #591b12;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  
+  .destination-info p {
+    margin: 0;
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .content-wrapper {
+      flex-direction: column;
+    }
+    
+    .filters-section {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+    
+    .destinations-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-section h1 {
+      font-size: 1.6rem;
+    }
+    
+    .destination-info h3 {
+      font-size: 1.2rem;
+    }
+  }

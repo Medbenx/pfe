@@ -1,0 +1,33 @@
+/* styles/GuideDetails.css */
+.guideDetails {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .guideDetails h1 {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .guideDetails img {
+    margin: 20px 0;
+  }
+  
+  .guideDetails p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .guideDetails a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #ff5a5f;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .guideDetails a:hover {
+    text-decoration: underline;
+  }
