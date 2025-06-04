@@ -9,13 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "framer-motion": "^12.14.0",
     "leaflet": "^1.9.4",
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-icons": "^5.4.0",
+    "react-icons": "^5.5.0",
     "react-router-dom": "^7.2.0",
-    "swiper": "^11.2.4",
+    "swiper": "^11.2.8",
     "switch": "^0.0.0"
   },
   "devDependencies": {

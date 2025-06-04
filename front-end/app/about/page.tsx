@@ -1,10 +1,12 @@
+// This file is part of the Morocco Travel Guide project.
 "use client";
 
 import Image from "next/image";
 import "../styles/about.css";
 
 const moroccoOverview = {
-  title: "About Morocco",
+  title: "Discover Morocco",
+  subtitle: "Land of Contrasts & Cultural Treasures",
   video: '/videos/morocco-hero.mp4',
   sections: [
     {
@@ -43,7 +45,7 @@ const moroccoOverview = {
 export default function AboutPage() {
   return (
     <div className="about-container">
-      {/* New Video Hero Section */}
+      {/* Enhanced Video Hero Section */}
       <div className="hero-video-container">
         <video 
           autoPlay 
@@ -56,28 +58,33 @@ export default function AboutPage() {
           Your browser does not support the video tag.
         </video>
         <div className="hero-overlay">
-          <h1 className="hero-title">{moroccoOverview.title}</h1>
+          <div className="hero-text">
+            <h1 className="hero-title">{moroccoOverview.title}</h1>
+            <p className="hero-subtitle">{moroccoOverview.subtitle}</p>
+          </div>
         </div>
       </div>
 
-      {/* Original Content Sections (unchanged) */}
+      {/* Redesigned Content Sections */}
       <div className="content-sections">
         {moroccoOverview.sections.map((section, index) => (
           <section
             key={section.title}
-            className={`city-section ${index % 2 !== 0 ? "reverse" : ""}`}
+            className={`feature-section ${index % 2 !== 0 ? "reverse" : ""}`}
           >
             <div className="text-content">
-              <h2>{section.title}</h2>
-              <p>{section.text}</p>
+              <div className="section-header">
+                <span className="section-number">0{index + 1}</span>
+                <h2 className="section-title">{section.title}</h2>
+              </div>
+              <p className="section-text">{section.text}</p>
             </div>
             <div className="image-wrapper">
               <Image
                 src={section.image}
                 alt={section.title}
-                width={600}
-                height={400}
-                className="city-image"
+                fill
+                className="section-image"
               />
             </div>
           </section>
