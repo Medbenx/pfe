@@ -17,7 +17,7 @@ class Rating extends Model
     /**
      * العلاقة مع المرشد السياحي
      */
-    public function guide(): BelongsTo
+    public function touristeGuide(): BelongsTo
     {
         return $this->belongsTo(TouristeGuide::class, 'touriste_guide_id');
     }

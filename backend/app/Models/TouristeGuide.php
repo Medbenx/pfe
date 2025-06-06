@@ -7,15 +7,18 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TouristeGuide extends Model
 {
-    protected $fillable = [
-        'name',
-        'email',
-        'phone',
-        'bio',
-        'location',
-        'price_per_hour',
-        'photo',
-    ];
+protected $fillable = [
+    'name',
+    'email',
+    'phone',
+    'bio',
+    'location',
+    'photo',
+];
+
+protected $casts = [
+    'price_per_hour' => 'float',
+];
 
     /**
      * التقييمات التي حصل عليها المرشد السياحي
@@ -28,8 +31,9 @@ class TouristeGuide extends Model
     /**
      * متوسط تقييم المرشد
      */
-    public function averageRating(): float
-    {
-        return $this->ratings()->avg('rating') ?? 0;
-    }
+    public function getAverageRatingAttribute(): float
+{
+    return round($this->ratings()->avg('rating') ?? 0, 1);
+}
+
 }
