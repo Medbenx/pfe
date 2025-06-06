@@ -23,7 +23,7 @@ export default function Navbar() {
         </div>
 
         <div className="nav-section center">
-          <div className="logo">MOROCCO</div>
+        <Link href="/" className="logo">MOROCCO</Link>
         </div>
 
         <div className="nav-section">
