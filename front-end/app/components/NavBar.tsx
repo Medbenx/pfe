@@ -1,5 +1,7 @@
 import Link from "next/link";
 import "../styles/Navbar.css";
+import Image from "next/image";
+
 
 export default function Navbar() {
   return (
@@ -23,7 +25,7 @@ export default function Navbar() {
         </div>
 
         <div className="nav-section center">
-        <Link href="/" className="logo">MOROCCO</Link>
+        <Link href="/" className="logo"><Image src="/images/logo1.png" alt="Logo" width={70} height={70} /></Link>
         </div>
 
         <div className="nav-section">
@@ -33,6 +35,9 @@ export default function Navbar() {
             </li>
             <li>
               <Link href="/language">EN/AR</Link>
+            </li>
+            <li>
+              <Link href="/menu-of-the-day" className="nav-link">Today’s Menu</Link>
             </li>
             <li>
               <Link href="/login">Login</Link>

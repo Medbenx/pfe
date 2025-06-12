@@ -9,6 +9,8 @@ import FAQSection from "./components/FAQSection";
 import MapSection from "./components/MapSection";
 import ContactSection from "./components/ContactSection";
 import FooterSection from "./components/FooterSection";
+import TrendingDestinations from "./components/TrendingDestinations";
+import FeaturedTrips from "./components/FeaturedTrips";
 
 
 
@@ -30,6 +32,8 @@ export default function Home() {
         <>
           <HeroSection />
           <TravelHighlights />
+           <TrendingDestinations />
+           <FeaturedTrips />
           <GuidesSection />
           <FAQSection />
           <MapSection />

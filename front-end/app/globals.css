@@ -17,6 +17,96 @@ body {
 }
 
 
+/* Slider customizations */
+.trending-slider .slick-slide {
+  padding: 0 12px;
+}
+
+.trending-slider .slick-list {
+  margin: 0 -12px;
+}
+
+.trending-slider .slick-dots {
+  bottom: -40px;
+}
+
+.trending-slider .slick-dots li button:before {
+  font-size: 10px;
+  color: #9ca3af;
+}
+
+.trending-slider .slick-dots li.slick-active button:before {
+  color: #d97706;
+}
+
+.trending-slider .slick-prev,
+.trending-slider .slick-next {
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+}
+
+.trending-slider .slick-prev:before,
+.trending-slider .slick-next:before {
+  color: #d97706;
+  font-size: 40px;
+  opacity: 0.8;
+}
+
+.trending-slider .slick-prev {
+  left: -50px;
+}
+
+.trending-slider .slick-next {
+  right: -50px;
+}
+
+@media (max-width: 1024px) {
+  .trending-slider .slick-prev {
+    left: -30px;
+  }
+  .trending-slider .slick-next {
+    right: -30px;
+  }
+}
+
+
+/* Featured Trips Custom Styles */
+.featured-trip-card {
+  transition: all 0.3s ease;
+}
+
+.featured-trip-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Rating stars */
+.rating-star {
+  color: #f59e0b;
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 768px) {
+  .trip-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .trip-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
 /* Add to your globals.css */
 @keyframes fadeIn {
   from { opacity: 0; }

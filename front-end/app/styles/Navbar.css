@@ -6,7 +6,8 @@
 }
 
 .navbar {
-  background-color: #591b12;
+  background-color: #e9ecef;
+  /* background-color: #591b12; */
   padding: 20px 0;
   position: relative;
   display: flex;
@@ -22,8 +23,8 @@
 
 .nav-line {
   width: 85%;
-  height: 1px;
-  background-color: white;
+  height: 0.7px;
+  background-color: #EE9799;
 }
 
 .nav-content {
@@ -53,7 +54,8 @@
   color: white;
   font-family: "alpha kufi regular", serif;
   letter-spacing: 2px;
-  background-color: #591b12;
+  background-color: black;
+  /* background-color: #591b12; */
   padding: 0 20px;
   position: relative;
   z-index: 1;
@@ -74,13 +76,14 @@
   left: 0;
   right: 0;
   height: 1px;
-  background-color: white;
+  background-color: #EE9799;
   z-index: 0;
 }
 
 .navLinks li {
   display: inline;
-  background-color: #591b12;
+  background-color: black;
+  /* background-color: #591b12; */
   padding: 0 5px;
   position: relative;
   z-index: 1;
