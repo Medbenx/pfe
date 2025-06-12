@@ -93,6 +93,50 @@ body {
   color: #f59e0b;
 }
 
+
+/* Promo Section Styles */
+.promo-card {
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.promo-card:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.info-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styles */
+.promo-input {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.promo-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .promo-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .info-column {
+    margin-top: 2rem;
+  }
+}
+
+
+
+
 /* Responsive grid adjustments */
 @media (max-width: 768px) {
   .trip-grid {

@@ -11,6 +11,7 @@ import ContactSection from "./components/ContactSection";
 import FooterSection from "./components/FooterSection";
 import TrendingDestinations from "./components/TrendingDestinations";
 import FeaturedTrips from "./components/FeaturedTrips";
+import PromoSection from "./components/PromoSection";
 
 
 
@@ -37,6 +38,7 @@ export default function Home() {
           <GuidesSection />
           <FAQSection />
           <MapSection />
+          <PromoSection />
           <ContactSection />
           <FooterSection />
         </>
