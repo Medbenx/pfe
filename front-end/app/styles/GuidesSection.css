@@ -1,76 +1,172 @@
 .guidesSection {
-    padding: 40px 20px;
+    padding: 40px 0;
     background-color: #f9f9f9;
     text-align: center;
-  }
-  
-  .guidesSection h2 {
+    width: 70%;
+    margin: 50px auto;
+    max-width: 1200px;
+    position: relative;
+}
+
+.guidesSection h2 {
     font-size: 2rem;
     margin-bottom: 30px;
     color: #333;
-  }
-  
-  .guideCard {
+}
+
+.guideCard {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
     cursor: pointer;
-  }
-  
-  .guideImage {
+    position: relative;
+    height: 100%;
+}
+
+.guideImage {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid #ff5a5f;
     position: relative;
-  }
-  
-  .guideImage img {
+    z-index: 1;
+}
+
+.guideImage img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-  
-  .hoverOverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .guideImage:hover .hoverOverlay {
-    opacity: 1; /* Show overlay on hover */
-  }
-  
-  .hoverOverlay p {
-    color: white;
-    font-size: 1rem;
-    text-align: center;
-  }
-  
-  .guideCard h3 {
+    transition: transform 0.3s ease;
+}
+
+.guideCard:hover .guideImage img {
+    transform: scale(1.05);
+}
+
+.guideCard h3 {
     font-size: 1.2rem;
     color: #333;
     margin: 0;
-  }
-  
-  /* Swiper Navigation and Pagination Styles */
-  .swiper-button-next,
-  .swiper-button-prev {
+    z-index: 1;
+    position: relative;
+}
+
+/* Popup Styles */
+.guidePopup {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    z-index: 10;
+    padding: 20px;
+    animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.popupContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.popupImage {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #ff5a5f;
+}
+
+.popupImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.popupInfo {
+    text-align: center;
+}
+
+.popupInfo h4 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.popupInfo .bio {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.specialties {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.specialty {
+    background: #f0f0f0;
+    color: #555;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.viewProfileBtn {
+    background: #ff5a5f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.viewProfileBtn:hover {
+    background: #e04a50;
+    transform: translateY(-2px);
+}
+
+/* Swiper Navigation and Pagination Styles */
+.swiper-button-next,
+.swiper-button-prev {
     color: #ff5a5f;
     margin-top: -50px;
-  }
-  
-  .swiper-pagination-bullet-active {
+}
+
+.swiper-pagination-bullet-active {
     background-color: #ff5a5f;
-  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .guidesSection {
+        width: 90%;
+        padding: 30px 0;
+    }
+    
+    .guidePopup {
+        width: 280px;
+    }
+    
+    .popupImage {
+        width: 150px;
+        height: 150px;
+    }
+}

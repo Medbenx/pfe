@@ -55,6 +55,36 @@ const FeaturedTrips = () => {
       price: 89,
       image: '/images/destination/essaouira-trip.jpg'
     },
+    {
+      id: 6,
+      city: 'Casablanca, Morocco',
+      title: 'Hassan II Mosque & Coastal City Tour',
+      rating: 4.7,
+      reviews: 198,
+      duration: '1 day',
+      price: 85,
+      image: '/images/destination/casablanca-trip.jpg'
+    },
+    {
+      id: 7,
+      city: 'Tangier, Morocco',
+      title: 'Mediterranean Culture & Cave of Hercules',
+      rating: 4.6,
+      reviews: 176,
+      duration: '1 day',
+      price: 95,
+      image: '/images/destination/tangier-trip.jpg'
+    },
+    {
+      id: 8,
+      city: 'Meknes, Morocco',
+      title: 'Imperial City & Roman Ruins of Volubilis',
+      rating: 4.8,
+      reviews: 154,
+      duration: '1 day',
+      price: 70,
+      image: '/images/destination/meknes-trip.jpg'
+    }
   ];
 
   return (

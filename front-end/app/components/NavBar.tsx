@@ -34,10 +34,10 @@ export default function Navbar() {
               <Link href="/event-happy">Event Happyies</Link>
             </li>
             <li>
-              <Link href="/language">EN/AR</Link>
+              <Link href="/menu-of-the-day" className="nav-link">Today’s Menu</Link>
             </li>
             <li>
-              <Link href="/menu-of-the-day" className="nav-link">Today’s Menu</Link>
+              <Link href="/language">EN/AR</Link>
             </li>
             <li>
               <Link href="/login">Login</Link>

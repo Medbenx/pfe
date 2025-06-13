@@ -128,6 +128,20 @@ export default function HighlightsSection() {
       image: "/images/image13.jpg",
       tags: ["Festivals", "Nightlife"],
     },
+    {
+    id: 5,
+    title: "Explore Morocco's Imperial History",
+    description: "Walk through centuries of history in Rabat, Meknes, and Fes.",
+    image: "/images/image14.jpg",
+    tags: ["History", "Architecture"],
+  },
+  {
+    id: 6,
+    title: "Discover the Magic of the Sahara",
+    description: "Camel rides, starry skies, and golden dunes await in Merzouga.",
+    image: "/images/image15.jpg",
+    tags: ["Desert Tours", "Nature"],
+  },
   ];
 
   return (
