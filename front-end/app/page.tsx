@@ -12,6 +12,7 @@ import FooterSection from "./components/FooterSection";
 import TrendingDestinations from "./components/TrendingDestinations";
 import FeaturedTrips from "./components/FeaturedTrips";
 import PromoSection from "./components/PromoSection";
+import RecommendedHotels from "./components/RecommendedHotels";
 
 
 
@@ -36,6 +37,7 @@ export default function Home() {
            <TrendingDestinations />
            <FeaturedTrips />
           <GuidesSection />
+          <RecommendedHotels />
           <FAQSection />
           <MapSection />
           <PromoSection />
