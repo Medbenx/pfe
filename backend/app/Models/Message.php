@@ -9,7 +9,6 @@ class Message extends Model
 {
     protected $fillable = [
         'user_id', // يمكن أن تكون null لو المرسل زائر غير مسجل
-        'name',
         'email',
         'content',
     ];
