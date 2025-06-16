@@ -40,3 +40,7 @@ export const highlights: Highlight[] = [
   },
   // Add similar content for other highlights
 ];
+
+
+
+

@@ -13,7 +13,7 @@ import TrendingDestinations from "./components/TrendingDestinations";
 import FeaturedTrips from "./components/FeaturedTrips";
 import PromoSection from "./components/PromoSection";
 import RecommendedHotels from "./components/RecommendedHotels";
-
+import Review from "./Review/Review";
 
 
 
@@ -38,6 +38,7 @@ export default function Home() {
            <FeaturedTrips />
           <GuidesSection />
           <RecommendedHotels />
+          <Review />
           <FAQSection />
           <MapSection />
           <PromoSection />
