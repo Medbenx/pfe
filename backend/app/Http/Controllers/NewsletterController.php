@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Newsletter;
@@ -15,7 +14,7 @@ class NewsletterController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'email' => 'required|email|unique:newsletters,email',
+            'email' => 'required|email|unique:newsletter,email',  // صححت اسم الجدول هنا
         ]);
 
         $subscriber = Newsletter::create($validated);

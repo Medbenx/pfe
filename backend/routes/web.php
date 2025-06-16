@@ -23,7 +23,7 @@ Route::prefix('api')->middleware('api')->group(function () {
     Route::apiResource('messages', MessageController::class)->only(['index', 'store', 'destroy']);
 
     // النشرة البريدية
-    Route::apiResource('newsletters', NewsletterController::class)->only(['index', 'store', 'destroy']);
+Route::apiResource('newsletters', controller: NewsletterController::class)->only(['index', 'store', 'destroy']);
 
     // المستخدمين
     Route::apiResource('users', UserController::class)->only(['index', 'show', 'destroy']);
