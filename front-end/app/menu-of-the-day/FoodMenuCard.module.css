@@ -1,0 +1,236 @@
+.container {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.menuTitle {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 2.75rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #3b82f6, #f59e0b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cardsContainer {
+  display: flex;
+  width: 100%;
+  height: 550px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.cardsContainer:hover {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.imageCard {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.foodImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slideIn {
+  animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.slideOut {
+  animation: slideOut 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.detailsCard {
+  flex: 1;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.fadeIn {
+  animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.fadeOut {
+  animation: fadeOut 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.foodName {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1e40af;
+  line-height: 1.2;
+}
+
+.foodPrice {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #d97706;
+}
+
+.foodDescription {
+  margin-bottom: 2rem;
+  line-height: 1.7;
+  color: #4b5563;
+  font-size: 1.1rem;
+}
+
+.foodIngredients {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.ingredientTag {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.ingredientTag:hover {
+  background-color: #dbeafe;
+  transform: translateY(-1px);
+}
+
+.navButtons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding: 0 1.5rem;
+  z-index: 10;
+}
+
+.navBtn {
+  background-color: white;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #3b82f6;
+  font-size: 1.25rem;
+}
+
+.navBtn:hover {
+  background-color: #3b82f6;
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+}
+
+.foodCounter {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(30, 64, 175, 0.9);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  to {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    padding: 1rem;
+  }
+  
+  .cardsContainer {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .imageCard {
+    height: 300px;
+  }
+
+  .detailsCard {
+    padding: 2rem;
+  }
+
+  .foodName {
+    font-size: 1.75rem;
+  }
+  
+  .foodPrice {
+    font-size: 1.5rem;
+  }
+  
+  .navButtons {
+    top: 300px;
+  }
+}

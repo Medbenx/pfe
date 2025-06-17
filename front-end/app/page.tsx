@@ -10,11 +10,10 @@ import MapSection from "./components/MapSection";
 import ContactSection from "./components/ContactSection";
 import FooterSection from "./components/FooterSection";
 import TrendingDestinations from "./components/TrendingDestinations";
-import FeaturedTrips from "./components/FeaturedTrips";
 import PromoSection from "./components/PromoSection";
 import RecommendedHotels from "./components/RecommendedHotels";
 import Review from "./Review/Review";
-
+import FeaturedTrips from "./components/FeaturedTrips";
 
 
 export default function Home() {
