@@ -8,9 +8,8 @@ import GuidesSection from "./components/GuidesSection";
 import FAQSection from "./components/FAQSection";
 import MapSection from "./components/MapSection";
 import ContactSection from "./components/ContactSection";
-import FooterSection from "./components/FooterSection";
 import TrendingDestinations from "./components/TrendingDestinations";
-import PromoSection from "./components/PromoSection";
+// import PromoSection from "./components/PromoSection";
 import RecommendedHotels from "./components/RecommendedHotels";
 import Review from "./Review/Review";
 import FeaturedTrips from "./components/FeaturedTrips";
@@ -32,17 +31,16 @@ export default function Home() {
       ) : ( */}
         <>
           <HeroSection />
-          <TravelHighlights />
            <TrendingDestinations />
+          <TravelHighlights />
            <FeaturedTrips />
           <GuidesSection />
           <RecommendedHotels />
           <Review />
           <FAQSection />
           <MapSection />
-          <PromoSection />
+          {/* <PromoSection /> */}
           <ContactSection />
-          <FooterSection />
         </>
       {/* )} */}
     </div>

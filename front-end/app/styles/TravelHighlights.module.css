@@ -1,7 +1,8 @@
 /* Main section styles */
 .highlightsSection {
-  padding: 64px 0;
+  padding: 44px 0;
   background: linear-gradient(to right, #f0f9ff, #fffbeb);
+  overflow: hidden;
 }
 
 .container {
@@ -35,19 +36,33 @@
 /* Swiper container styles */
 .swiperContainer {
   width: 100%;
-  padding: 40px 0;
+  padding: 60px 0;
   position: relative;
+  overflow: visible !important;
 }
 
 /* Slide styles */
 .swiperSlide {
-  width: 600px;
+  width: 500px;
   height: 520px;
-  transition: transform 0.3s ease;
+  transition: all 0.4s ease;
+  transform-origin: center center;
+  position: relative;
+  z-index: 1;
 }
 
-.swiperSlide:hover {
-  transform: translateY(-8px);
+.swiperSlideActive {
+  z-index: 2;
+  transform: scale(1) translateY(0);
+}
+
+.swiperSlideNext,
+.swiperSlidePrev {
+  transform: scale(0.9) translateY(20px);
+}
+
+.swiperSlide:not(.swiperSlideActive):not(.swiperSlideNext):not(.swiperSlidePrev) {
+  transform: scale(0.85) translateY(30px);
 }
 
 /* Card styles */
@@ -57,10 +72,11 @@
   background: white;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  transition: all 0.4s ease;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .cardLink {
@@ -225,14 +241,14 @@
 /* Responsive styles */
 @media (max-width: 1600px) {
   .swiperSlide {
-    width: 550px;
+    width: 450px;
     height: 480px;
   }
 }
 
 @media (max-width: 1200px) {
   .swiperSlide {
-    width: 500px;
+    width: 400px;
     height: 440px;
   }
   
@@ -243,7 +259,7 @@
 
 @media (max-width: 768px) {
   .swiperSlide {
-    width: 400px;
+    width: 350px;
     height: 420px;
   }
   
@@ -265,7 +281,7 @@
 
 @media (max-width: 480px) {
   .swiperSlide {
-    width: 320px;
+    width: 280px;
     height: 400px;
   }
   

@@ -1,83 +1,71 @@
-/* styles/HeroSection.css */
-
 /* Hero Container */
 .Hero {
   position: relative;
   width: 100%;
-  height: calc(100vh - 71px); /* Full viewport height */
+  height: 100vh;
   overflow: hidden;
 }
 
-
-/* Morocco Text at Top Right */
+/* Morocco Text */
 .morocco {
-  position: absolute;
-  top: 50px;
-  left: 40px;
-  text-align: right;
-  color: white;
-  z-index: 10; /* Ensure it's above the carousel */
-}
-
-.morocco h1 {
-  font-size: 4rem;
-  margin-right: 75px;
-  font-weight: bold;
-}
-
-.morocco h2 {
-  font-size: 2rem;
-  margin: 0;
-  font-weight: normal;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* Overlay */
 .overlay {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Carousel Transitions */
+.image-transition {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* 3D Effects */
+.hero-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.hero-3d::before {
+  content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: white;
-  z-index: 10; /* Ensure it's above the carousel */
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%);
+  transform: translateZ(-20px);
+  pointer-events: none;
 }
 
-.overlay h1 {
-  font-size: 3rem;
-  margin-bottom: 5px;
-  margin-top: 40px;
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .morocco {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    text-align: center !important;
+    width: 100%;
+  }
+  
+  .morocco h1 {
+    font-size: 3rem !important;
+    margin-right: 0 !important;
+  }
+  
+  .overlay h1 {
+    font-size: 2rem !important;
+  }
+  
+  .overlay p {
+    font-size: 1rem !important;
+  }
 }
 
-.overlay p {
-  font-size: 1.5rem;
-  margin-bottom: 5px;
+/* Floating Animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
 }
 
-/* Search Box */
-.searchBox {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-}
-
-.searchBox input {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-.searchBox button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #ff5a5f;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.searchBox button:hover {
-  background-color: #e04a4f;
+.floating-element {
+  animation: float 6s ease-in-out infinite;
 }

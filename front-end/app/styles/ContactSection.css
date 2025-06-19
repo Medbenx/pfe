@@ -1,55 +1,66 @@
-.contactSection {
-    padding: 40px 20px;
-    background-color: #fff;
-    text-align: center;
+/* Add these styles to your existing CSS */
+
+/* Background pattern for the 3D side panel */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Form input focus effects */
+input:focus, textarea:focus {
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+  border-color: #f59e0b;
+}
+
+/* Button hover effect */
+button:hover {
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+/* Floating animation for decorative elements */
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contactSection {
+    padding: 60px 20px;
   }
   
   .contactSection h2 {
     font-size: 2rem;
-    margin-bottom: 20px;
-    color: #333;
   }
-  
-  .contactForm {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: left;
-  }
-  
-  .formGroup {
-    margin-bottom: 20px;
-  }
-  
-  .formGroup label {
-    display: block;
-    font-size: 1rem;
-    color: #333;
-    margin-bottom: 5px;
-  }
-  
-  .formGroup input,
-  .formGroup textarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  .formGroup textarea {
-    resize: vertical;
-  }
-  
-  .contactForm button {
-    padding: 10px 20px;
-    background-color: #ff5a5f;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .contactForm button:hover {
-    background-color: #e04a50;
-  }
+}
+
+/* 3D card effect */
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  transform-style: preserve-3d;
+}
+
+.shadow-2xl::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 50%);
+  transform: translateZ(-20px);
+  border-radius: 1rem;
+  pointer-events: none;
+}
+
+/* Input field transitions */
+input, textarea {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Success message animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bg-green-100 {
+  animation: fadeIn 0.5s ease-out;
+}
