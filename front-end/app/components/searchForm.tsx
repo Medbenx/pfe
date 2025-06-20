@@ -21,7 +21,9 @@ export default function ModernSearchBar() {
 
   return (
     <motion.div
-      className="bg-white/20 backdrop-blur-md text-black rounded-2xl shadow-xl p-3 max-w-6xl mx-auto mt-10"
+//       className="bg-white/20 backdrop-blur-md text-black rounded-2xl shadow-xl p-3 max-w-6xl mx-auto mt-10"
+         className="bg-white/10 backdrop-blur-md text-black rounded-2xl shadow-xl p-2 w-full max-w-[720px] mx-auto" // Fixed width here
+
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -177,3 +179,4 @@ export default function ModernSearchBar() {
     </motion.div>
   );
 }
+

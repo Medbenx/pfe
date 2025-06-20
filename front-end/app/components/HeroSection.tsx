@@ -1,31 +1,3 @@
-// import Carousel from "./Carousel";
-// import "../styles/HeroSection.css";
-// import SearchForm from "./searchForm";
-
-// export default function HeroSection() {
-//   return (
-//     <div className="Hero">
-//       {/* Morocco Text at Top Right */}
-//       <div className="morocco">
-//         <h1>Visit Morocco</h1>
-//         <h2>Beautiful Country In Africa</h2>
-//       </div>
-
-//       {/* Carousel */}
-//       <Carousel />
-
-//       {/* Overlay with Search Bar */}
-//       <div className="overlay">
-//         <h1>Discover Your Favorite Place in Morocco</h1>
-//         <p>Explore the beauty of Morocco without limits.</p>
-
-//         <SearchForm />
-//       </div>
-//     </div>
-//   );
-// }
-
-
 import { motion, useScroll, useTransform } from "framer-motion";
 import Carousel from "./Carousel";
 import SearchForm from "./searchForm";
@@ -50,13 +22,13 @@ export default function HeroSection() {
 
       {/* Morocco Text with 3D Effect */}
       <motion.div 
-        className={`${playfair.className} morocco absolute top-20 left-20 text-right z-10`}
+        className={`${playfair.className} morocco absolute top-[30px] left-20 text-right z-10`}
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1 }}
       >
         <motion.h1 
-          className="text-6xl md:text-8xl font-bold text-white mb-2"
+          className="text-6xl md:text-8xl font-bold text-white mt-14 mb-2"
           initial={{ y: -50 }}
           animate={{ y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -75,7 +47,7 @@ export default function HeroSection() {
 
       {/* Overlay with Search Bar */}
       <motion.div 
-        className="bg-black overlay absolute top-1/2  transform -translate-x-1/2 -translate-y-1/2 text-center z-10 w-full px-4"
+        className=" overlay absolute top-1/2  transform -translate-x-1/2 -translate-y-1/2 text-center z-10 w-full px-4 mt-[-70px]"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.9 }}

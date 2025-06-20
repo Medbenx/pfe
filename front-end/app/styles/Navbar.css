@@ -7,24 +7,35 @@
 
 .navbar {
   background-color: black;
-  /* background-color: #591b12; */
-  padding: 20px 0;
-  position: relative;
+  padding: 15px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  padding: 10px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .nav-lines-container {
   width: 100%;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 
 .nav-line {
   width: 85%;
   height: 0.7px;
   background-color: #EE9799;
+  transform-origin: left center;
 }
 
 .nav-content {
@@ -39,7 +50,7 @@
 
 .nav-section {
   display: flex;
-  gap: 20px;
+  gap: 25px;
 }
 
 .nav-section.center {
@@ -55,51 +66,192 @@
   font-family: "alpha kufi regular", serif;
   letter-spacing: 2px;
   background-color: black;
-  /* background-color: #591b12; */
   padding: 0 20px;
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navLinks {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 25px;
   align-items: center;
   position: relative;
+  margin: 0;
+  padding: 0;
 }
 
-.navLinks::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background-color: #EE9799;
-  z-index: 0;
-}
+
 
 .navLinks li {
   display: inline;
   background-color: black;
-  /* background-color: #591b12; */
   padding: 0 5px;
   position: relative;
   z-index: 1;
 }
 
-.navLinks a {
+.navLinks a, .navLinks button {
   text-decoration: none;
   color: white;
   font-size: 0.9rem;
   font-weight: 700;
   text-transform: uppercase;
-  font-family:serif;
-  transition: color 0.3s ease-in-out;
+  font-family: serif;
+  transition: all 0.3s ease;
   letter-spacing: 1px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.navLinks a:hover {
+.navLinks a:hover, .navLinks button:hover {
   color: #a92008;
+}
+
+/* Profile Dropdown Styles */
+.profile-menu {
+  position: relative;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+}
+
+.profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.profile-img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-icon {
+  font-size: 1.2rem;
+  color: white;
+}
+
+.chevron {
+  font-size: 0.8rem;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  overflow: hidden;
+  z-index: 100;
+  margin-top: 10px;
+}
+
+.dropdown-header {
+  padding: 12px 16px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #eee;
+}
+
+.profile-name {
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.profile-email {
+  color: #666;
+  font-size: 0.8rem;
+  margin: 4px 0 0;
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+}
+
+.dropdown-menu li {
+  padding: 0;
+}
+
+.dropdown-menu a, .dropdown-menu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  width: 100%;
+  text-align: left;
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: none;
+  transition: all 0.2s ease;
+}
+
+.dropdown-menu a:hover, .dropdown-menu button:hover {
+  background-color: #f5f5f5;
+  color: #a92008;
+}
+
+/* Language Selector */
+.language-selector {
+  cursor: pointer;
+  user-select: none;
+  color: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .nav-section {
+    gap: 15px;
+  }
+  
+  .navLinks {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .nav-section.center {
+    position: relative;
+    left: auto;
+    transform: none;
+    order: -1;
+  }
+  
+  .navLinks::before {
+    display: none;
+  }
+  
+  .navLinks li {
+    background-color: transparent;
+  }
 }
