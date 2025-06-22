@@ -7,12 +7,12 @@ import "./styles.css";
 import GuidesSection from "./components/GuidesSection";
 import FAQSection from "./components/FAQSection";
 import MapSection from "./components/MapSection";
-import ContactSection from "./components/ContactSection";
 import TrendingDestinations from "./components/TrendingDestinations";
 // import PromoSection from "./components/PromoSection";
 import RecommendedHotels from "./components/RecommendedHotels";
 import Review from "./Review/Review";
 import FeaturedTrips from "./components/FeaturedTrips";
+import ContactSection from "./components/ContactSection";
 
 
 export default function Home() {

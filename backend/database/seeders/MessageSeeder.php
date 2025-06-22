@@ -7,18 +7,11 @@ use App\Models\Message;
 
 class MessageSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
         Message::create([
-            'name' => 'أحمد',
-            'email' => 'ahmed@example.com',
-            'message' => 'هل يمكننا تنظيم جولة خاصة في الأسبوع القادم؟',
-        ]);
-
-        Message::create([
-            'name' => 'المرشد محمد',
-            'email' => 'mohamedguide@example.com',
-            'message' => 'نعم، بالتأكيد! ما هو الوقت المناسب لك؟',
+            'email' => 'visitor@example.com',
+            'message' => 'I want to know more about your tours.',
         ]);
     }
 }

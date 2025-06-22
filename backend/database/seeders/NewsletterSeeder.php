@@ -7,18 +7,10 @@ use App\Models\Newsletter;
 
 class NewsletterSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
         Newsletter::create([
-            'email' => 'user1@example.com',
-        ]);
-
-        Newsletter::create([
-            'email' => 'user2@example.com',
-        ]);
-
-        Newsletter::create([
-            'email' => 'test@example.com',
+            'email' => 'subscriber@example.com',
         ]);
     }
 }

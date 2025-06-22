@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { motion } from "framer-motion";
 import { FiSend, FiUser, FiMail, FiMessageSquare } from "react-icons/fi";
 
@@ -6,38 +7,51 @@ export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setSubmitSuccess(false);
+    setErrorMessage("");
+
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/messages", formData, {
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      console.log("✅ message sent successfully :", response.data);
       setSubmitSuccess(true);
       setFormData({ name: "", email: "", message: "" });
-      
-      // Reset success message after 3 seconds
-      setTimeout(() => setSubmitSuccess(false), 3000);
-    }, 1500);
+
+      setTimeout(() => setSubmitSuccess(false), 4000);
+    } catch (error: any) {
+      console.error("❌ message sending failed:", error);
+      setErrorMessage("An error occurred while sending your message. Please ensure all fields are filled out correctly or check the server.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section className="py-16 bg-gradient-to-r from-blue-50 to-amber-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* العنوان */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -49,11 +63,12 @@ export default function ContactSection() {
             Get In <span className="text-amber-600">Touch</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Have questions or want to discuss your next Moroccan adventure? 
+            Have questions or want to discuss your next Moroccan adventure?
             We&apos;d love to hear from you!
           </p>
         </motion.div>
 
+        {/* النموذج */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -62,24 +77,19 @@ export default function ContactSection() {
           className="max-w-3xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden"
         >
           <div className="md:flex">
-            {/* 3D Effect Side Panel */}
+            {/* معلومات الاتصال */}
             <div className="hidden md:block md:w-1/3 bg-gradient-to-b from-amber-500 to-amber-600 relative overflow-hidden">
               <div className="absolute inset-0 bg-[url('/images/morocco-pattern.png')] bg-cover opacity-10"></div>
-              <motion.div 
+              <motion.div
                 className="p-8 h-full flex flex-col justify-center"
                 initial={{ x: -30 }}
                 animate={{ x: 0 }}
-                transition={{ 
-                  duration: 1,
-                  repeat: Infinity,
-                  repeatType: "reverse"
-                }}
+                transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Contact Information</h3>
                 <p className="text-amber-100 mb-6">
                   Fill out the form and our team will get back to you within 24 hours.
                 </p>
-                
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <div className="p-3 rounded-full bg-white bg-opacity-20 mr-4">
@@ -97,7 +107,7 @@ export default function ContactSection() {
               </motion.div>
             </div>
 
-            {/* Contact Form */}
+            {/* النموذج الفعلي */}
             <div className="md:w-2/3 p-8 md:p-10">
               {submitSuccess && (
                 <motion.div
@@ -105,20 +115,24 @@ export default function ContactSection() {
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg"
                 >
-                  Thank you! Your message has been sent successfully.
+                  ✅ message sent successfully :           
+                      </motion.div>
+              )}
+
+              {errorMessage && (
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg"
+                >
+                  {errorMessage}
                 </motion.div>
               )}
 
               <form onSubmit={handleSubmit}>
-                <motion.div
-                  className="mb-6"
-                  initial={{ opacity: 0, x: 10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 }}
-                >
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Name
-                  </label>
+                {/* الاسم */}
+                <div className="mb-6">
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <FiUser className="text-gray-400" />
@@ -129,22 +143,16 @@ export default function ContactSection() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="pl-10 w-full rounded-lg border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 py-3 px-4 border bg-gray-50 transition-all duration-300 hover:bg-white"
+                      className="pl-10 w-full rounded-lg border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 py-3 px-4 border bg-gray-50"
                       placeholder="John Doe"
                       required
                     />
                   </div>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  className="mb-6"
-                  initial={{ opacity: 0, x: 10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email Address
-                  </label>
+                {/* البريد الإلكتروني */}
+                <div className="mb-6">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <FiMail className="text-gray-400" />
@@ -155,22 +163,16 @@ export default function ContactSection() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="pl-10 w-full rounded-lg border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 py-3 px-4 border bg-gray-50 transition-all duration-300 hover:bg-white"
+                      className="pl-10 w-full rounded-lg border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 py-3 px-4 border bg-gray-50"
                       placeholder="you@example.com"
                       required
                     />
                   </div>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  className="mb-8"
-                  initial={{ opacity: 0, x: 10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Message
-                  </label>
+                {/* الرسالة */}
+                <div className="mb-8">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
                   <div className="relative">
                     <div className="absolute top-4 left-3">
                       <FiMessageSquare className="text-gray-400" />
@@ -180,33 +182,30 @@ export default function ContactSection() {
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      rows="5"
-                      className="pl-10 w-full rounded-lg border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 py-3 px-4 border bg-gray-50 transition-all duration-300 hover:bg-white"
+                      rows={5}
+                      className="pl-10 w-full rounded-lg border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 py-3 px-4 border bg-gray-50"
                       placeholder="Tell us about your travel plans..."
                       required
                     ></textarea>
                   </div>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                >
+                {/* زر الإرسال */}
+                <div>
                   <button
                     type="submit"
                     disabled={isSubmitting}
                     className={`w-full flex items-center justify-center py-3 px-6 border border-transparent rounded-lg shadow-sm text-white font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition-all duration-300 ${
                       isSubmitting
-                        ? 'bg-amber-700 cursor-not-allowed'
-                        : 'bg-amber-600 hover:bg-amber-700 transform hover:-translate-y-1'
+                        ? "bg-amber-700 cursor-not-allowed"
+                        : "bg-amber-600 hover:bg-amber-700"
                     }`}
                   >
                     {isSubmitting ? (
                       <>
                         <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                         </svg>
                         Sending...
                       </>
@@ -217,7 +216,7 @@ export default function ContactSection() {
                       </>
                     )}
                   </button>
-                </motion.div>
+                </div>
               </form>
             </div>
           </div>
