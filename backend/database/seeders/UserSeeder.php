@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -12,15 +12,15 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name' => 'Admin User',
-            'email' => 'admin@morocompass.com',
-            'password' => Hash::make('password'), // استبدلها بكلمة سر قوية عند الحاجة
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password123'),
             'role' => 'admin',
         ]);
 
         User::create([
-            'name' => 'Regular User',
-            'email' => 'user@morocompass.com',
-            'password' => Hash::make('password'),
+            'name' => 'Normal User',
+            'email' => 'user@example.com',
+            'password' => Hash::make('password123'),
             'role' => 'user',
         ]);
     }

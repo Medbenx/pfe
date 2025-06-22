@@ -1,11 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from "react-icons/fa";
+import {
+  FaFacebook, FaTwitter, FaInstagram, FaLinkedin,
+  FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock
+} from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
+import axios from "axios";
 
 export default function FooterSection() {
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+
   const socialLinks = [
     { icon: <FaFacebook />, url: "https://facebook.com" },
     { icon: <FaTwitter />, url: "https://twitter.com" },
@@ -27,6 +36,31 @@ export default function FooterSection() {
     { icon: <FaEnvelope />, text: "contact@exploremorocco.com" },
     { icon: <FaClock />, text: "Mon-Fri: 9AM - 6PM" }
   ];
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSuccessMsg("");
+    setErrorMsg("");
+
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/newsletter", { email }, {
+        headers: { Accept: "application/json" },
+      });
+
+      setSuccessMsg("✅subscribed successfully!");
+      setEmail("");
+      setTimeout(() => setSuccessMsg(""), 4000);
+    } catch (error: any) {
+      if (error.response?.status === 422) {
+        setErrorMsg("❌ email is already subscribed.");
+      } else {
+        setErrorMsg("❌ something went wrong.");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <motion.footer 
@@ -142,7 +176,7 @@ export default function FooterSection() {
             </ul>
           </motion.div>
 
-          {/* Newsletter */}
+          {/* Newsletter with axios POST */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -153,21 +187,47 @@ export default function FooterSection() {
             <p className="text-gray-600 mb-4">
               Subscribe to get updates on our latest tours and special offers.
             </p>
-            <form className="flex flex-col space-y-4">
+
+            {successMsg && (
+              <motion.p
+                className="text-green-600 mb-2 bg-green-100 px-4 py-2 rounded"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                {successMsg}
+              </motion.p>
+            )}
+
+            {errorMsg && (
+              <motion.p
+                className="text-red-600 mb-2 bg-red-100 px-4 py-2 rounded"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                {errorMsg}
+              </motion.p>
+            )}
+
+            <form className="flex flex-col space-y-4" onSubmit={handleNewsletterSubmit}>
               <input
                 type="email"
                 placeholder="Your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                 required
               />
               <motion.button
                 type="submit"
-                className="bg-amber-600 hover:bg-amber-700 text-white py-3 px-6 rounded-lg font-medium flex items-center justify-center transition-colors duration-300"
-                whileHover={{ scale: 1.03 }}
+                disabled={isSubmitting}
+                className={`bg-amber-600 hover:bg-amber-700 text-white py-3 px-6 rounded-lg font-medium flex items-center justify-center transition-colors duration-300 ${
+                  isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                }`}
+                whileHover={{ scale: isSubmitting ? 1 : 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
                 <FiSend className="mr-2" />
-                Subscribe
+                {isSubmitting ? "Subscribing..." : "Subscribe"}
               </motion.button>
             </form>
           </motion.div>

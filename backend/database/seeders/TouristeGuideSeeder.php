@@ -10,23 +10,15 @@ class TouristeGuideSeeder extends Seeder
     public function run()
     {
         TouristeGuide::create([
-            'name' => 'محمد المرشد',
-            'email' => 'mohamed.guide@example.com',
-            'phone' => '0612345678',
-            'bio' => 'مرشد سياحي ذو خبرة واسعة في المغرب، خصوصًا في مراكش والرباط.',
-            'location' => 'مراكش',
-            'price_per_hour' => 150.0,
+            'user_id' => 1,  // رابط للـ admin user
+            'name' => 'Guide One',
+            'email' => 'guide1@example.com',
+            'phone' => '0600000001',
+            'bio' => 'Experienced tour guide in the city.',
+            'location' => 'Casablanca',
             'photo' => 'guide1.jpg',
-        ]);
-
-        TouristeGuide::create([
-            'name' => 'سارة الجبلية',
-            'email' => 'sara.guide@example.com',
-            'phone' => '0698765432',
-            'bio' => 'خبيرة في الرحلات الجبلية وجولات الطبيعة في شفشاون.',
-            'location' => 'شفشاون',
-            'price_per_hour' => 120.0,
-            'photo' => 'guide2.jpg',
+            'price_per_hour' => 30.00,
+            'languages' => 'Arabic, French, English',
         ]);
     }
 }

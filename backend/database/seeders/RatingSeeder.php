@@ -10,17 +10,10 @@ class RatingSeeder extends Seeder
     public function run()
     {
         Rating::create([
-            'user_id' => 2,
             'touriste_guide_id' => 1,
+            'user_id' => 2,
             'rating' => 5,
-            'comment' => 'خدمة ممتازة، تجربة رائعة مع المرشد محمد!',
-        ]);
-
-        Rating::create([
-            'user_id' => 1,
-            'touriste_guide_id' => 2,
-            'rating' => 4,
-            'comment' => 'رحلة ممتعة مع سارة، أنصح بها بشدة.',
+            'comment' => 'Great guide, very knowledgeable!',
         ]);
     }
 }
