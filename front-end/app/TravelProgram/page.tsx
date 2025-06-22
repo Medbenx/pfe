@@ -249,7 +249,7 @@ export default function TravelProgram() {
       <div className="container mx-auto px-4 mt-12">
         {/* Filters Section */}
         <motion.div 
-          className="bg-white p-6 rounded-2xl shadow-lg mb-12"
+          className="bg-white p-6 rounded-2xl shadow-lg mb-20"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
