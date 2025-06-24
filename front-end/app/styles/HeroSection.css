@@ -1,4 +1,6 @@
-/* Hero Container */
+/* HeroSection.css */
+
+/* Base styles for all devices */
 .Hero {
   position: relative;
   width: 100%;
@@ -6,66 +8,116 @@
   overflow: hidden;
 }
 
-/* Morocco Text */
 .morocco {
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-/* Overlay */
-.overlay {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* Carousel Transitions */
-.image-transition {
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
-/* 3D Effects */
-.hero-3d {
-  transform-style: preserve-3d;
-  perspective: 1000px;
-}
-
-.hero-3d::before {
-  content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%);
-  transform: translateZ(-20px);
-  pointer-events: none;
+  z-index: 10;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
+.overlay {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+/* Small phones (≤ 640px) */
+@media (max-width: 640px) {
+  .Hero {
+    height: 90vh;
+  }
+
   .morocco {
+    top: 20px !important;
     left: 50% !important;
-    transform: translateX(-50%) !important;
+    transform: translateX(-50%);
     text-align: center !important;
     width: 100%;
   }
-  
+
   .morocco h1 {
-    font-size: 3rem !important;
-    margin-right: 0 !important;
+    font-size: 3.5rem !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
   }
-  
+
+  .morocco h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .overlay {
+    top: 55% !important;
+    margin-top: 0 !important;
+    padding: 0 1rem;
+  }
+
   .overlay h1 {
-    font-size: 2rem !important;
+    font-size: 1.8rem !important;
+    margin-bottom: 1rem !important;
   }
-  
+
   .overlay p {
     font-size: 1rem !important;
+    margin-bottom: 1.5rem !important;
   }
 }
 
-/* Floating Animation */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0px); }
+/* Tablets (641px – 768px) */
+@media (min-width: 641px) and (max-width: 768px) {
+  .morocco {
+    top: 30px !important;
+    left: 2rem !important;
+  }
+
+  .morocco h1 {
+    font-size: 4.5rem !important;
+  }
+
+  .morocco h2 {
+    font-size: 1.8rem !important;
+  }
+
+  .overlay {
+    top: 50% !important;
+    margin-top: -50px !important;
+  }
+
+  .overlay h1 {
+    font-size: 2.5rem !important;
+  }
+
+  .overlay p {
+    font-size: 1.2rem !important;
+  }
 }
 
-.floating-element {
-  animation: float 6s ease-in-out infinite;
+/* Small laptops (769px – 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .morocco {
+    top: 40px !important;
+    left: 3rem !important;
+  }
+
+  .morocco h1 {
+    font-size: 5.5rem !important;
+  }
+
+  .morocco h2 {
+    font-size: 2.2rem !important;
+  }
+
+  .overlay {
+    top: 50% !important;
+    margin-top: -70px !important;
+  }
+
+  .overlay h1 {
+    font-size: 3rem !important;
+  }
+}
+
+/* Floating elements adjustments for mobile */
+@media (max-width: 768px) {
+  .Hero [class*="absolute"]:not(.morocco):not(.overlay):not([class*="inset"]) {
+    display: none;
+  }
 }

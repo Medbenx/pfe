@@ -1,84 +1,3 @@
-/* {
-      id: 1,
-      city: 'Marrakech, Morocco',
-      title: 'Atlas Mountains & Berber Villages Day Trip',
-      rating: 4.8,
-      reviews: 243,
-      duration: '1 day',
-      price: 75,
-      image: '/images/destination/atlas-trip.jpg'
-    },
-    {
-      id: 2,
-      city: 'Chefchaouen, Morocco',
-      title: 'Blue City Photography Tour with Local Guide',
-      rating: 4.9,
-      reviews: 187,
-      duration: '2 days',
-      price: 120,
-      image: '/images/destination/chefchaouen-trip.jpg'
-    },
-    {
-      id: 3,
-      city: 'Sahara Desert, Morocco',
-      title: 'Overnight Luxury Desert Camp with Camel Trek',
-      rating: 5.0,
-      reviews: 325,
-      duration: '2 days',
-      price: 199,
-      image: '/images/destination/sahara-trip.jpg'
-    },
-    {
-      id: 4,
-      city: 'Fes, Morocco',
-      title: 'Medieval Medina Cultural Walking Tour',
-      rating: 4.7,
-      reviews: 215,
-      duration: '1 day',
-      price: 65,
-      image: '/images/destination/fes-trip.jpg'
-    },
-    {
-      id: 5,
-      city: 'Essaouira, Morocco',
-      title: 'Coastal Food & Market Tour with Cooking Class',
-      rating: 4.9,
-      reviews: 178,
-      duration: '1 day',
-      price: 89,
-      image: '/images/destination/essaouira-trip.jpg'
-    },
-    {
-      id: 6,
-      city: 'Casablanca, Morocco',
-      title: 'Hassan II Mosque & Coastal City Tour',
-      rating: 4.7,
-      reviews: 198,
-      duration: '1 day',
-      price: 85,
-      image: '/images/destination/casablanca-trip.jpg'
-    },
-    {
-      id: 7,
-      city: 'Tangier, Morocco',
-      title: 'Mediterranean Culture & Cave of Hercules',
-      rating: 4.6,
-      reviews: 176,
-      duration: '1 day',
-      price: 95,
-      image: '/images/destination/tangier-trip.jpg'
-    },
-    {
-      id: 8,
-      city: 'Meknes, Morocco',
-      title: 'Imperial City & Roman Ruins of Volubilis',
-      rating: 4.8,
-      reviews: 154,
-      duration: '1 day',
-      price: 70,
-      image: '/images/destination/meknes-trip.jpg'
-    } */
-
 "use client";
 
 import Image from "next/image";
@@ -194,7 +113,7 @@ const FeaturedTrips = () => {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
+    <section id="featured-trips" className="py-16 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header with "See All" link */}
         <motion.div
@@ -213,32 +132,18 @@ const FeaturedTrips = () => {
               </span>
             </h2>
           </div>
-          {/* <Link href="/trips" passHref>
-            <motion.a
-              whileHover={{ 
-                scale: 1.05,
-                background: "linear-gradient(to right, #2563eb, #f59e0b)",
-                backgroundSize: "200% auto",
-                transition: { duration: 0.3 }
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 py-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 text-white font-medium shadow-md hover:shadow-lg transition-all"
-            >
-              See All Trips
-            </motion.a>
-          </Link> */}
           <Link href="/trips" passHref legacyBehavior>
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 text-white font-medium shadow-md hover:shadow-lg transition-all cursor-pointer"
+              className="px-6 py-2 rounded-full bg-gradient-to-r  from-blue-600 to-amber-500 text-white font-medium shadow-md hover:shadow-lg transition-all cursor-pointer"
             >
               See All Trips
             </motion.div>
           </Link>
         </motion.div>
 
-        {/* Trip Cards Grid */}
+         {/* Trip Cards Grid */}
         <motion.div
           variants={container}
           initial="hidden"
@@ -247,16 +152,15 @@ const FeaturedTrips = () => {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
         >
           {trips.slice(0, 4).map((trip) => (
-            <motion.div
-              key={trip.id}
-              variants={item}
-              whileHover={{
-                y: -8,
-                boxShadow:
-                  "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-              }}
-              className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
-            >
+            <Link href={`/trips/${trip.id}`} key={trip.id} passHref legacyBehavior>
+              <motion.a
+                variants={item}
+                whileHover={{
+                  y: -8,
+                  boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                }}
+                className="group block bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+              >
               {/* Image with overlay effect */}
               <div className="relative h-56 overflow-hidden">
                 <Image
@@ -268,6 +172,7 @@ const FeaturedTrips = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
+            
 
               {/* Content */}
               <div className="p-5">
@@ -314,7 +219,8 @@ const FeaturedTrips = () => {
                   </span>
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
+            </Link>
           ))}
         </motion.div>
       </div>

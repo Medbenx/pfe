@@ -21,7 +21,7 @@ export default function TripDetailPage({ params }: { params: Promise<{ id: strin
       animate={{ opacity: 1 }}
       className="min-h-screen bg-white py-12"
     >
-      <div className="container mx-auto px-4 max-w-6xl">
+      <div className="container mt-20 mx-auto px-4 max-w-6xl">
         {/* Back Button */}
         <motion.div
           initial={{ x: -20, opacity: 0 }}

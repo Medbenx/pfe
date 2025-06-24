@@ -2,6 +2,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Carousel from "./Carousel";
 import SearchForm from "./searchForm";
 import { Playfair_Display } from "next/font/google";
+import "../styles/HeroSection.css"; // Ensure you have the necessary styles
+
 
 const playfair = Playfair_Display({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -47,7 +49,7 @@ export default function HeroSection() {
 
       {/* Overlay with Search Bar */}
       <motion.div 
-        className=" overlay absolute top-1/2  transform -translate-x-1/2 -translate-y-1/2 text-center z-10 w-full px-4 mt-[-70px]"
+        className=" overlay absolute top-1/2  transform -translate-x-1/2 -translate-y-1/2 text-center z-10 w-full px-4 mt-[-90px]"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.9 }}
