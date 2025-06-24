@@ -232,7 +232,7 @@ export default function HighlightsSection() {
   };
 
   return (
-    <section className={styles.highlightsSection}>
+    <section id="highlights" className={styles.highlightsSection}>
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Travel Highlights</h2>
