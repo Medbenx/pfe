@@ -79,7 +79,7 @@ export default function ContactSection() {
           <div className="md:flex">
             {/* معلومات الاتصال */}
             <div className="hidden md:block md:w-1/3 bg-gradient-to-b from-amber-500 to-amber-600 relative overflow-hidden">
-              <div className="absolute inset-0 bg-[url('/images/morocco-pattern.png')] bg-cover opacity-10"></div>
+              <div className="absolute inset-0  bg-cover opacity-10"></div>
               <motion.div
                 className="p-8 h-full flex flex-col justify-center"
                 initial={{ x: -30 }}

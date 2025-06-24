@@ -100,7 +100,7 @@ export default function Navbar() {
         <div className="nav-section">
           <ul className="navLinks">
             <motion.li whileHover={{ scale: 1.05 }}>
-              <Link href="/event-happy">Event Happyies</Link>
+              <Link href="/events-happenings">Events & Happenings</Link>
             </motion.li>
             <motion.li whileHover={{ scale: 1.05 }}>
               <Link href="/menu-of-the-day">Food</Link>
