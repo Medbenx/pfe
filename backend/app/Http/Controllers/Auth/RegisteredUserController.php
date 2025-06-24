@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+
+class RegisteredUserController extends Controller
+{
+    /**
+     * Handle an incoming registration request.
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function store(Request $request): JsonResponse
+    {
+        // ✅ تحقق من صحة البيانات
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        // ✅ إنشاء المستخدم
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'user', // تأكد أنك تضيف هذا الحقل إن كان موجودًا بقاعدة البيانات
+        ]);
+
+        event(new Registered($user));
+
+        // ✅ إنشاء توكن للمصادقة
+        return response()->json([
+            'user' => $user,
+            'token' => $user->createToken('auth_token')->plainTextToken,
+        ]);
+    }
+}
