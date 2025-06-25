@@ -241,15 +241,46 @@
   font-weight: bold;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
+
+/* Responsive breakpoints */
+@media (max-width: 639px) {
+  /* Mobile styles */
   .guide-card {
-    width: 240px;
+    height: 450px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+
+
+@media (min-width: 640px) and (max-width: 767px) {
+  /* Small tablet styles */
+  .guide-card {
     height: 450px;
   }
-  
-  .guide-image {
-    width: 120px;
-    height: 120px;
+}
+
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Tablet styles */
+  .guide-card {
+    height: 480px;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Desktop styles */
+  .guide-card {
+    height: 500px;
+  }
+}
+
+
+/* Hide navigation on small screens */
+@media (max-width: 639px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
   }
 }

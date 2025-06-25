@@ -291,6 +291,38 @@ export default function EventDetails({
         },
       ],
     },
+    {
+  id: 7,
+  title: "FIFA World Cup 2026",
+  city: "USA, Canada, Mexico",
+  date: "June 8 - July 3, 2026",
+  type: "Sports",
+  season: "Summer",
+  image: "/images/events/worldcup.jpg",
+  description:
+    "The largest sporting event in the world - 48 teams compete across 16 host cities in North America. First World Cup hosted by three nations, featuring expanded format and new technologies.",
+  price: "Ticket packages from $250 USD (varies by match)",
+  location: "16 host cities including New York, Los Angeles, Toronto, Mexico City",
+  duration: "26 days (64 matches)",
+  highlights: [
+    "First 48-team World Cup in history",
+    "Opening match in Mexico City",
+    "Final at MetLife Stadium (New Jersey)",
+    "New VAR and semi-automated offside technology",
+    "Fan festivals in all host cities"
+  ],
+  gallery: [
+    {
+      src: "/images/events/worldcup-1.jpg",
+      caption: "2026 Host Cities announcement"
+    },
+    {
+      src: "/images/events/worldcup-2.jpg",
+      caption: "Previous World Cup final celebration"
+    }
+  ],
+  tags: ["important", "mega-event"] // Optional for filtering
+}
   ];
 
   // Add this near the top of your component (after the event data)
@@ -304,7 +336,7 @@ export default function EventDetails({
   // Countdown timer effect
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const eventDate = new Date("2024-06-27"); // Use your event date
+      const eventDate = new Date("2026-06-27"); // Use your event date
       const difference = +eventDate - +new Date();
 
       if (difference > 0) {
@@ -322,6 +354,7 @@ export default function EventDetails({
 
     return () => clearInterval(timer);
   }, []);
+
 
   // Music tracks data
   const tracks = [
@@ -588,16 +621,18 @@ export default function EventDetails({
                 Event Gallery
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {event.gallery.map((image, index) => (
+                {event.gallery.map((image, idx) => (
                   <motion.div
-                    key={index}
+                    key={idx}
                     className="relative h-40 rounded-xl overflow-hidden group"
                     whileHover={{ scale: 1.03 }}
                   >
                     <Image
+                      key={idx}
                       src={image.src}
-                      alt={`Event gallery ${index + 1}`}
-                      fill
+                      alt={image.caption}
+                      width={600} // or your desired width
+                      height={400} // or your desired height
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
