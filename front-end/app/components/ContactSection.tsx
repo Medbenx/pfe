@@ -28,11 +28,13 @@ export default function ContactSection() {
     setSubmitSuccess(false);
     setErrorMessage("");
 
-    try {
-      const response = await axios.post("http://127.0.0.1:8000/api/messages", formData, {
-        headers: {
-          Accept: "application/json",
-        },
+   try {
+     // await axios.get('http://localhost:8000/sanctum/csrf-cookie', {
+  //withCredentials: true,
+//});
+
+      const response = await axios.post("http://localhost:8000/api/messages", formData, {
+        withCredentials: true,
       });
 
       console.log("✅ message sent successfully :", response.data);

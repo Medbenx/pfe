@@ -12,9 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->api(prepend: [
-            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-        ]);
+    //    $middleware->api(prepend: [
+    //      \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+    //]);
 
         $middleware->alias([
             'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
@@ -26,9 +26,10 @@ return Application::configure(basePath: dirname(__DIR__))
         // ✅ middleware إضافي شائع لمجموعة API
         $middleware->group('api', [
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \Illuminate\Http\Middleware\HandleCors::class,
         ]);
     })
-    ->withExceptions(function (Exceptions $exceptions) {
+    ->withExceptions(function () {
         //
     })
     ->create();

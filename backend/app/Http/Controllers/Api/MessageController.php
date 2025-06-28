@@ -29,7 +29,7 @@ class MessageController extends Controller
   public function store(Request $request)
 {
     $validated = $request->validate([
-        'name' => 'required|string|max:255', // 
+        'name' => 'required|string|max:255', 
         'email' => 'required|email',
         'message' => 'required|string',
     ]);

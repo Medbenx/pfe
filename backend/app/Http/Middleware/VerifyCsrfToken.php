@@ -2,16 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Newsletter;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 
 class VerifyCsrfToken extends Middleware
 {
-    /**
-     * URIs that should be excluded from CSRF verification.
-     *
-     * @var array<int, string>
-     */
-    protected $except = [
-        'api/*', // execption for all api's
-    ];
+protected $except = [];
 }

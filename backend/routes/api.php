@@ -8,12 +8,12 @@ use App\Http\Controllers\Api\NewsletterController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\MessageController;
 
-// بيانات المستخدم بعد تسجيل الدخول
+//عد تسجيل    
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// المسارات العامة
+// Public routes
 Route::get('/', function () {
     return response()->json(['message' => 'Welcome to the API']);
 });
@@ -24,5 +24,5 @@ Route::apiResource('messages', MessageController::class)->only(['index','show', 
 Route::apiResource('newsletter', NewsletterController::class)->only(['index', 'store', 'destroy']);
 Route::apiResource('users', UserController::class)->only(['index','update', 'show', 'destroy']);
 
-// 🟡 هذا مهم: تحميل مسارات المصادقة
+// protected routes
 require __DIR__.'/auth.php';

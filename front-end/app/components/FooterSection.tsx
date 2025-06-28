@@ -44,6 +44,7 @@ export default function FooterSection() {
     setErrorMsg("");
 
     try {
+      
       const response = await axios.post("http://127.0.0.1:8000/api/newsletter", { email }, {
         headers: { Accept: "application/json" },
       });
