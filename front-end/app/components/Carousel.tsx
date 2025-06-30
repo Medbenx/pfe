@@ -230,14 +230,16 @@ export default function Carousel() {
         ))}
       </div>
 
-      {/* Progress Bar */}
+
+
+      {/* Progress Bar
       <motion.div 
-        className="absolute bottom-0 left-0 h-1 bg-amber-500 z-20"
+        className="absolute bottom-0 left-0 h-1 bg-amber-900 z-20"
         initial={{ width: 0 }}
         animate={{ width: "100%" }}
         transition={{ duration: 5, ease: "linear" }}
         key={`progress-${index}`}
-      />
+      /> */}
     </div>
   );
 }
