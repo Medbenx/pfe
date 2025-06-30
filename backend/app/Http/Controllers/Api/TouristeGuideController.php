@@ -43,45 +43,59 @@ class TouristeGuideController extends Controller
     }
 
     // إنشاء دليل سياحي جديد
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:touriste_guides,email',
-            'phone' => 'required|string|max:20',
-            'bio' => 'nullable|string',
-            'location' => 'nullable|string|max:255',
-            'photo' => 'nullable|string', // يمكن تعديلها لتحميل صورة
-            'price_per_hour' => 'nullable|numeric',
-            'languages' => 'nullable|string|max:255',
-        ]);
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'user_id' => 'required|exists:users,id',
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:touriste_guides,email',
+        'phone' => 'required|string|max:20',
+        'bio' => 'nullable|string',
+        'location' => 'nullable|string|max:255',
+        'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // ✅ رفع صورة حقيقية
+        'price_per_hour' => 'nullable|numeric',
+        'languages' => 'nullable|string|max:255',
+    ]);
 
-        $guide = TouristeGuide::create($validated);
-        return response()->json($guide, 201);
+    // ✅ حفظ الصورة إن وُجدت
+    if ($request->hasFile('photo')) {
+        $path = $request->file('photo')->store('guides', 'public');
+        $validated['photo'] = $path;
     }
+
+    $guide = TouristeGuide::create($validated);
+    return response()->json($guide, 201);
+}
+
 
     // تحديث دليل سياحي
-    public function update(Request $request, $id)
-    {
-        $guide = TouristeGuide::find($id);
-        if (!$guide) return response()->json(['message' => 'Guide not found'], 404);
+ public function update(Request $request, $id)
+{
+    $guide = TouristeGuide::find($id);
+    if (!$guide) return response()->json(['message' => 'Guide not found'], 404);
 
-        $validated = $request->validate([
-            'user_id' => 'sometimes|exists:users,id',
-            'name' => 'sometimes|string|max:255',
-            'email' => ['sometimes','email', "unique:touriste_guides,email,{$id}"],
-            'phone' => 'sometimes|string|max:20',
-            'bio' => 'nullable|string',
-            'location' => 'nullable|string|max:255',
-            'photo' => 'nullable|string',
-            'price_per_hour' => 'nullable|numeric',
-            'languages' => 'nullable|string|max:255',
-        ]);
+    $validated = $request->validate([
+        'user_id' => 'sometimes|exists:users,id',
+        'name' => 'sometimes|string|max:255',
+        'email' => ['sometimes','email', "unique:touriste_guides,email,{$id}"],
+        'phone' => 'sometimes|string|max:20',
+        'bio' => 'nullable|string',
+        'location' => 'nullable|string|max:255',
+        'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        'price_per_hour' => 'nullable|numeric',
+        'languages' => 'nullable|string|max:255',
+    ]);
 
-        $guide->update($validated);
-        return response()->json($guide);
+    // ✅ تحديث الصورة
+    if ($request->hasFile('photo')) {
+        $path = $request->file('photo')->store('guides', 'public');
+        $validated['photo'] = $path;
     }
+
+    $guide->update($validated);
+    return response()->json($guide);
+}
+
 
     // حذف دليل سياحي
     public function destroy($id)

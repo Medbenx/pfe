@@ -18,7 +18,16 @@ Route::get('/', function () {
     return response()->json(['message' => 'Welcome to the API']);
 });
 
-Route::apiResource('guides', TouristeGuideController::class);
+// Public routes for TouristeGuides
+Route::get('/guides', [TouristeGuideController::class, 'index']);
+Route::get('/guides/{id}', [TouristeGuideController::class, 'show']);
+
+// Protected routes for TouristeGuides
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/guides', [TouristeGuideController::class, 'store']);
+    Route::put('/guides/{id}', [TouristeGuideController::class, 'update']);
+    Route::delete('/guides/{id}', [TouristeGuideController::class, 'destroy']);
+});
 Route::apiResource('ratings', RatingController::class)->only(['index','update', 'store', 'destroy']);
 Route::apiResource('messages', MessageController::class)->only(['index','show', 'store', 'destroy']);
 Route::apiResource('newsletter', NewsletterController::class)->only(['index', 'store', 'destroy']);
