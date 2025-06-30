@@ -1,19 +1,29 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { FaUser, FaChevronDown, FaSignInAlt, FaUserPlus, FaGlobe, FaUserEdit, FaQuestionCircle, FaSignOutAlt } from "react-icons/fa";
-import "../styles/Navbar.css"; // Import your CSS styles for the navbar
+import axios from "axios";
+import {
+  FaUser,
+  FaChevronDown,
+  FaSignInAlt,
+  FaUserPlus,
+  FaGlobe,
+  FaUserEdit,
+  FaQuestionCircle,
+  FaSignOutAlt,
+} from "react-icons/fa";
+import "../styles/Navbar.css";
 
 export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [language, setLanguage] = useState("EN");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -22,10 +32,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (!(event.target as Element).closest('.profile-menu')) {
+      if (!(event.target as Element).closest(".profile-menu")) {
         setIsProfileOpen(false);
       }
     };
@@ -37,29 +46,56 @@ export default function Navbar() {
     setIsProfileOpen(!isProfileOpen);
   };
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-    setIsProfileOpen(false);
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setIsProfileOpen(false);
-  };
-
   const toggleLanguage = () => {
     setLanguage(language === "EN" ? "AR" : "EN");
   };
 
+  const handleLogin = async () => {
+    try {
+      await axios.get("http://localhost:8000/sanctum/csrf-cookie", {
+        withCredentials: true,
+      });
+
+      const response = await axios.post(
+        "http://localhost:8000/api/login",
+        {
+          email: "test@example.com", // 🛑 غيّر هذا حسب النموذج
+          password: "password",      // 🛑 غيّر هذا حسب النموذج
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      setIsLoggedIn(true);
+      setUserEmail(response.data.user?.email || "user@example.com");
+      setIsProfileOpen(false);
+    } catch (error: any) {
+      console.error("Login failed:", error.response?.data || error.message);
+      alert("Login failed. Check your credentials.");
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await axios.post("http://localhost:8000/api/logout", {}, { withCredentials: true });
+      setIsLoggedIn(false);
+      setUserEmail("");
+      setIsProfileOpen(false);
+    } catch (error) {
+      console.error("Logout error", error);
+    }
+  };
+
   return (
-    <motion.nav 
-      className={`navbar ${isScrolled ? 'scrolled' : ''}`}
+    <motion.nav
+      className={`navbar ${isScrolled ? "scrolled" : ""}`}
       initial={{ y: -50 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div className="nav-lines-container">
-        <motion.div 
+        <motion.div
           className="nav-line"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
@@ -82,18 +118,12 @@ export default function Navbar() {
           </ul>
         </div>
 
-        <motion.div 
+        <motion.div
           className="nav-section center"
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
           <Link href="/" className="logo">
-            <Image 
-              src="/images/logo1.png" 
-              alt="Logo" 
-              width={70} 
-              height={70} 
-              priority
-            />
+            <Image src="/images/logo1.png" alt="Logo" width={70} height={70} priority />
           </Link>
         </motion.div>
 
@@ -105,9 +135,8 @@ export default function Navbar() {
             <motion.li whileHover={{ scale: 1.05 }}>
               <Link href="/menu-of-the-day">Food</Link>
             </motion.li>
-            
-            {/* Language Selector */}
-            <motion.li 
+
+            <motion.li
               className="language-selector"
               whileHover={{ scale: 1.05 }}
               onClick={toggleLanguage}
@@ -118,22 +147,16 @@ export default function Navbar() {
             {/* Profile Dropdown */}
             <li className="profile-menu">
               {isLoggedIn ? (
-                <motion.div 
-                  className="profile-container"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <button 
-                    className="profile-btn"
-                    onClick={toggleProfile}
-                  >
-                    <Image 
-                      src="/images/profile-placeholder.jpg" 
-                      alt="Profile" 
-                      width={32} 
-                      height={32} 
+                <motion.div className="profile-container" whileHover={{ scale: 1.05 }}>
+                  <button className="profile-btn" onClick={toggleProfile}>
+                    <Image
+                      src="/images/profile-placeholder.jpg"
+                      alt="Profile"
+                      width={32}
+                      height={32}
                       className="profile-img"
                     />
-                    <FaChevronDown className={`chevron ${isProfileOpen ? 'open' : ''}`} />
+                    <FaChevronDown className={`chevron ${isProfileOpen ? "open" : ""}`} />
                   </button>
 
                   <AnimatePresence>
@@ -147,7 +170,7 @@ export default function Navbar() {
                       >
                         <div className="dropdown-header">
                           <p className="profile-name">My Profile</p>
-                          <p className="profile-email">user@example.com</p>
+                          <p className="profile-email">{userEmail}</p>
                         </div>
                         <ul>
                           <li>
@@ -171,16 +194,10 @@ export default function Navbar() {
                   </AnimatePresence>
                 </motion.div>
               ) : (
-                <motion.div 
-                  className="profile-container"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <button 
-                    className="profile-btn"
-                    onClick={toggleProfile}
-                  >
+                <motion.div className="profile-container" whileHover={{ scale: 1.05 }}>
+                  <button className="profile-btn" onClick={toggleProfile}>
                     <FaUser className="user-icon" />
-                    <FaChevronDown className={`chevron ${isProfileOpen ? 'open' : ''}`} />
+                    <FaChevronDown className={`chevron ${isProfileOpen ? "open" : ""}`} />
                   </button>
 
                   <AnimatePresence>
@@ -194,12 +211,12 @@ export default function Navbar() {
                       >
                         <ul>
                           <li>
-                            <button onClick={handleLogin}>
+                            <Link href="/login" onClick={() => setIsProfileOpen(false)}>
                               <FaSignInAlt /> Login
-                            </button>
+                            </Link>
                           </li>
                           <li>
-                            <Link href="/signup" onClick={() => setIsProfileOpen(false)}>
+                            <Link href="/main/become-guide" onClick={() => setIsProfileOpen(false)}>
                               <FaUserPlus /> Sign Up
                             </Link>
                           </li>
@@ -220,7 +237,7 @@ export default function Navbar() {
       </div>
 
       <div className="nav-lines-container">
-        <motion.div 
+        <motion.div
           className="nav-line"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
