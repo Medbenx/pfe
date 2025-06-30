@@ -14,7 +14,7 @@ interface FormData {
   password_confirmation: string;
 }
 
-const UserRegisterForm: React.FC = () => {
+const MorcompassForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -191,4 +191,4 @@ const UserRegisterForm: React.FC = () => {
   );
 };
 
-export default UserRegisterForm;
+export default MorcompassForm;

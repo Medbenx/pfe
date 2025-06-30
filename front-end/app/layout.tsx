@@ -1,29 +1,33 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import NavBar from './components/NavBar';
-import FooterSection from './components/FooterSection';
-import AOSInitializer from './components/AOSInitializer';
+"use client";
 
-const inter = Inter({ subsets: ['latin'] });
+import { usePathname } from "next/navigation";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Navbar from "./components/NavBar";
+import FooterSection from "./components/FooterSection";
+import AOSInitializer from "./components/AOSInitializer";
 
-export const metadata: Metadata = {
-  title: 'Morocco Travel',
-  description: 'Discover the beauty of Morocco',
-};
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
+  // Paths where footer should be hidden
+  const noFooterPaths = ["/login", "/main/become-guide"];
+
+  const showFooter = !noFooterPaths.includes(pathname);
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar />
+        <Navbar />
         <main>{children}</main>
-        <FooterSection />
-         <AOSInitializer />
+        {showFooter && <FooterSection />}
+        <AOSInitializer />
       </body>
     </html>
   );
