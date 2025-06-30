@@ -133,10 +133,10 @@
 
 
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { FaSearch, FaFilter } from "react-icons/fa";
+import { FaFilter } from "react-icons/fa";
 import "../styles/Experience.css"; // Ensure you have the correct path to your CSS file
 import Link from "next/link";
 
@@ -263,7 +263,7 @@ export default function Experience() {
 
         {/* Mobile Filter Toggle */}
         <button
-          className="md:hidden bg-amber-600 hover:bg-amber-700 text-white py-2 px-4 rounded-lg flex items-center gap-2 mx-auto mb-6"
+          className="md:hidden mt-2  bg-amber-600 hover:bg-amber-700 text-white py-2 px-4 rounded-lg flex items-center gap-2 mx-auto mb-6"
           onClick={() => setIsMobileFiltersOpen(!isMobileFiltersOpen)}
         >
           <FaFilter /> Filters
@@ -344,18 +344,18 @@ export default function Experience() {
               onClick={() => setIsMobileFiltersOpen(false)}
             >
               <motion.div
-                className="bg-white w-4/5 h-full p-6 overflow-y-auto"
+                className="bg-white w-4/5 h-[790px] mt-16 p-6 "
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="flex justify-between items-center mb-6">
+                <div className="flex justify-between items-center mb-1  mt-2">
                   <h2 className="text-xl font-bold text-gray-800">Filters</h2>
                   <button
-                    onClick={() => setIsMobileFiltersOpen(false)}
-                    className="text-gray-500 hover:text-gray-700"
+                    onClick=  {() => setIsMobileFiltersOpen(false)}
+                    className="text-gray-900 mt-10 hover:text-gray-700"
                   >
                     ✕
                   </button>

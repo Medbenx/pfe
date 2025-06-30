@@ -242,45 +242,91 @@
 }
 
 
-/* Responsive breakpoints */
-@media (max-width: 639px) {
-  /* Mobile styles */
+
+/* ----------- Tablets (up to 768px) ----------- */
+@media (max-width: 768px) {
   .guide-card {
-    height: 450px;
-    max-width: 400px;
-    margin: 0 auto;
+    width: 100%;
+    height: 430px;
+  }
+
+  .guide-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .card-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .price {
+    font-size: 1.1rem;
   }
 }
 
-
-
-@media (min-width: 640px) and (max-width: 767px) {
-  /* Small tablet styles */
+/* ----------- Mobile (up to 640px) ----------- */
+@media (max-width: 640px) {
   .guide-card {
-    height: 450px;
+    width: 100%;
+    height: 380px;
   }
-}
 
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  /* Tablet styles */
-  .guide-card {
-    height: 480px;
+  .guide-image {
+    width: 80px;
+    height: 80px;
   }
-}
 
-@media (min-width: 1024px) {
-  /* Desktop styles */
-  .guide-card {
-    height: 500px;
+  .card-content h3 {
+    font-size: 1rem;
   }
-}
 
+  .card-content p {
+    font-size: 0.8rem;
+  }
 
-/* Hide navigation on small screens */
-@media (max-width: 639px) {
-  .swiper-button-prev,
-  .swiper-button-next {
+  .price {
+    font-size: 1rem;
+  }
+
+  .specialty {
+    font-size: 0.7rem;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
     display: none;
+  }
+}
+
+/* ----------- Very small screens (under 480px) ----------- */
+@media (max-width: 480px) {
+  .guide-card {
+    height: 350px;
+  }
+
+  .card-content h3 {
+    font-size: 0.9rem;
+  }
+
+  .bio {
+    font-size: 0.75rem;
+    line-height: 1.2rem;
+  }
+
+  .specialty {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .book-button,
+  .profile-link {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
   }
 }

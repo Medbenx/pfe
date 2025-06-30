@@ -68,7 +68,7 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .destination-card {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
   
   .video-container {

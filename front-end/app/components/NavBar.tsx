@@ -1,31 +1,37 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { FaUser, FaChevronDown, FaSignInAlt, FaUserPlus, FaGlobe, FaUserEdit, FaQuestionCircle, FaSignOutAlt } from "react-icons/fa";
-import "../styles/Navbar.css"; // Import your CSS styles for the navbar
+import {
+  FaUser,
+  FaChevronDown,
+  FaSignInAlt,
+  FaUserPlus,
+  FaGlobe,
+  FaUserEdit,
+  FaQuestionCircle,
+  FaSignOutAlt,
+} from "react-icons/fa";
+import "../styles/Navbar.css";
 
 export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [language, setLanguage] = useState("EN");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Handle scroll effect
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (!(event.target as Element).closest('.profile-menu')) {
+      if (!(event.target as Element).closest(".profile-menu")) {
         setIsProfileOpen(false);
       }
     };
@@ -33,33 +39,25 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const toggleProfile = () => {
-    setIsProfileOpen(!isProfileOpen);
-  };
-
+  const toggleProfile = () => setIsProfileOpen(!isProfileOpen);
   const handleLogin = () => {
     setIsLoggedIn(true);
     setIsProfileOpen(false);
   };
-
   const handleLogout = () => {
     setIsLoggedIn(false);
     setIsProfileOpen(false);
   };
-
-  const toggleLanguage = () => {
-    setLanguage(language === "EN" ? "AR" : "EN");
+  const toggleLanguage = () => setLanguage(language === "EN" ? "AR" : "EN");
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsProfileOpen(false);
   };
 
   return (
-    <motion.nav 
-      className={`navbar ${isScrolled ? 'scrolled' : ''}`}
-      initial={{ y: -50 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <motion.nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
       <div className="nav-lines-container">
-        <motion.div 
+        <motion.div
           className="nav-line"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
@@ -67,75 +65,73 @@ export default function Navbar() {
         />
       </div>
 
-      <div className="nav-content">
-        <div className="nav-section">
+      {/* Mobile Top Bar */}
+      <div className="mobile-nav-bar">
+        <button className="hamburger" onClick={toggleMobileMenu}>
+          <span className={`bar ${isMobileMenuOpen ? "open" : ""}`}></span>
+          <span className={`bar ${isMobileMenuOpen ? "open" : ""}`}></span>
+          <span className={`bar ${isMobileMenuOpen ? "open" : ""}`}></span>
+        </button>
+        <Link href="/" className="mobile-logo">
+          <Image src="/images/logo1.png" alt="Logo" width={60} height={60} />
+        </Link>
+      </div>
+
+      {/* Desktop & Mobile Nav */}
+      <div className={`nav-content ${isMobileMenuOpen ? "mobile-open" : ""}`}>
+        {/* Left Menu */}
+        <div className="nav-section left">
           <ul className="navLinks">
-            <motion.li whileHover={{ scale: 1.05 }}>
+            <li>
               <Link href="/about">About Morocco</Link>
-            </motion.li>
-            <motion.li whileHover={{ scale: 1.05 }}>
+            </li>
+            <li>
               <Link href="/experience">Experience</Link>
-            </motion.li>
-            <motion.li whileHover={{ scale: 1.05 }}>
+            </li>
+            <li>
               <Link href="/TravelProgram">Travel Program</Link>
-            </motion.li>
+            </li>
           </ul>
         </div>
 
-        <motion.div 
-          className="nav-section center"
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
-        >
+        {/* Logo Center (desktop only) */}
+        <div className="nav-section center desktop-logo">
           <Link href="/" className="logo">
-            <Image 
-              src="/images/logo1.png" 
-              alt="Logo" 
-              width={70} 
-              height={70} 
-              priority
-            />
+            <Image src="/images/logo1.png" alt="Logo" width={70} height={70} />
           </Link>
-        </motion.div>
+        </div>
 
-        <div className="nav-section">
+        {/* Right Menu */}
+        <div className="nav-section right">
           <ul className="navLinks">
-            <motion.li whileHover={{ scale: 1.05 }}>
-              <Link href="/events-happenings">Events & Happenings</Link>
-            </motion.li>
-            <motion.li whileHover={{ scale: 1.05 }}>
+            <li>
+              <Link href="/events-happenings">Events</Link>
+            </li>
+            <li>
               <Link href="/menu-of-the-day">Food</Link>
-            </motion.li>
-            
-            {/* Language Selector */}
-            <motion.li 
-              className="language-selector"
-              whileHover={{ scale: 1.05 }}
-              onClick={toggleLanguage}
-            >
+            </li>
+            <li className="language-selector" onClick={toggleLanguage}>
               {language}
-            </motion.li>
-
+            </li>
             {/* Profile Dropdown */}
             <li className="profile-menu">
               {isLoggedIn ? (
-                <motion.div 
+                <motion.div
                   className="profile-container"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <button 
-                    className="profile-btn"
-                    onClick={toggleProfile}
-                  >
-                    <Image 
-                      src="/images/profile-placeholder.jpg" 
-                      alt="Profile" 
-                      width={32} 
-                      height={32} 
+                  <button className="profile-btn" onClick={toggleProfile}>
+                    <Image
+                      src="/images/profile-placeholder.jpg"
+                      alt="Profile"
+                      width={32}
+                      height={32}
                       className="profile-img"
                     />
-                    <FaChevronDown className={`chevron ${isProfileOpen ? 'open' : ''}`} />
+                    <FaChevronDown
+                      className={`chevron ${isProfileOpen ? "open" : ""}`}
+                    />
                   </button>
-
                   <AnimatePresence>
                     {isProfileOpen && (
                       <motion.div
@@ -151,12 +147,18 @@ export default function Navbar() {
                         </div>
                         <ul>
                           <li>
-                            <Link href="/profile" onClick={() => setIsProfileOpen(false)}>
+                            <Link
+                              href="/profile"
+                              onClick={() => setIsProfileOpen(false)}
+                            >
                               <FaUserEdit /> Edit Profile
                             </Link>
                           </li>
                           <li>
-                            <Link href="/help" onClick={() => setIsProfileOpen(false)}>
+                            <Link
+                              href="/help"
+                              onClick={() => setIsProfileOpen(false)}
+                            >
                               <FaQuestionCircle /> Help & Support
                             </Link>
                           </li>
@@ -171,18 +173,16 @@ export default function Navbar() {
                   </AnimatePresence>
                 </motion.div>
               ) : (
-                <motion.div 
+                <motion.div
                   className="profile-container"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <button 
-                    className="profile-btn"
-                    onClick={toggleProfile}
-                  >
+                  <button className="profile-btn" onClick={toggleProfile}>
                     <FaUser className="user-icon" />
-                    <FaChevronDown className={`chevron ${isProfileOpen ? 'open' : ''}`} />
+                    <FaChevronDown
+                      className={`chevron ${isProfileOpen ? "open" : ""}`}
+                    />
                   </button>
-
                   <AnimatePresence>
                     {isProfileOpen && (
                       <motion.div
@@ -199,13 +199,17 @@ export default function Navbar() {
                             </button>
                           </li>
                           <li>
-                            <Link href="/signup" onClick={() => setIsProfileOpen(false)}>
+                            <Link
+                              href="/signup"
+                              onClick={() => setIsProfileOpen(false)}
+                            >
                               <FaUserPlus /> Sign Up
                             </Link>
                           </li>
                           <li>
                             <button onClick={toggleLanguage}>
-                              <FaGlobe /> {language === "EN" ? "العربية" : "English"}
+                              <FaGlobe />{" "}
+                              {language === "EN" ? "العربية" : "English"}
                             </button>
                           </li>
                         </ul>
@@ -220,7 +224,7 @@ export default function Navbar() {
       </div>
 
       <div className="nav-lines-container">
-        <motion.div 
+        <motion.div
           className="nav-line"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}

@@ -143,7 +143,7 @@ export default function Carousel() {
           />
           <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent">
             <motion.h3 
-              className="text-4xl font-bold text-white mb-2"
+              className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-2"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
@@ -152,7 +152,7 @@ export default function Carousel() {
               {images[index].text}
             </motion.h3>
             <motion.p 
-              className="text-2xl text-amber-300 font-medium"
+              className="text-sm sm:text-lg md:text-2xl text-amber-300 font-medium"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
@@ -216,7 +216,7 @@ export default function Carousel() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.1 * i }}
           >
-            <span className="block w-3 h-3 rounded-full" />
+            <span className="block w-2 h-2 sm:w-3 sm:h-3 rounded-full" />
             {i === index && (
               <motion.span 
                 className="absolute inset-0 border-2 border-amber-500 rounded-full"
@@ -229,175 +229,7 @@ export default function Carousel() {
           </motion.button>
         ))}
       </div>
-
-
-
-      {/* Progress Bar
-      <motion.div 
-        className="absolute bottom-0 left-0 h-1 bg-amber-900 z-20"
-        initial={{ width: 0 }}
-        animate={{ width: "100%" }}
-        transition={{ duration: 5, ease: "linear" }}
-        key={`progress-${index}`}
-      /> */}
     </div>
   );
 }
 
-
-// "use client";
-// import { useState, useEffect } from "react";
-// import Image from "next/image";
-// import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-// import { motion, AnimatePresence } from "framer-motion";
-
-// const images = [
-//   { src: "/images/image1.jpg", text: "Tetouan - The White Dove", location: "Northern Morocco" },
-//   { src: "/images/image2.jpg", text: "Rabat - The Capital", location: "Atlantic Coast" },
-//   { src: "/images/image3.jpg", text: "Casablanca - Economic Hub", location: "Central Morocco" },
-//   { src: "/images/image4.jpg", text: "Marrakech - The Red City", location: "Southwest Morocco" },
-//   { src: "/images/image5.jpg", text: "Fes - Cultural Heart", location: "Northern Morocco" },
-//   { src: "/images/image6.jpg", text: "Tangier - Gateway to Europe", location: "Strait of Gibraltar" },
-//   { src: "/images/image7.jpg", text: "Chefchaouen - The Blue Pearl", location: "Rif Mountains" },
-//   { src: "/images/image8.jpg", text: "Agadir - Beach Paradise", location: "Southern Coast" },
-//   { src: "/images/image9.jpg", text: "Meknes - Imperial City", location: "North Central Morocco" },
-//   { src: "/images/image10.jpg", text: "Ouarzazate - Desert Gateway", location: "Sahara Desert" },
-// ];
-
-// export default function Carousel() {
-//   const [index, setIndex] = useState(0);
-//   const [direction, setDirection] = useState(1);
-//   const [isHovered, setIsHovered] = useState(false);
-
-//   useEffect(() => {
-//     let interval: NodeJS.Timeout;
-//     if (!isHovered) {
-//       interval = setInterval(() => {
-//         setDirection(1);
-//         setIndex((prev) => (prev + 1) % images.length);
-//       }, 5000);
-//     }
-//     return () => clearInterval(interval);
-//   }, [isHovered, images.length]);
-
-//   const handlePrev = () => {
-//     console.log("Previous button clicked - Current index:", index);
-//     setDirection(-1);
-//     setIndex((prev) => {
-//       const newIndex = (prev - 1 + images.length) % images.length;
-//       console.log("New index after prev:", newIndex);
-//       return newIndex;
-//     });
-//   };
-
-//   const handleNext = () => {
-//     console.log("Next button clicked - Current index:", index);
-//     setDirection(1);
-//     setIndex((prev) => {
-//       const newIndex = (prev + 1) % images.length;
-//       console.log("New index after next:", newIndex);
-//       return newIndex;
-//     });
-//   };
-
-//   const variants = {
-//     enter: (direction: number) => ({
-//       x: direction > 0 ? 1000 : -1000,
-//       opacity: 0,
-//       scale: 0.9
-//     }),
-//     center: {
-//       x: 0,
-//       opacity: 1,
-//       scale: 1
-//     },
-//     exit: (direction: number) => ({
-//       x: direction < 0 ? 1000 : -1000,
-//       opacity: 0,
-//       scale: 0.9
-//     })
-//   };
-
-//   return (
-//     <div 
-//       className="relative w-full h-full overflow-hidden"
-//       onMouseEnter={() => setIsHovered(true)}
-//       onMouseLeave={() => setIsHovered(false)}
-//     >
-//       <AnimatePresence custom={direction} initial={false}>
-//         <motion.div
-//           key={index}
-//           custom={direction}
-//           variants={variants}
-//           initial="enter"
-//           animate="center"
-//           exit="exit"
-//           transition={{
-//             x: { type: "spring", stiffness: 300, damping: 30 },
-//             opacity: { duration: 0.2 },
-//             scale: { duration: 0.3 }
-//           }}
-//           className="absolute w-full h-full"
-//         >
-//           <Image
-//             src={images[index].src}
-//             alt={images[index].text}
-//             fill
-//             className="object-cover pointer-events-none"
-//             priority={index < 3}
-//           />
-//           <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent pointer-events-none">
-//             <motion.h3 
-//               className="text-3xl font-bold text-white"
-//               initial={{ y: 20, opacity: 0 }}
-//               animate={{ y: 0, opacity: 1 }}
-//               transition={{ delay: 0.3 }}
-//             >
-//               {images[index].text}
-//             </motion.h3>
-//             <motion.p 
-//               className="text-xl text-amber-300"
-//               initial={{ y: 20, opacity: 0 }}
-//               animate={{ y: 0, opacity: 1 }}
-//               transition={{ delay: 0.5 }}
-//             >
-//               {images[index].location}
-//             </motion.p>
-//           </div>
-//         </motion.div>
-//       </AnimatePresence>
-
-//       {/* Navigation Buttons - Fixed */}
-//       <button
-//         className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/70 text-white p-4 rounded-full z-50 hover:bg-black/90 transition-all focus:outline-none focus:ring-2 focus:ring-white pointer-events-auto"
-//         onClick={handlePrev}
-//         aria-label="Previous slide"
-//       >
-//         <FaArrowLeft size={28} />
-//       </button>
-//       <button
-//         className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/70 text-white p-4 rounded-full z-50 hover:bg-black/90 transition-all focus:outline-none focus:ring-2 focus:ring-white pointer-events-auto"
-//         onClick={handleNext}
-//         aria-label="Next slide"
-//       >
-//         <FaArrowRight size={28} />
-//       </button>
-
-//       {/* Indicators - Fixed */}
-//       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-50 pointer-events-auto">
-//         {images.map((_, i) => (
-//           <button
-//             key={i}
-//             className={`w-4 h-4 rounded-full transition-all ${i === index ? 'bg-amber-500 w-8' : 'bg-white/70 hover:bg-white'}`}
-//             onClick={() => {
-//               console.log("Indicator clicked - Target index:", i);
-//               setDirection(i > index ? 1 : -1);
-//               setIndex(i);
-//             }}
-//             aria-label={`Go to slide ${i + 1}`}
-//           />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
