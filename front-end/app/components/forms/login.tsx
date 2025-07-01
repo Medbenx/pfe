@@ -180,7 +180,7 @@ const UserLoginForm: React.FC = () => {
                 </span>
               </button>
 
-              <Link href="/signup" className="text-center text-sm" style={{ color: colors.primary }}>
+              <Link href="/main/sign-up" className="text-center text-sm" style={{ color: colors.primary }}>
                 Don’t have an account? Sign Up
               </Link>
             </div>

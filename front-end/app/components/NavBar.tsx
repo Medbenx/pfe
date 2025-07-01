@@ -59,8 +59,8 @@ export default function Navbar() {
       const response = await axios.post(
         "http://localhost:8000/api/login",
         {
-          email: "test@example.com", // 🛑 غيّر هذا حسب النموذج
-          password: "password",      // 🛑 غيّر هذا حسب النموذج
+          email: "test@example.com", // عدل حسب بيانات النموذج
+          password: "password",
         },
         {
           withCredentials: true,
@@ -184,6 +184,11 @@ export default function Navbar() {
                             </Link>
                           </li>
                           <li>
+                            <Link href="/become-guide" onClick={() => setIsProfileOpen(false)}>
+                              🧭 Become a Guide
+                            </Link>
+                          </li>
+                          <li>
                             <button onClick={handleLogout}>
                               <FaSignOutAlt /> Log Out
                             </button>
@@ -216,8 +221,13 @@ export default function Navbar() {
                             </Link>
                           </li>
                           <li>
-                            <Link href="/main/become-guide" onClick={() => setIsProfileOpen(false)}>
+                            <Link href="/main/sign-up" onClick={() => setIsProfileOpen(false)}>
                               <FaUserPlus /> Sign Up
+                            </Link>
+                          </li>
+                          <li>
+                            <Link href="/guideform" onClick={() => setIsProfileOpen(false)}>
+                              🧭 Become a Guide
                             </Link>
                           </li>
                           <li>
