@@ -125,6 +125,23 @@ export default function EventDetails({
           comment: "Great lineup but crowded at main stage",
         },
       ],
+      musicTracks: [
+      {
+        title: "Gnaoua Fusion",
+        artist: "Maalem Hamid El Kasri",
+        src: "/audio/gnaoua-fusion.mp3",
+      },
+      {
+        title: "Lila Ceremony",
+        artist: "Traditional Gnaoua Ensemble",
+        src: "/audio/lila-ceremony.mp3",
+      },
+      {
+        title: "Saharan Rhythms",
+        artist: "Desert Nomads",
+        src: "/audio/saharan-rhythms.mp3",
+      },
+    ],
     },
     {
       id: 2,
@@ -163,6 +180,23 @@ export default function EventDetails({
         { src: "/images/events/film-1.jpg", caption: "Red carpet arrivals" },
         { src: "/images/events/film-2.jpg", caption: "Jury panel discussion" },
       ],
+      musicTracks: [
+      {
+        title: "Cinematic Morocco",
+        artist: "Film Score Orchestra",
+        src: "/audio/cinematic-morocco.mp3",
+      },
+      {
+        title: "Red Carpet Theme",
+        artist: "Marrakech Symphony",
+        src: "/audio/red-carpet-theme.mp3",
+      },
+      {
+        title: "Golden Atlas",
+        artist: "Award Winners Ensemble",
+        src: "/audio/golden-atlas.mp3",
+      },
+    ],
     },
     {
       id: 3,
@@ -197,6 +231,23 @@ export default function EventDetails({
           caption: "Traditional tent setup",
         },
       ],
+       musicTracks: [
+      {
+        title: "Nomadic Chants",
+        artist: "Saharan Tribes",
+        src: "/audio/nomadic-chants.mp3",
+      },
+      {
+        title: "Camel Caravan",
+        artist: "Desert Musicians",
+        src: "/audio/camel-caravan.mp3",
+      },
+      {
+        title: "Tindé Rhythm",
+        artist: "Tuareg Ensemble",
+        src: "/audio/tinde-rhythm.mp3",
+      },
+    ],
     },
     {
       id: 4,
@@ -236,6 +287,23 @@ export default function EventDetails({
         },
         { src: "/images/events/fes-2.jpg", caption: "Sufi whirling ceremony" },
       ],
+       musicTracks: [
+      {
+        title: "Sufi Whirling",
+        artist: "Fes Spiritual Ensemble",
+        src: "/audio/sufi-whirling.mp3",
+      },
+      {
+        title: "Andalusian Prayer",
+        artist: "Al-Andalus Orchestra",
+        src: "/audio/andalusian-prayer.mp3",
+      },
+      {
+        title: "Universal Harmony",
+        artist: "Interfaith Choir",
+        src: "/audio/universal-harmony.mp3",
+      },
+    ],
     },
     {
       id: 5,
@@ -260,6 +328,23 @@ export default function EventDetails({
         { src: "/images/events/rose-1.jpg", caption: "Rose petal carpet" },
         { src: "/images/events/rose-2.jpg", caption: "Traditional dancers" },
       ],
+       musicTracks: [
+      {
+        title: "Valley of Roses",
+        artist: "Amazigh Folk Group",
+        src: "/audio/valley-of-roses.mp3",
+      },
+      {
+        title: "Petals in the Wind",
+        artist: "M'Gouna Musicians",
+        src: "/audio/petals-in-wind.mp3",
+      },
+      {
+        title: "Harvest Dance",
+        artist: "Local Collective",
+        src: "/audio/harvest-dance.mp3",
+      },
+    ],
     },
     {
       id: 6,
@@ -290,39 +375,74 @@ export default function EventDetails({
           caption: "Desert camp at night",
         },
       ],
+      musicTracks: [
+      {
+        title: "Dunes Challenge",
+        artist: "Sahara Rhythm Section",
+        src: "/audio/dunes-challenge.mp3",
+      },
+      {
+        title: "Runner's High",
+        artist: "Endurance Beats",
+        src: "/audio/runners-high.mp3",
+      },
+      {
+        title: "Finish Line",
+        artist: "Victory Drums",
+        src: "/audio/finish-line.mp3",
+      },
+    ],
     },
     {
-  id: 7,
-  title: "FIFA World Cup 2026",
-  city: "USA, Canada, Mexico",
-  date: "June 8 - July 3, 2026",
-  type: "Sports",
-  season: "Summer",
-  image: "/images/events/worldcup.jpg",
-  description:
-    "The largest sporting event in the world - 48 teams compete across 16 host cities in North America. First World Cup hosted by three nations, featuring expanded format and new technologies.",
-  price: "Ticket packages from $250 USD (varies by match)",
-  location: "16 host cities including New York, Los Angeles, Toronto, Mexico City",
-  duration: "26 days (64 matches)",
-  highlights: [
-    "First 48-team World Cup in history",
-    "Opening match in Mexico City",
-    "Final at MetLife Stadium (New Jersey)",
-    "New VAR and semi-automated offside technology",
-    "Fan festivals in all host cities"
-  ],
-  gallery: [
-    {
-      src: "/images/events/worldcup-1.jpg",
-      caption: "2026 Host Cities announcement"
+      id: 7,
+      title: "FIFA World Cup 2026",
+      city: "USA, Canada, Mexico",
+      date: "June 8 - July 3, 2026",
+      type: "Sports",
+      season: "Summer",
+      image: "/images/events/worldcup.jpg",
+      description:
+        "The largest sporting event in the world - 48 teams compete across 16 host cities in North America. First World Cup hosted by three nations, featuring expanded format and new technologies.",
+      price: "Ticket packages from $250 USD (varies by match)",
+      location:
+        "16 host cities including New York, Los Angeles, Toronto, Mexico City",
+      duration: "26 days (64 matches)",
+      highlights: [
+        "First 48-team World Cup in history",
+        "Opening match in Mexico City",
+        "Final at MetLife Stadium (New Jersey)",
+        "New VAR and semi-automated offside technology",
+        "Fan festivals in all host cities",
+      ],
+      gallery: [
+        {
+          src: "/images/events/worldcup-1.jpg",
+          caption: "2026 Host Cities announcement",
+        },
+        {
+          src: "/images/events/worldcup-2.jpg",
+          caption: "Previous World Cup final celebration",
+        },
+      ],
+      musicTracks: [
+      {
+        title: "World Unity Anthem",
+        artist: "Global Artists Collective",
+        src: "/audio/world-unity.mp3",
+      },
+      {
+        title: "Victory Chant",
+        artist: "Stadium Choir",
+        src: "/audio/victory-chant.mp3",
+      },
+      {
+        title: "The Beautiful Game",
+        artist: "International Orchestra",
+        src: "/audio/beautiful-game.mp3",
+      },
+    ],
+      tags: ["important", "mega-event"], // Optional for filtering
     },
-    {
-      src: "/images/events/worldcup-2.jpg",
-      caption: "Previous World Cup final celebration"
-    }
-  ],
-  tags: ["important", "mega-event"] // Optional for filtering
-}
   ];
 
   // Add this near the top of your component (after the event data)
@@ -355,25 +475,6 @@ export default function EventDetails({
     return () => clearInterval(timer);
   }, []);
 
-
-  // Music tracks data
-  const tracks = [
-    {
-      title: "Traditional Gnawa",
-      artist: "Moroccan Ensemble",
-      src: "/audio/gnawa-music.mp3",
-    },
-    {
-      title: "Andalusian Melody",
-      artist: "Fez Orchestra",
-      src: "/audio/andalusian.mp3",
-    },
-    {
-      title: "Atlas Mountain Sounds",
-      artist: "Berber Musicians",
-      src: "/audio/berber-music.mp3",
-    },
-  ];
 
   const event = events.find((e) => e.id.toString() === id);
   if (!event) {
@@ -957,45 +1058,51 @@ export default function EventDetails({
           <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">
             Experience the Music
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {tracks.map((track, index) => (
-              <motion.div
-                key={index}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-                whileHover={{ y: -5 }}
-              >
-                <div className="relative h-48 bg-gradient-to-br from-blue-100 to-amber-100 flex items-center justify-center">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-24 h-24 bg-white/30 rounded-full flex items-center justify-center">
-                      <svg
-                        className="w-12 h-12 text-amber-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M9 19V6l12-3v13M9 19c0 1.105-1.79 2-4 2s-4-.895-4-2 1.79-2 4-2 4 .895 4 2zm12-3c0 1.105-1.79 2-4 2s-4-.895-4-2 1.79-2 4-2 4 .895 4 2z"
-                        />
-                      </svg>
+          {event.musicTracks && event.musicTracks.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {event.musicTracks.map((track, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                  whileHover={{ y: -5 }}
+                >
+                  <div className="relative h-48 bg-gradient-to-br from-blue-100 to-amber-100 flex items-center justify-center">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-24 h-24 bg-white/30 rounded-full flex items-center justify-center">
+                        <svg
+                          className="w-12 h-12 text-amber-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M9 19V6l12-3v13M9 19c0 1.105-1.79 2-4 2s-4-.895-4-2 1.79-2 4-2 4 .895 4 2zm12-3c0 1.105-1.79 2-4 2s-4-.895-4-2 1.79-2 4-2 4 .895 4 2z"
+                          />
+                        </svg>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-800 mb-1">
-                    {track.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">{track.artist}</p>
-                  <audio controls className="w-full">
-                    <source src={track.src} type="audio/mpeg" />
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-800 mb-1">
+                      {track.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4">{track.artist}</p>
+                    <audio controls className="w-full">
+                      <source src={track.src} type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-gray-600">
+              No music tracks available for this event.
+            </p>
+          )}
         </div>
       </motion.section>
 

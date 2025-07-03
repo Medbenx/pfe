@@ -3,11 +3,18 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
-  FaFacebook, FaTwitter, FaInstagram, FaLinkedin,
-  FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedin,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaEnvelope,
+  FaClock,
 } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
 import axios from "axios";
+import Link from "next/link";
 
 export default function FooterSection() {
   const [email, setEmail] = useState("");
@@ -19,7 +26,7 @@ export default function FooterSection() {
     { icon: <FaFacebook />, url: "https://facebook.com" },
     { icon: <FaTwitter />, url: "https://twitter.com" },
     { icon: <FaInstagram />, url: "https://instagram.com" },
-    { icon: <FaLinkedin />, url: "https://linkedin.com" }
+    { icon: <FaLinkedin />, url: "https://linkedin.com" },
   ];
 
   const quickLinks = [
@@ -27,14 +34,14 @@ export default function FooterSection() {
     { name: "Destinations", url: "/destinations" },
     { name: "Tours", url: "/tours" },
     { name: "Cultural Experiences", url: "/culture" },
-    { name: "Adventure Trips", url: "/adventure" }
+    { name: "Adventure Trips", url: "/adventure" },
   ];
 
   const contactInfo = [
     { icon: <FaMapMarkerAlt />, text: "123 Sahara Ave, Marrakech, Morocco" },
     { icon: <FaPhone />, text: "+212 6 12 34 56 78" },
     { icon: <FaEnvelope />, text: "contact@exploremorocco.com" },
-    { icon: <FaClock />, text: "Mon-Fri: 9AM - 6PM" }
+    { icon: <FaClock />, text: "Mon-Fri: 9AM - 6PM" },
   ];
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
@@ -44,10 +51,14 @@ export default function FooterSection() {
     setErrorMsg("");
 
     try {
-      
-      const response = await axios.post("http://127.0.0.1:8000/api/newsletter", { email }, {
-        headers: { Accept: "application/json" },
-      });
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/newsletter",
+        { email },
+        {
+          headers: { Accept: "application/json" },
+        }
+      );
 
       setSuccessMsg("✅subscribed successfully!");
       setEmail("");
@@ -64,7 +75,7 @@ export default function FooterSection() {
   };
 
   return (
-    <motion.footer 
+    <motion.footer
       className="py-16 bg-gradient-to-r from-blue-50 to-amber-50 relative overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -73,29 +84,29 @@ export default function FooterSection() {
     >
       {/* 3D Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div 
+        <motion.div
           className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-amber-200 opacity-20"
           animate={{
             scale: [1, 1.1, 1],
-            y: [0, -10, 0]
+            y: [0, -10, 0],
           }}
           transition={{
             duration: 8,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
-        <motion.div 
+        <motion.div
           className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-blue-200 opacity-20"
           animate={{
             scale: [1, 1.2, 1],
-            x: [0, -10, 0]
+            x: [0, -10, 0],
           }}
           transition={{
             duration: 10,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 1
+            delay: 1,
           }}
         />
       </div>
@@ -114,7 +125,8 @@ export default function FooterSection() {
               Explore Morocco
             </h3>
             <p className="text-gray-600 mb-6">
-              Your premier guide to the rich culture, stunning landscapes, and unforgettable experiences in Morocco.
+              Your premier guide to the rich culture, stunning landscapes, and
+              unforgettable experiences in Morocco.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
@@ -140,15 +152,14 @@ export default function FooterSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-xl font-semibold text-gray-900 mb-6">Quick Links</h4>
+            <h4 className="text-xl font-semibold text-gray-900 mb-6">
+              Quick Links
+            </h4>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
-                <motion.li 
-                  key={index}
-                  whileHover={{ x: 5 }}
-                >
-                  <a 
-                    href={link.url} 
+                <motion.li key={index} whileHover={{ x: 5 }}>
+                  <a
+                    href={link.url}
                     className="text-gray-600 hover:text-amber-600 transition-colors duration-300 flex items-center"
                   >
                     <span className="w-2 h-2 bg-amber-600 rounded-full mr-3"></span>
@@ -166,7 +177,9 @@ export default function FooterSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-xl font-semibold text-gray-900 mb-6">Contact Us</h4>
+            <h4 className="text-xl font-semibold text-gray-900 mb-6">
+              Contact Us
+            </h4>
             <ul className="space-y-4">
               {contactInfo.map((info, index) => (
                 <li key={index} className="flex items-start">
@@ -184,7 +197,9 @@ export default function FooterSection() {
             transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-xl font-semibold text-gray-900 mb-6">Newsletter</h4>
+            <h4 className="text-xl font-semibold text-gray-900 mb-6">
+              Newsletter
+            </h4>
             <p className="text-gray-600 mb-4">
               Subscribe to get updates on our latest tours and special offers.
             </p>
@@ -209,7 +224,10 @@ export default function FooterSection() {
               </motion.p>
             )}
 
-            <form className="flex flex-col space-y-4" onSubmit={handleNewsletterSubmit}>
+            <form
+              className="flex flex-col space-y-4"
+              onSubmit={handleNewsletterSubmit}
+            >
               <input
                 type="email"
                 placeholder="Your email address"
@@ -235,7 +253,7 @@ export default function FooterSection() {
         </div>
 
         {/* Divider */}
-        <motion.div 
+        <motion.div
           className="border-t border-gray-200 my-8"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
@@ -252,18 +270,28 @@ export default function FooterSection() {
           viewport={{ once: true }}
         >
           <p className="text-gray-600 mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Explore Morocco. All rights reserved.
+            &copy; {new Date().getFullYear()} Explore Morocco. All rights
+            reserved.
           </p>
           <div className="flex space-x-6">
-            <a href="/privacy" className="text-gray-600 hover:text-amber-600 transition-colors duration-300">
+            <Link
+              href="/privacy-policy"
+              className="text-gray-600 hover:text-amber-600 transition-colors"
+            >
               Privacy Policy
-            </a>
-            <a href="/terms" className="text-gray-600 hover:text-amber-600 transition-colors duration-300">
+            </Link>
+            <Link
+              href="/terms-of-service"
+              className="text-gray-600 hover:text-amber-600 transition-colors"
+            >
               Terms of Service
-            </a>
-            <a href="/cookies" className="text-gray-600 hover:text-amber-600 transition-colors duration-300">
+            </Link>
+            <Link
+              href="/cookie-policy"
+              className="text-gray-600 hover:text-amber-600 transition-colors"
+            >
               Cookie Policy
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

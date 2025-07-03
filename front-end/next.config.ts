@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  i18n: {
+    locales: ['en', 'fr', 'ar'],
+    defaultLocale: 'en',
+    localeDetection: false,
+  },
+  // ... your existing config
+}
+
 
 export default nextConfig;
