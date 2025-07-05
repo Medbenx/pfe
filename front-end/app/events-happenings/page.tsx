@@ -135,7 +135,7 @@ export default function EventsHappenings() {
   return (
     <div className="events-page">
       {/* Hero Section with NavBar spacing */}
-      <section className="relative h-[85vh] min-h-[500px] w-full mt-[80px] ">
+      <section className="relative h-[90vh] min-h-[500px] w-full ">
         <Image
           src="/images/events/hero-events.jpg"
           alt="Moroccan festival"
