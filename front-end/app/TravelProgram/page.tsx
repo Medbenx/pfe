@@ -221,9 +221,9 @@ export default function TravelProgram() {
   };
 
   return (
-    <div className="travel-progra mt-[10px] py-16 bg-gradient-to-r from-blue-50 to-amber-50">
+    <div className="travel-program  bg-gradient-to-r from-blue-50 to-amber-50">
       {/* Hero Section */}
-      <section className="relative h-[85vh] min-h-[500px] w-full">
+      <section className="relative h-[90vh] min-h-[6  00px] w-full">
         <Image 
           src="/images/programs/morocco-hero.jpg" 
           alt="Moroccan landscape"

@@ -5,7 +5,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 
 const images = [
-  { src: "/images/image1.jpg", text: "Tetouan - The White Dove", location: "Northern Morocco" },
+  { src: "/images/Streets of Morocco.png", text: "Tetouan - The White Dove", location: "Northern Morocco" },
   { src: "/images/image2.jpg", text: "Rabat - The Capital", location: "Atlantic Coast" },
   { src: "/images/image3.jpg", text: "Casablanca - Economic Hub", location: "Central Morocco" },
   { src: "/images/image4.jpg", text: "Marrakech - The Red City", location: "Southwest Morocco" },

@@ -484,7 +484,7 @@ export default function EventDetails({
   return (
     <div className="event-details-page">
       {/* Hero Section with 3D Parallax Effect */}
-      <section className="relative h-[70vh] min-h-[500px] w-full mt-20  overflow-hidden">
+      <section className="relative h-[75vh] min-h-[500px] w-full  overflow-hidden">
         <motion.div
           className="absolute inset-0"
           initial={{ scale: 1.2 }}
