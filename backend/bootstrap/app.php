@@ -12,18 +12,16 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-    //    $middleware->api(prepend: [
-    //      \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-    //]);
-
+        // تعريف aliases لميدلوير
         $middleware->alias([
             'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
+            'admin' => \App\Http\Middleware\AdminMiddleware::class,
         ]);
 
-        // ✅ أضف HandleCors إلى مجموعة 'api'
+        // إضافة HandleCors إلى مجموعة 'api'
         $middleware->appendToGroup('api', \Illuminate\Http\Middleware\HandleCors::class);
 
-        // ✅ middleware إضافي شائع لمجموعة API
+        // مجموعة Middleware شائعة لمجموعة api
         $middleware->group('api', [
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Illuminate\Http\Middleware\HandleCors::class,

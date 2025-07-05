@@ -41,8 +41,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Message::class);
     }
 
-    public function guide(): HasOne
-    {
-        return $this->hasOne(TouristeGuide::class);
-    }
+   public function user()
+{
+    return $this->belongsTo(User::class);
+}
+
 }

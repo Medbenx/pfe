@@ -12,17 +12,22 @@ use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
-    public function store(LoginRequest $request): JsonResponse
-    {
-        $request->authenticate();
+public function store(LoginRequest $request): JsonResponse
+{
+    $request->authenticate();
 
-        $user = $request->user();
+    $user = $request->user();
 
-        return response()->json([
-            'user' => $user,
-            'token' => $user->createToken('auth_token')->plainTextToken,
-        ]);
-    }
+    return response()->json([
+        'user' => $user,
+        'role' => $user->role,
+        'redirect' => $user->role === 'admin' ? '/admin/dashboard' : '/user/dashboard',
+        'message' => 'Login successful',
+    ]);
+}
+
+
+    
 
     public function destroy(Request $request): Response
     {
