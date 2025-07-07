@@ -13,14 +13,22 @@ return new class extends Migration
     {
         Schema::create('touriste_guides', function (Blueprint $table) {
             $table->id();
+
+            // مفتاح الربط مع جدول المستخدمين
+            $table->unsignedBigInteger('user_id')->unique();
+
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email'); 
+            
             $table->string('phone')->nullable();
             $table->text('bio')->nullable();
-            $table->string('location');
-            $table->float('price_per_hour');
+            $table->string('location')->nullable();
+            $table->float('price_per_hour')->nullable();
             $table->string('photo')->nullable();
             $table->timestamps();
+
+            // تعريف المفتاح الأجنبي مع المستخدمين (users)
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
