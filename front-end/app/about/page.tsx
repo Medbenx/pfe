@@ -1,7 +1,8 @@
-'use client';
-import React, { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
-import Head from 'next/head';
+"use client";
+import React, { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import Head from "next/head";
+import Link from "next/link";
 
 const AboutMorocco = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -32,13 +33,13 @@ const AboutMorocco = () => {
       if (audioRef.current) {
         audioRef.current.volume = 0.3; // Set lower volume for background music
       }
-      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener("click", handleFirstInteraction);
     };
 
-    document.addEventListener('click', handleFirstInteraction);
+    document.addEventListener("click", handleFirstInteraction);
 
     return () => {
-      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener("click", handleFirstInteraction);
     };
   }, []);
 
@@ -46,14 +47,17 @@ const AboutMorocco = () => {
     <div className="text-gray-800">
       <Head>
         <title>Discover Morocco - Land of Diversity</title>
-        <meta name="description" content="Explore the rich culture, history and geography of Morocco" />
+        <meta
+          name="description"
+          content="Explore the rich culture, history and geography of Morocco"
+        />
       </Head>
 
       {/* Background Audio Element */}
-      <audio 
-        ref={audioRef} 
+      <audio
+        ref={audioRef}
         loop
-        src="/audio/moroccan-music.wav" 
+        src="/audio/moroccan-music.wav"
         className="hidden"
       />
 
@@ -79,21 +83,45 @@ const AboutMorocco = () => {
             <p className="text-xl md:text-2xl text-white mb-8 animate-fade-in delay-100">
               Where ancient traditions meet modern vitality
             </p>
-            <button 
+            <button
               onClick={toggleMusic}
-              className={`${isMusicPlaying ? 'bg-amber-500/90 hover:bg-amber-500' : 'bg-white/20 hover:bg-white/30'} backdrop-blur-sm text-white px-8 py-4 rounded-full transition-all flex items-center mx-auto animate-fade-in delay-200 text-lg`}
+              className={`${
+                isMusicPlaying
+                  ? "bg-amber-500/90 hover:bg-amber-500"
+                  : "bg-white/20 hover:bg-white/30"
+              } backdrop-blur-sm text-white px-8 py-4 rounded-full transition-all flex items-center mx-auto animate-fade-in delay-200 text-lg`}
             >
               {isMusicPlaying ? (
                 <>
-                  <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.79 2-4 2s-4-.895-4-2 1.79-2 4-2 4 .895 4 2zm12-3c0 1.105-1.79 2-4 2s-4-.895-4-2 1.79-2 4-2 4 .895 4 2zM9 10l12-3" />
+                  <svg
+                    className="w-6 h-6 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 19V6l12-3v13M9 19c0 1.105-1.79 2-4 2s-4-.895-4-2 1.79-2 4-2 4 .895 4 2zm12-3c0 1.105-1.79 2-4 2s-4-.895-4-2 1.79-2 4-2 4 .895 4 2zM9 10l12-3"
+                    />
                   </svg>
                   Pause Background Music
                 </>
               ) : (
                 <>
-                  <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.79 2-4 2s-4-.895-4-2 1.79-2 4-2 4 .895 4 2zm12-3c0 1.105-1.79 2-4 2s-4-.895-4-2 1.79-2 4-2 4 .895 4 2z" />
+                  <svg
+                    className="w-6 h-6 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 19V6l12-3v13M9 19c0 1.105-1.79 2-4 2s-4-.895-4-2 1.79-2 4-2 4 .895 4 2zm12-3c0 1.105-1.79 2-4 2s-4-.895-4-2 1.79-2 4-2 4 .895 4 2z"
+                    />
                   </svg>
                   Play Background Music
                 </>
@@ -103,8 +131,18 @@ const AboutMorocco = () => {
         </div>
 
         <div className="absolute bottom-10 left-0 right-0 flex justify-center">
-          <svg className="animate-bounce w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          <svg
+            className="animate-bounce w-8 h-8 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
           </svg>
         </div>
       </section>
@@ -113,25 +151,32 @@ const AboutMorocco = () => {
       <section className="py-20 px-4 max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-4xl font-bold mb-6 text-amber-600">Geography & Area</h2>
+            <h2 className="text-4xl font-bold mb-6 text-amber-600">
+              Geography & Area
+            </h2>
             <div className="space-y-4 text-lg">
               <p>
-                Morocco occupies a strategic location at the northwest corner of Africa, bordered by the Atlantic Ocean and Mediterranean Sea.
+                Morocco occupies a strategic location at the northwest corner of
+                Africa, bordered by the Atlantic Ocean and Mediterranean Sea.
               </p>
               <p>
-                <span className="font-semibold">Total Area:</span> 446,550 km² (172,410 sq mi) including Western Sahara
+                <span className="font-semibold">Total Area:</span> 446,550 km²
+                (172,410 sq mi) including Western Sahara
               </p>
               <p>
-                <span className="font-semibold">Landscapes:</span> From the rugged Atlas Mountains to the vast Sahara Desert and fertile coastal plains
+                <span className="font-semibold">Landscapes:</span> From the
+                rugged Atlas Mountains to the vast Sahara Desert and fertile
+                coastal plains
               </p>
               <p>
-                <span className="font-semibold">Highest Point:</span> Mount Toubkal (4,165 m) in the High Atlas range
+                <span className="font-semibold">Highest Point:</span> Mount
+                Toubkal (4,165 m) in the High Atlas range
               </p>
             </div>
           </div>
           <div className="rounded-xl overflow-hidden shadow-2xl">
-            <Image 
-              src="/images/morocco-geography.jpg" 
+            <Image
+              src="/images/morocco-geography.jpg"
               alt="Moroccan landscape with mountains"
               width={800}
               height={600}
@@ -144,27 +189,35 @@ const AboutMorocco = () => {
       {/* Climate Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center text-amber-600">Climate</h2>
-          
+          <h2 className="text-4xl font-bold mb-12 text-center text-amber-600">
+            Climate
+          </h2>
+
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 title: "Mediterranean",
-                description: "Mild, wet winters and hot, dry summers along the coast",
-                icon: "🌊"
+                description:
+                  "Mild, wet winters and hot, dry summers along the coast",
+                icon: "🌊",
               },
               {
                 title: "Mountain",
-                description: "Cool summers and very cold winters with snow in the Atlas Mountains",
-                icon: "⛰️"
+                description:
+                  "Cool summers and very cold winters with snow in the Atlas Mountains",
+                icon: "⛰️",
               },
               {
                 title: "Desert",
-                description: "Extreme temperature variations between day and night in the Sahara",
-                icon: "🏜️"
-              }
+                description:
+                  "Extreme temperature variations between day and night in the Sahara",
+                icon: "🏜️",
+              },
             ].map((item, index) => (
-              <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <div
+                key={index}
+                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+              >
                 <div className="text-4xl mb-4">{item.icon}</div>
                 <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
                 <p className="text-gray-600">{item.description}</p>
@@ -176,39 +229,50 @@ const AboutMorocco = () => {
 
       {/* History Section */}
       <section className="py-20 px-4 max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold mb-12 text-center text-amber-600">Rich History</h2>
-        
+        <h2 className="text-4xl font-bold mb-12 text-center text-amber-600">
+          Rich History
+        </h2>
+
         <div className="relative">
           {/* Timeline */}
           <div className="border-l-4 border-amber-400 absolute left-1/2 h-full -translate-x-1/2 hidden md:block"></div>
-          
+
           {[
             {
               year: "7000 BCE",
               title: "Early Berber Settlements",
-              description: "Indigenous Berber tribes establish early communities"
+              description:
+                "Indigenous Berber tribes establish early communities",
             },
             {
               year: "8th Century",
               title: "Islamic Influence",
-              description: "Arab conquest introduces Islam and Arabic culture"
+              description: "Arab conquest introduces Islam and Arabic culture",
             },
             {
               year: "1062",
               title: "Marrakech Founded",
-              description: "Almoravid dynasty establishes the imperial city"
+              description: "Almoravid dynasty establishes the imperial city",
             },
             {
               year: "1956",
               title: "Independence",
-              description: "Morocco gains independence from France and Spain"
-            }
+              description: "Morocco gains independence from France and Spain",
+            },
           ].map((item, index) => (
-            <div 
-              key={index} 
-              className={`mb-12 relative ${index % 2 === 0 ? 'md:pr-20 md:pl-0 text-left' : 'md:pl-20 md:pr-0 text-right'}`}
+            <div
+              key={index}
+              className={`mb-12 relative ${
+                index % 2 === 0
+                  ? "md:pr-20 md:pl-0 text-left"
+                  : "md:pl-20 md:pr-0 text-right"
+              }`}
             >
-              <div className={`bg-white p-6 rounded-lg shadow-lg relative z-10 ${index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'}`}>
+              <div
+                className={`bg-white p-6 rounded-lg shadow-lg relative z-10 ${
+                  index % 2 === 0 ? "md:mr-8" : "md:ml-8"
+                }`}
+              >
                 <div className="absolute -top-4 -left-4 bg-amber-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">
                   {item.year}
                 </div>
@@ -225,41 +289,54 @@ const AboutMorocco = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1">
-              <h2 className="text-4xl font-bold mb-6 text-amber-400">People & Culture</h2>
+              <h2 className="text-4xl font-bold mb-6 text-amber-400">
+                People & Culture
+              </h2>
               <div className="space-y-6">
                 <p className="text-lg">
-                  Morocco is a melting pot of Arab, Berber, African, and European influences creating a vibrant cultural tapestry.
+                  Morocco is a melting pot of Arab, Berber, African, and
+                  European influences creating a vibrant cultural tapestry.
                 </p>
-                
+
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-gray-800 p-4 rounded-lg">
-                    <h4 className="font-bold text-amber-400 mb-2">Population</h4>
+                    <h4 className="font-bold text-amber-400 mb-2">
+                      Population
+                    </h4>
                     <p>~37 million</p>
                   </div>
                   <div className="bg-gray-800 p-4 rounded-lg">
-                    <h4 className="font-bold text-amber-400 mb-2">Ethnic Groups</h4>
+                    <h4 className="font-bold text-amber-400 mb-2">
+                      Ethnic Groups
+                    </h4>
                     <p>Arab-Berber 99%, Other 1%</p>
                   </div>
                   <div className="bg-gray-800 p-4 rounded-lg">
-                    <h4 className="font-bold text-amber-400 mb-2">Official Religion</h4>
+                    <h4 className="font-bold text-amber-400 mb-2">
+                      Official Religion
+                    </h4>
                     <p>Islam (99% Sunni Muslim)</p>
                   </div>
                   <div className="bg-gray-800 p-4 rounded-lg">
-                    <h4 className="font-bold text-amber-400 mb-2">National Language</h4>
+                    <h4 className="font-bold text-amber-400 mb-2">
+                      National Language
+                    </h4>
                     <p>Arabic (Darija), Tamazight</p>
                   </div>
                 </div>
-                
+
                 <p>
-                  Moroccan culture is renowned for its hospitality, colorful festivals, intricate handicrafts, and UNESCO-recognized traditions.
+                  Moroccan culture is renowned for its hospitality, colorful
+                  festivals, intricate handicrafts, and UNESCO-recognized
+                  traditions.
                 </p>
               </div>
             </div>
             <div className="order-1 md:order-2">
               <div className="grid grid-cols-2 gap-4">
                 <div className="rounded-lg overflow-hidden">
-                  <Image 
-                    src="/images/morocco-culture-1.jpg" 
+                  <Image
+                    src="/images/morocco-culture-1.jpg"
                     alt="Moroccan market"
                     width={400}
                     height={300}
@@ -267,8 +344,8 @@ const AboutMorocco = () => {
                   />
                 </div>
                 <div className="rounded-lg overflow-hidden mt-8">
-                  <Image 
-                    src="/images/morocco-culture-2.jpg" 
+                  <Image
+                    src="/images/morocco-culture-2.jpg"
                     alt="Traditional Moroccan clothing"
                     width={400}
                     height={300}
@@ -276,8 +353,8 @@ const AboutMorocco = () => {
                   />
                 </div>
                 <div className="rounded-lg overflow-hidden">
-                  <Image 
-                    src="/images/morocco-culture-3.jpg" 
+                  <Image
+                    src="/images/morocco-culture-3.jpg"
                     alt="Moroccan tea ceremony"
                     width={400}
                     height={300}
@@ -285,8 +362,8 @@ const AboutMorocco = () => {
                   />
                 </div>
                 <div className="rounded-lg overflow-hidden mt-8">
-                  <Image 
-                    src="/images/morocco-culture-4.jpg" 
+                  <Image
+                    src="/images/morocco-culture-4.jpg"
                     alt="Festival in Morocco"
                     width={400}
                     height={300}
@@ -301,27 +378,34 @@ const AboutMorocco = () => {
 
       {/* Economy Section */}
       <section className="py-20 px-4 max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold mb-12 text-center text-amber-600">Economy</h2>
-        
+        <h2 className="text-4xl font-bold mb-12 text-center text-amber-600">
+          Economy
+        </h2>
+
         <div className="grid md:grid-cols-3 gap-8">
           {[
             {
               title: "Agriculture",
               percentage: "15% of GDP",
-              description: "Major producer of citrus, vegetables, olives and wine"
+              description:
+                "Major producer of citrus, vegetables, olives and wine",
             },
             {
               title: "Industry",
               percentage: "30% of GDP",
-              description: "Phosphates mining, textiles, automotive and aerospace"
+              description:
+                "Phosphates mining, textiles, automotive and aerospace",
             },
             {
               title: "Tourism",
               percentage: "7% of GDP",
-              description: "Over 12 million visitors annually pre-pandemic"
-            }
+              description: "Over 12 million visitors annually pre-pandemic",
+            },
           ].map((item, index) => (
-            <div key={index} className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-amber-400">
+            <div
+              key={index}
+              className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-amber-400"
+            >
               <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
               <p className="text-amber-600 font-bold mb-3">{item.percentage}</p>
               <p className="text-gray-600">{item.description}</p>
@@ -333,17 +417,27 @@ const AboutMorocco = () => {
       {/* Call to Action */}
       <section className="py-20 bg-amber-600 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Experience Morocco?</h2>
+          <h2 className="text-4xl font-bold mb-6">
+            Ready to Experience Morocco?
+          </h2>
           <p className="text-xl mb-8">
-            Discover the magic of Morocco with our expert guides and curated experiences.
+            Discover the magic of Morocco with our expert guides and curated
+            experiences.
           </p>
+          {/* Replace the existing buttons in the CTA section */}
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-white text-amber-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors">
+            <Link
+              href="/booking"
+              className="bg-white text-amber-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors text-center"
+            >
               Book Your Trip
-            </button>
-            <button className="bg-transparent border-2 border-white px-8 py-3 rounded-full font-bold hover:bg-white/10 transition-colors">
+            </Link>
+            <Link
+              href="/contact"
+              className="bg-transparent border-2 border-white px-8 py-3 rounded-full font-bold hover:bg-white/10 transition-colors text-center"
+            >
               Contact Us
-            </button>
+            </Link>
           </div>
         </div>
       </section>

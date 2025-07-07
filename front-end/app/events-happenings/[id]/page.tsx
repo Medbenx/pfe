@@ -1,6 +1,6 @@
 // app/events-happenings/[id]/page.tsx
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -13,6 +13,8 @@ export default function EventDetails({
 }) {
   const { id } = use(params);
   const router = useRouter();
+
+  const [showBookingForm, setShowBookingForm] = useState(false);
 
   // Mock data - in a real app you'd fetch this based on params.id
   const events = [
@@ -126,22 +128,22 @@ export default function EventDetails({
         },
       ],
       musicTracks: [
-      {
-        title: "Gnaoua Fusion",
-        artist: "Maalem Hamid El Kasri",
-        src: "/audio/gnaoua-fusion.mp3",
-      },
-      {
-        title: "Lila Ceremony",
-        artist: "Traditional Gnaoua Ensemble",
-        src: "/audio/lila-ceremony.mp3",
-      },
-      {
-        title: "Saharan Rhythms",
-        artist: "Desert Nomads",
-        src: "/audio/saharan-rhythms.mp3",
-      },
-    ],
+        {
+          title: "Gnaoua Fusion",
+          artist: "Maalem Hamid El Kasri",
+          src: "/audio/gnaoua-fusion.mp3",
+        },
+        {
+          title: "Lila Ceremony",
+          artist: "Traditional Gnaoua Ensemble",
+          src: "/audio/lila-ceremony.mp3",
+        },
+        {
+          title: "Saharan Rhythms",
+          artist: "Desert Nomads",
+          src: "/audio/saharan-rhythms.mp3",
+        },
+      ],
     },
     {
       id: 2,
@@ -181,22 +183,22 @@ export default function EventDetails({
         { src: "/images/events/film-2.jpg", caption: "Jury panel discussion" },
       ],
       musicTracks: [
-      {
-        title: "Cinematic Morocco",
-        artist: "Film Score Orchestra",
-        src: "/audio/cinematic-morocco.mp3",
-      },
-      {
-        title: "Red Carpet Theme",
-        artist: "Marrakech Symphony",
-        src: "/audio/red-carpet-theme.mp3",
-      },
-      {
-        title: "Golden Atlas",
-        artist: "Award Winners Ensemble",
-        src: "/audio/golden-atlas.mp3",
-      },
-    ],
+        {
+          title: "Cinematic Morocco",
+          artist: "Film Score Orchestra",
+          src: "/audio/cinematic-morocco.mp3",
+        },
+        {
+          title: "Red Carpet Theme",
+          artist: "Marrakech Symphony",
+          src: "/audio/red-carpet-theme.mp3",
+        },
+        {
+          title: "Golden Atlas",
+          artist: "Award Winners Ensemble",
+          src: "/audio/golden-atlas.mp3",
+        },
+      ],
     },
     {
       id: 3,
@@ -231,23 +233,23 @@ export default function EventDetails({
           caption: "Traditional tent setup",
         },
       ],
-       musicTracks: [
-      {
-        title: "Nomadic Chants",
-        artist: "Saharan Tribes",
-        src: "/audio/nomadic-chants.mp3",
-      },
-      {
-        title: "Camel Caravan",
-        artist: "Desert Musicians",
-        src: "/audio/camel-caravan.mp3",
-      },
-      {
-        title: "Tindé Rhythm",
-        artist: "Tuareg Ensemble",
-        src: "/audio/tinde-rhythm.mp3",
-      },
-    ],
+      musicTracks: [
+        {
+          title: "Nomadic Chants",
+          artist: "Saharan Tribes",
+          src: "/audio/nomadic-chants.mp3",
+        },
+        {
+          title: "Camel Caravan",
+          artist: "Desert Musicians",
+          src: "/audio/camel-caravan.mp3",
+        },
+        {
+          title: "Tindé Rhythm",
+          artist: "Tuareg Ensemble",
+          src: "/audio/tinde-rhythm.mp3",
+        },
+      ],
     },
     {
       id: 4,
@@ -287,23 +289,23 @@ export default function EventDetails({
         },
         { src: "/images/events/fes-2.jpg", caption: "Sufi whirling ceremony" },
       ],
-       musicTracks: [
-      {
-        title: "Sufi Whirling",
-        artist: "Fes Spiritual Ensemble",
-        src: "/audio/sufi-whirling.mp3",
-      },
-      {
-        title: "Andalusian Prayer",
-        artist: "Al-Andalus Orchestra",
-        src: "/audio/andalusian-prayer.mp3",
-      },
-      {
-        title: "Universal Harmony",
-        artist: "Interfaith Choir",
-        src: "/audio/universal-harmony.mp3",
-      },
-    ],
+      musicTracks: [
+        {
+          title: "Sufi Whirling",
+          artist: "Fes Spiritual Ensemble",
+          src: "/audio/sufi-whirling.mp3",
+        },
+        {
+          title: "Andalusian Prayer",
+          artist: "Al-Andalus Orchestra",
+          src: "/audio/andalusian-prayer.mp3",
+        },
+        {
+          title: "Universal Harmony",
+          artist: "Interfaith Choir",
+          src: "/audio/universal-harmony.mp3",
+        },
+      ],
     },
     {
       id: 5,
@@ -328,23 +330,23 @@ export default function EventDetails({
         { src: "/images/events/rose-1.jpg", caption: "Rose petal carpet" },
         { src: "/images/events/rose-2.jpg", caption: "Traditional dancers" },
       ],
-       musicTracks: [
-      {
-        title: "Valley of Roses",
-        artist: "Amazigh Folk Group",
-        src: "/audio/valley-of-roses.mp3",
-      },
-      {
-        title: "Petals in the Wind",
-        artist: "M'Gouna Musicians",
-        src: "/audio/petals-in-wind.mp3",
-      },
-      {
-        title: "Harvest Dance",
-        artist: "Local Collective",
-        src: "/audio/harvest-dance.mp3",
-      },
-    ],
+      musicTracks: [
+        {
+          title: "Valley of Roses",
+          artist: "Amazigh Folk Group",
+          src: "/audio/valley-of-roses.mp3",
+        },
+        {
+          title: "Petals in the Wind",
+          artist: "M'Gouna Musicians",
+          src: "/audio/petals-in-wind.mp3",
+        },
+        {
+          title: "Harvest Dance",
+          artist: "Local Collective",
+          src: "/audio/harvest-dance.mp3",
+        },
+      ],
     },
     {
       id: 6,
@@ -376,22 +378,22 @@ export default function EventDetails({
         },
       ],
       musicTracks: [
-      {
-        title: "Dunes Challenge",
-        artist: "Sahara Rhythm Section",
-        src: "/audio/dunes-challenge.mp3",
-      },
-      {
-        title: "Runner's High",
-        artist: "Endurance Beats",
-        src: "/audio/runners-high.mp3",
-      },
-      {
-        title: "Finish Line",
-        artist: "Victory Drums",
-        src: "/audio/finish-line.mp3",
-      },
-    ],
+        {
+          title: "Dunes Challenge",
+          artist: "Sahara Rhythm Section",
+          src: "/audio/dunes-challenge.mp3",
+        },
+        {
+          title: "Runner's High",
+          artist: "Endurance Beats",
+          src: "/audio/runners-high.mp3",
+        },
+        {
+          title: "Finish Line",
+          artist: "Victory Drums",
+          src: "/audio/finish-line.mp3",
+        },
+      ],
     },
     {
       id: 7,
@@ -425,22 +427,22 @@ export default function EventDetails({
         },
       ],
       musicTracks: [
-      {
-        title: "World Unity Anthem",
-        artist: "Global Artists Collective",
-        src: "/audio/world-unity.mp3",
-      },
-      {
-        title: "Victory Chant",
-        artist: "Stadium Choir",
-        src: "/audio/victory-chant.mp3",
-      },
-      {
-        title: "The Beautiful Game",
-        artist: "International Orchestra",
-        src: "/audio/beautiful-game.mp3",
-      },
-    ],
+        {
+          title: "World Unity Anthem",
+          artist: "Global Artists Collective",
+          src: "/audio/world-unity.mp3",
+        },
+        {
+          title: "Victory Chant",
+          artist: "Stadium Choir",
+          src: "/audio/victory-chant.mp3",
+        },
+        {
+          title: "The Beautiful Game",
+          artist: "International Orchestra",
+          src: "/audio/beautiful-game.mp3",
+        },
+      ],
       tags: ["important", "mega-event"], // Optional for filtering
     },
   ];
@@ -474,8 +476,7 @@ export default function EventDetails({
 
     return () => clearInterval(timer);
   }, []);
-
-
+  
   const event = events.find((e) => e.id.toString() === id);
   if (!event) {
     return <div className="container mx-auto px-4 py-12">Event not found</div>;
@@ -632,7 +633,10 @@ export default function EventDetails({
                 <p className="text-2xl font-bold text-amber-600">
                   {event.price}
                 </p>
-                <button className="mt-4 bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                <button
+                  className="mt-4 bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+                  onClick={() => setShowBookingForm(true)}
+                >
                   Book Tickets
                 </button>
               </div>
@@ -1122,7 +1126,10 @@ export default function EventDetails({
             the heart of Morocco
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-white text-amber-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-colors text-lg">
+            <button
+              onClick={() => setShowBookingForm(true)}
+              className="bg-white text-amber-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-colors text-lg"
+            >
               Book Your Tickets Now
             </button>
             <button className="bg-transparent border-2 border-white px-8 py-4 rounded-lg font-bold hover:bg-white/10 transition-colors text-lg">
@@ -1131,6 +1138,101 @@ export default function EventDetails({
           </div>
         </div>
       </motion.section>
+
+      {/* Booking Form Modal */}
+      <AnimatePresence>
+        {showBookingForm && (
+          <motion.div 
+            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div 
+              className="bg-white rounded-xl max-w-md w-full p-6"
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-2xl font-bold text-gray-800">Book Tickets</h3>
+                <button 
+                  onClick={() => setShowBookingForm(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              <form className="space-y-4">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                    placeholder="Your name"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                    placeholder="your@email.com"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="tickets" className="block text-sm font-medium text-gray-700 mb-1">
+                    Number of Tickets
+                  </label>
+                  <select
+                    id="tickets"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                    required
+                  >
+                    <option value="">Select number of tickets</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                    Special Requests or Message
+                  </label>
+                  <textarea
+                    id="message"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                    rows={3}
+                    placeholder="Any special requests or messages for the organizer"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-4 rounded-lg transition-colors"
+                >
+                  Confirm Booking
+                </button>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

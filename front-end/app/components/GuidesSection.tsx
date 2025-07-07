@@ -254,9 +254,6 @@ export default function GuidesSection() {
                       >
                         View Full Profile
                       </Link>
-                      <button className="book-button bg-transparent border border-amber-400 hover:bg-amber-400/10 text-amber-400 font-medium py-2 px-4 rounded-lg transition-colors">
-                        Book Now
-                      </button>
                     </div>
                   </div>
                 </div>
