@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['localhost'],
+    domains: ['images.unsplash.com'],
   },
   i18n: {
     locales: ['en', 'fr', 'ar'],
