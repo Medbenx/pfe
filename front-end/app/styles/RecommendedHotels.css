@@ -183,6 +183,14 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
+/* In your CSS */
+.rh-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.rh-card:active {
+  transform: scale(0.98);
+}
+
 /* Modern animations */
 @keyframes rh-float {
   0%, 100% { transform: translateY(0); }

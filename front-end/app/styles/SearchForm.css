@@ -1,14 +1,121 @@
-.search-form-container {
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  position: relative;
-}
-.search-form-container::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
-  transform: translateZ(-20px);
+/* Container */
+.modern-search-bar {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: #000;
   border-radius: 1rem;
-  pointer-events: none;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Toggle buttons */
+.toggle-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.toggle-buttons {
+  display: flex;
+  gap: 1rem;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 9999px;
+  padding: 0.25rem;
+}
+
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #666;
+  transition: 0.3s all ease;
+  background: transparent;
+  cursor: pointer;
+}
+
+.toggle-btn:hover {
+  background: #f0f0f0;
+}
+
+.active-hotel {
+  background-color: #f59e0b;
+  color: white;
+}
+
+.active-restaurant {
+  background-color: #2563eb;
+  color: white;
+}
+
+/* Input groups */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.icon-input {
+  position: relative;
+  width: 100%;
+  max-width: 180px;
+}
+
+.icon-input input,
+.icon-input select {
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 0.375rem;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.icon-input input:focus,
+.icon-input select:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.5);
+}
+
+.input-icon {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.75rem;
+  color: #999;
+}
+
+/* Grid layout */
+.fields-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .icon-input {
+    max-width: none;
+    width: 140px;
+  }
+}
+
+/* Search button */
+.search-button {
+  background-color: #f59e0b;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 9999px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  width: 100%;
+  max-width: 140px;
+}
+
+.search-button:hover {
+  background-color: #d97706;
 }

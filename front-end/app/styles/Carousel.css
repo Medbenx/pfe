@@ -1,73 +1,150 @@
- /* styles/Carousel.css */
-.carousel {
+.carousel-container {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
 }
 
-.image-container {
-  position: relative;
+.carousel-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.carousel-bg-image {
+  object-fit: cover;
+  transform: scale(1.1);
+}
+
+.carousel-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.carousel-slide {
+  position: absolute;
   width: 100%;
   height: 100%;
+  z-index: 10;
 }
 
-.text-overlay {
+.carousel-main-image {
+  object-fit: cover;
+}
+
+.carousel-text-overlay {
   position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(2, 13, 16, 0.5); /* Semi-transparent background */
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-align: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
 }
 
-.text-overlay h2 {
-  margin: 0;
-  font-size: 40px;
+.carousel-title {
+  font-size: 2rem;
   font-weight: bold;
+  color: white;
+  margin-bottom: 0.5rem;
 }
 
-.nav-button {
+.carousel-location {
+  font-size: 1.2rem;
+  color: #fbbf24;
+  font-weight: 500;
+}
+
+/* Buttons */
+.carousel-nav {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.carousel-button {
+  position: relative;
+  padding: 1rem;
+  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
   color: white;
   border: none;
-  padding: 10px;
   cursor: pointer;
-  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
-.prev {
-  left: 10px;
+.carousel-button:hover {
+  background-color: rgba(251, 191, 36, 0.9);
 }
 
-.next {
-  right: 10px;
-}
-
-
-.indicators {
+.carousel-tooltip {
   position: absolute;
-  bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.carousel-button:hover .carousel-tooltip {
+  opacity: 1;
+}
+
+.carousel-tooltip.left {
+  left: 100%;
+  margin-left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-tooltip.right {
+  right: 100%;
+  margin-right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Indicators */
+.carousel-indicators {
+  position: absolute;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 5px;
+  gap: 0.5rem;
+  z-index: 20;
 }
 
-.indicator {
-  width: 10px;
-  height: 10px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
+.carousel-dot {
+  position: relative;
+  border: none;
+  background: none;
+  padding: 0;
   cursor: pointer;
 }
 
-.indicator.active {
-  background-color: white;
+.carousel-dot .dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.carousel-dot.active .dot {
+  background-color: #fbbf24;
+}
+
+.dot-indicator {
+  position: absolute;
+  inset: 0;
+  border: 2px solid #fbbf24;
+  border-radius: 9999px;
 }
