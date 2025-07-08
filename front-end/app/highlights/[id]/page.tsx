@@ -102,9 +102,9 @@ export default function HighlightDetail({ params }: { params: Promise<{ id: stri
   }
 
   return (
-    <div className="min-h-screen mt-20 bg-gradient-to-b from-blue-50 to-amber-50">
+    <div className="min-h-screen  bg-gradient-to-b from-blue-50 to-amber-50">
       {/* Modern Hero Section with Parallax Effect */}
-      <div className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
+      <div className="relative h-[80vh] min-h-[400px] w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src={highlight.image}

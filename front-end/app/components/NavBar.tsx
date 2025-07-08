@@ -97,7 +97,11 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:8000/api/logout", {}, { withCredentials: true });
+      await axios.post(
+        "http://localhost:8000/api/logout",
+        {},
+        { withCredentials: true }
+      );
       setIsLoggedIn(false);
       setUserEmail("");
       setIsProfileOpen(false);
@@ -107,7 +111,7 @@ export default function Navbar() {
   };
 
   return (
-       <>
+    <>
       <motion.nav
         className={`navbar ${isScrolled ? "scrolled" : ""}`}
         initial={{ y: -50 }}
@@ -145,13 +149,22 @@ export default function Navbar() {
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             <Link href="/" className="logo">
-              <Image src="/images/logo1.png" alt="Logo" width={70} height={70} priority />
+              <Image
+                src="/images/logo1.png"
+                alt="Logo"
+                width={70}
+                height={70}
+                priority
+              />
             </Link>
           </motion.div>
 
           {/* Desktop Navigation - Right Side */}
           <div className="nav-section hidden md:block">
             <ul className="navLinks">
+              <motion.li whileHover={{ scale: 1.05 }}>
+                <Link href="/gallery">Gallery</Link>
+              </motion.li>
               <motion.li whileHover={{ scale: 1.05 }}>
                 <Link href="/events-happenings">Events & Happenings</Link>
               </motion.li>
@@ -170,7 +183,10 @@ export default function Navbar() {
               {/* Profile Dropdown */}
               <li className="profile-menu">
                 {isLoggedIn ? (
-                  <motion.div className="profile-container" whileHover={{ scale: 1.05 }}>
+                  <motion.div
+                    className="profile-container"
+                    whileHover={{ scale: 1.05 }}
+                  >
                     <button className="profile-btn" onClick={toggleProfile}>
                       <Image
                         src="/images/profile-placeholder.jpg"
@@ -179,7 +195,9 @@ export default function Navbar() {
                         height={32}
                         className="profile-img"
                       />
-                      <FaChevronDown className={`chevron ${isProfileOpen ? "open" : ""}`} />
+                      <FaChevronDown
+                        className={`chevron ${isProfileOpen ? "open" : ""}`}
+                      />
                     </button>
 
                     <AnimatePresence>
@@ -197,17 +215,26 @@ export default function Navbar() {
                           </div>
                           <ul>
                             <li>
-                              <Link href="/profile" onClick={() => setIsProfileOpen(false)}>
+                              <Link
+                                href="/profile"
+                                onClick={() => setIsProfileOpen(false)}
+                              >
                                 <FaUserEdit /> Edit Profile
                               </Link>
                             </li>
                             <li>
-                              <Link href="/help" onClick={() => setIsProfileOpen(false)}>
+                              <Link
+                                href="/help"
+                                onClick={() => setIsProfileOpen(false)}
+                              >
                                 <FaQuestionCircle /> Help & Support
                               </Link>
                             </li>
                             <li>
-                              <Link href="/become-guide" onClick={() => setIsProfileOpen(false)}>
+                              <Link
+                                href="/become-guide"
+                                onClick={() => setIsProfileOpen(false)}
+                              >
                                 🧭 Become a Guide
                               </Link>
                             </li>
@@ -222,10 +249,15 @@ export default function Navbar() {
                     </AnimatePresence>
                   </motion.div>
                 ) : (
-                  <motion.div className="profile-container" whileHover={{ scale: 1.05 }}>
+                  <motion.div
+                    className="profile-container"
+                    whileHover={{ scale: 1.05 }}
+                  >
                     <button className="profile-btn" onClick={toggleProfile}>
                       <FaUser className="user-icon" />
-                      <FaChevronDown className={`chevron ${isProfileOpen ? "open" : ""}`} />
+                      <FaChevronDown
+                        className={`chevron ${isProfileOpen ? "open" : ""}`}
+                      />
                     </button>
 
                     <AnimatePresence>
@@ -239,23 +271,33 @@ export default function Navbar() {
                         >
                           <ul>
                             <li>
-                              <Link href="/login" onClick={() => setIsProfileOpen(false)}>
+                              <Link
+                                href="/login"
+                                onClick={() => setIsProfileOpen(false)}
+                              >
                                 <FaSignInAlt /> Login
                               </Link>
                             </li>
                             <li>
-                              <Link href="/main/sign-up" onClick={() => setIsProfileOpen(false)}>
+                              <Link
+                                href="/main/sign-up"
+                                onClick={() => setIsProfileOpen(false)}
+                              >
                                 <FaUserPlus /> Sign Up
                               </Link>
                             </li>
                             <li>
-                              <Link href="/guideform" onClick={() => setIsProfileOpen(false)}>
+                              <Link
+                                href="/guideform"
+                                onClick={() => setIsProfileOpen(false)}
+                              >
                                 🧭 Become a Guide
                               </Link>
                             </li>
                             <li>
                               <button onClick={toggleLanguage}>
-                                <FaGlobe /> {language === "EN" ? "العربية" : "English"}
+                                <FaGlobe />{" "}
+                                {language === "EN" ? "العربية" : "English"}
                               </button>
                             </li>
                           </ul>
@@ -268,7 +310,7 @@ export default function Navbar() {
             </ul>
           </div>
 
-         {/* Mobile Menu Button - Right Side */}
+          {/* Mobile Menu Button - Right Side */}
           <div className="md:hidden mobile-menu-button">
             <button
               onClick={toggleMobileMenu}
@@ -293,18 +335,18 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-       {/* Mobile Menu */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             className="mobile-menu-container"
-            initial={{ opacity: 0, x: '100%' }}
+            initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
             <div className="flex flex-col items-start space-y-8">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
@@ -317,8 +359,8 @@ export default function Navbar() {
                   About Morocco
                 </Link>
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.15 }}
@@ -331,8 +373,8 @@ export default function Navbar() {
                   Experience
                 </Link>
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
@@ -345,8 +387,8 @@ export default function Navbar() {
                   Travel Program
                 </Link>
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.25 }}
@@ -359,8 +401,8 @@ export default function Navbar() {
                   Events & Happenings
                 </Link>
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
@@ -374,6 +416,20 @@ export default function Navbar() {
                 </Link>
               </motion.div>
 
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.35 }}
+              >
+                <Link
+                  href="/gallery"
+                  className="text-white text-2xl py-3 block hover:text-rose-300 transition-colors duration-300"
+                  onClick={toggleMobileMenu}
+                >
+                  Gallery
+                </Link>
+              </motion.div>
+
               <div className="flex flex-col items-start space-y-6 pt-8 w-full">
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
@@ -384,7 +440,7 @@ export default function Navbar() {
                     onClick={() => {
                       toggleLanguage();
                     }}
-                    className="text-white text-xl py-3 px-6 border-2 border-rose-300 rounded-full hover:bg-rose-300 hover:text-black transition-colors duration-300"
+                    className="text-white text-xl py-3 px-6 border-2 border-rose-300 rounded-full hover:bg-rose-300 hover:text-white transition-colors duration-300"
                   >
                     Switch to {language === "EN" ? "العربية" : "English"}
                   </button>

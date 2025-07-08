@@ -92,7 +92,8 @@ export default function EventsHappenings() {
       type: "Sports",
       season: "Summer",
       image: "/images/events/worldcup.jpg", // Add your image path
-      description: "The biggest football tournament in the world, hosted across 3 North American countries.",
+      description:
+        "The biggest football tournament in the world, hosted across 3 North American countries.",
       price: "Varies by match", // Or "Ticket sales required"
       tags: ["important", "global"], // Optional tags
     },
@@ -157,13 +158,15 @@ export default function EventsHappenings() {
               Discover cultural festivals, music celebrations, and unique
               happenings across the kingdom
             </p>
-            <motion.button
-              className="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-lg text-lg"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Explore Events
-            </motion.button>
+            <Link href="/events-happenings/7">
+              <motion.button
+                className="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-lg text-lg"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Important Event
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
       </section>

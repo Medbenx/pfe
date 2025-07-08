@@ -32,9 +32,9 @@ export default function FooterSection() {
   const quickLinks = [
     { name: "Home", url: "/" },
     { name: "Destinations", url: "/destinations" },
-    { name: "Tours", url: "/tours" },
-    { name: "Cultural Experiences", url: "/culture" },
-    { name: "Adventure Trips", url: "/adventure" },
+    { name: "Tours", url: "/TravelProgram" },
+    { name: "Cultural Experiences", url: "/experience" },
+    { name: "Adventure Trips", url: "/trips" },
   ];
 
   const contactInfo = [

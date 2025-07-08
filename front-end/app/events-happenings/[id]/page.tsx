@@ -397,9 +397,9 @@ export default function EventDetails({
     },
     {
       id: 7,
-      title: "FIFA World Cup 2026",
+      title: "FIFA World Cup 2030",
       city: "USA, Canada, Mexico",
-      date: "June 8 - July 3, 2026",
+      date: "June 8 - July 3, 2030",
       type: "Sports",
       season: "Summer",
       image: "/images/events/worldcup.jpg",
@@ -458,7 +458,7 @@ export default function EventDetails({
   // Countdown timer effect
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const eventDate = new Date("2026-06-27"); // Use your event date
+      const eventDate = new Date("2030-06-08"); // Use your event date
       const difference = +eventDate - +new Date();
 
       if (difference > 0) {
@@ -476,7 +476,7 @@ export default function EventDetails({
 
     return () => clearInterval(timer);
   }, []);
-  
+
   const event = events.find((e) => e.id.toString() === id);
   if (!event) {
     return <div className="container mx-auto px-4 py-12">Event not found</div>;
@@ -1011,45 +1011,47 @@ export default function EventDetails({
         </div>
       </div>
 
-      {/* Countdown Timer Section */}
-      <motion.section
-        className="py-16 bg-white"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.3 }}
-      >
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-8 text-gray-800">
-            Time Until Event
-          </h2>
-          <div className="flex justify-center gap-4">
-            <div className="bg-gray-100 p-6 rounded-xl w-24">
-              <div className="text-3xl font-bold text-amber-600">
-                {timeLeft.days}
+      {/* Countdown Timer Section - Only for FIFA World Cup 2030 (ID: 7) */}
+      {event.id === 7 && (
+        <motion.section
+          className="py-16 bg-white"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.3 }}
+        >
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-8 text-gray-800">
+              Time Until Event
+            </h2>
+            <div className="flex justify-center gap-4">
+              <div className="bg-gray-100 p-6 rounded-xl w-24">
+                <div className="text-3xl font-bold text-amber-600">
+                  {timeLeft.days}
+                </div>
+                <div className="text-gray-600">Days</div>
               </div>
-              <div className="text-gray-600">Days</div>
-            </div>
-            <div className="bg-gray-100 p-6 rounded-xl w-24">
-              <div className="text-3xl font-bold text-amber-600">
-                {timeLeft.hours}
+              <div className="bg-gray-100 p-6 rounded-xl w-24">
+                <div className="text-3xl font-bold text-amber-600">
+                  {timeLeft.hours}
+                </div>
+                <div className="text-gray-600">Hours</div>
               </div>
-              <div className="text-gray-600">Hours</div>
-            </div>
-            <div className="bg-gray-100 p-6 rounded-xl w-24">
-              <div className="text-3xl font-bold text-amber-600">
-                {timeLeft.minutes}
+              <div className="bg-gray-100 p-6 rounded-xl w-24">
+                <div className="text-3xl font-bold text-amber-600">
+                  {timeLeft.minutes}
+                </div>
+                <div className="text-gray-600">Minutes</div>
               </div>
-              <div className="text-gray-600">Minutes</div>
-            </div>
-            <div className="bg-gray-100 p-6 rounded-xl w-24">
-              <div className="text-3xl font-bold text-amber-600">
-                {timeLeft.seconds}
+              <div className="bg-gray-100 p-6 rounded-xl w-24">
+                <div className="text-3xl font-bold text-amber-600">
+                  {timeLeft.seconds}
+                </div>
+                <div className="text-gray-600">Seconds</div>
               </div>
-              <div className="text-gray-600">Seconds</div>
             </div>
           </div>
-        </div>
-      </motion.section>
+        </motion.section>
+      )}
 
       {/* Music Cards Section */}
       <motion.section
@@ -1132,9 +1134,12 @@ export default function EventDetails({
             >
               Book Your Tickets Now
             </button>
-            <button className="bg-transparent border-2 border-white px-8 py-4 rounded-lg font-bold hover:bg-white/10 transition-colors text-lg">
+            <Link
+              href="/contact"
+              className="bg-transparent border-2 border-white px-8 py-4 rounded-lg font-bold hover:bg-white/10 transition-colors text-lg"
+            >
               Contact Organizers
-            </button>
+            </Link>
           </div>
         </div>
       </motion.section>
@@ -1142,32 +1147,47 @@ export default function EventDetails({
       {/* Booking Form Modal */}
       <AnimatePresence>
         {showBookingForm && (
-          <motion.div 
+          <motion.div
             className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <motion.div 
+            <motion.div
               className="bg-white rounded-xl max-w-md w-full p-6"
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
             >
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-800">Book Tickets</h3>
-                <button 
+                <h3 className="text-2xl font-bold text-gray-800">
+                  Book Tickets
+                </h3>
+                <button
                   onClick={() => setShowBookingForm(false)}
                   className="text-gray-500 hover:text-gray-700"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </div>
 
               <form className="space-y-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Full Name
                   </label>
                   <input
@@ -1180,7 +1200,10 @@ export default function EventDetails({
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Email Address
                   </label>
                   <input
@@ -1193,7 +1216,10 @@ export default function EventDetails({
                 </div>
 
                 <div>
-                  <label htmlFor="tickets" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="tickets"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Number of Tickets
                   </label>
                   <select
@@ -1211,7 +1237,10 @@ export default function EventDetails({
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Special Requests or Message
                   </label>
                   <textarea
