@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import morcompassLogo from "@/public/images/morcompass-logo.png";
 
@@ -13,18 +14,18 @@ interface LoginFormData {
 }
 
 const UserLoginForm: React.FC = () => {
+  const router = useRouter();
+
   const [formData, setFormData] = useState<LoginFormData>({
     email: "",
     password: "",
   });
 
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   const colors = {
     primary: "#EE9799",
-    secondary: "#FFFFFF",
     accent: "#C4C4C4",
     background: "#000000",
     text: "#FFFFFF",
@@ -52,21 +53,21 @@ const UserLoginForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    setSuccess(null);
     setLoading(true);
 
     try {
-      // 👇 Get CSRF token
+      // احصل على CSRF token
       await axios.get("http://localhost:8000/sanctum/csrf-cookie", {
         withCredentials: true,
       });
 
-      // 👇 Attempt login
-      await axios.post("http://localhost:8000/api/login", formData, {
-        withCredentials: true,
-      });
+      // إرسال بيانات تسجيل الدخول
+      const response = await axios.post(
+        "http://localhost:8000/api/login",
+        formData,
+        { withCredentials: true }
+      );
 
-<<<<<<< HEAD
       console.log("Login response:", response.data); // طباعة الرد كاملًا
 
       // إذا دور المستخدم موجود داخل user.role (شائع جداً)
@@ -85,14 +86,6 @@ const UserLoginForm: React.FC = () => {
       } else {
         router.push("/user/dashboard");
       }
-=======
-      setSuccess("Login successful!");
-      setFormData({ email: "", password: "" });
-
-      // 👉 يمكنك هنا إعادة التوجيه بعد الدخول بنجاح
-      // router.push("/dashboard");
-
->>>>>>> d83b0ba4362834826cad15dcc9a0b07e8572f676
     } catch (err: any) {
       const res = err.response;
       if (res?.data?.message) {
@@ -110,10 +103,15 @@ const UserLoginForm: React.FC = () => {
       className="min-h-screen relative overflow-hidden"
       style={{ backgroundColor: colors.background }}
     >
-      {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -left-20 w-96 h-96 rounded-full blur-3xl opacity-10" style={{ backgroundColor: colors.primary }} />
-        <div className="absolute bottom-1/3 -right-20 w-96 h-96 rounded-full blur-3xl opacity-10" style={{ backgroundColor: colors.primary }} />
+        <div
+          className="absolute top-1/4 -left-20 w-96 h-96 rounded-full blur-3xl opacity-10"
+          style={{ backgroundColor: colors.primary }}
+        />
+        <div
+          className="absolute bottom-1/3 -right-20 w-96 h-96 rounded-full blur-3xl opacity-10"
+          style={{ backgroundColor: colors.primary }}
+        />
       </div>
 
       <div className="container mx-auto px-4 py-16 flex items-center justify-center">
@@ -127,12 +125,21 @@ const UserLoginForm: React.FC = () => {
             backdropFilter: "blur(10px)",
           }}
         >
-          {/* Logo Section */}
           <div className="text-center mb-8 flex flex-col items-center relative z-10">
             <div className="w-24 h-24 mb-4 relative">
-              <Image src={morcompassLogo} alt="MORCOMPASS Logo" fill className="object-contain drop-shadow-lg" />
+              <Image
+                src={morcompassLogo}
+                alt="MORCOMPASS Logo"
+                fill
+                className="object-contain drop-shadow-lg"
+              />
             </div>
-            <h1 className="text-4xl font-bold mb-2 tracking-tighter bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(45deg, ${colors.primary}, #fff)` }}>
+            <h1
+              className="text-4xl font-bold mb-2 tracking-tighter bg-clip-text text-transparent"
+              style={{
+                backgroundImage: `linear-gradient(45deg, ${colors.primary}, #fff)`,
+              }}
+            >
               MORCOMPASS
             </h1>
             <p className="text-lg italic mt-2" style={{ color: colors.accent }}>
@@ -141,9 +148,11 @@ const UserLoginForm: React.FC = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-            {/* Email */}
             <div className="space-y-2">
-              <label className="block font-medium text-sm uppercase" style={{ color: colors.accent }}>
+              <label
+                className="block font-medium text-sm uppercase"
+                style={{ color: colors.accent }}
+              >
                 Email
               </label>
               <input
@@ -158,12 +167,15 @@ const UserLoginForm: React.FC = () => {
                   backgroundColor: "#1E1E1E",
                   color: colors.text,
                 }}
+                disabled={loading}
               />
             </div>
 
-            {/* Password */}
             <div className="space-y-2">
-              <label className="block font-medium text-sm uppercase" style={{ color: colors.accent }}>
+              <label
+                className="block font-medium text-sm uppercase"
+                style={{ color: colors.accent }}
+              >
                 Password
               </label>
               <input
@@ -178,14 +190,14 @@ const UserLoginForm: React.FC = () => {
                   backgroundColor: "#1E1E1E",
                   color: colors.text,
                 }}
+                disabled={loading}
               />
             </div>
 
-            {/* Errors */}
-            {error && <p className="text-red-500 text-center font-semibold">{error}</p>}
-            {success && <p className="text-green-500 text-center font-semibold">{success}</p>}
+            {error && (
+              <p className="text-red-500 text-center font-semibold">{error}</p>
+            )}
 
-            {/* Submit Button */}
             <div className="pt-6 flex flex-col space-y-4">
               <button
                 type="submit"
@@ -201,7 +213,11 @@ const UserLoginForm: React.FC = () => {
                 </span>
               </button>
 
-              <Link href="/main/sign-up" className="text-center text-sm" style={{ color: colors.primary }}>
+              <Link
+                href="/main/sign-up"
+                className="text-center text-sm"
+                style={{ color: colors.primary }}
+              >
                 Don’t have an account? Sign Up
               </Link>
             </div>
