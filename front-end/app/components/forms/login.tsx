@@ -68,16 +68,23 @@ const UserLoginForm: React.FC = () => {
         { withCredentials: true }
       );
 
-      const { user, role, redirect } = response.data;
+      console.log("Login response:", response.data); // طباعة الرد كاملًا
 
-      localStorage.setItem("user", JSON.stringify(user));
+      // إذا دور المستخدم موجود داخل user.role (شائع جداً)
+      const role = response.data.role ?? response.data.user?.role ?? "";
+
+      console.log("User role:", role); // طباعة الدور للتحقق
+
+      localStorage.setItem("user", JSON.stringify(response.data.user));
       localStorage.setItem("role", role);
 
-      // إعادة التوجيه
-      if (redirect) {
-        router.push(redirect);
+      // إعادة التوجيه بناءً على الدور
+      if (role.toLowerCase() === "admin") {
+        router.push("/admin/dashboard");
+      } else if (role.toLowerCase() === "guide") {
+        router.push("/guide/dashboard");
       } else {
-        alert("Login succeeded but no redirect URL found.");
+        router.push("/user/dashboard");
       }
     } catch (err: any) {
       const res = err.response;

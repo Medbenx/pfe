@@ -14,7 +14,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// ✅ مسار ترحيبي عام
+
 Route::get('/', function () {
     return response()->json(['message' => 'Welcome to the API']);
 });
@@ -44,7 +44,9 @@ Route::apiResource('users', UserController::class)->only([
 Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function () {
 
     // 🔐 Dashboard stats
+ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function () {
     Route::get('/stats', [DashboardController::class, 'stats']);
+});
 
     // ⛔️ لاحقًا: يمكن إضافة مسارات أخرى للأدمن هنا
     // Route::apiResource('users', AdminUserController::class);

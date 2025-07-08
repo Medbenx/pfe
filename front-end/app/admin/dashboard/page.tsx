@@ -19,10 +19,10 @@ const AdminDashboard = () => {
       setUser(JSON.parse(storedUser));
       setIsAdmin(true);
 
-      // جلب الإحصائيات من API
+      // Fetch statistics from the API
       
       axios
-        .get("http://localhost:8000/api/stats", 
+        .get("http://localhost:8000/api/admin/stats", 
           { withCredentials: true })
         .then((res) => setStats(res.data))
         .catch(() => setError("Failed to load statistics"))

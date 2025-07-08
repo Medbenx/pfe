@@ -14,6 +14,8 @@ interface FormData {
   languages: string;
   price_per_hour: string;
   photo: File | null;
+  password: string;
+  password_confirmation: string;
 }
 
 const GuideForm: React.FC = () => {
@@ -26,6 +28,8 @@ const GuideForm: React.FC = () => {
     languages: "",
     price_per_hour: "",
     photo: null,
+    password: "",
+    password_confirmation: "",
   });
 
   const colors = {
@@ -163,46 +167,71 @@ const GuideForm: React.FC = () => {
               </div>
             ))}
 
-            <div className="space-y-1">
-              <label
-                className="block font-medium tracking-wide"
-                style={{ color: colors.text }}
-              >
-                Bio
-              </label>
-              <textarea
-                name="bio"
-                value={formData.bio ?? ""}
-                onChange={handleChange}
-                rows={4}
-                className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
-                style={{
-                  borderColor: colors.border,
-                  backgroundColor: "#1E1E1E",
-                  color: colors.text,
-                }}
-              />
-            </div>
+            {/* إضافة حقلي كلمة المرور */}
+            {["password", "password_confirmation"].map((field) => (
+              <div key={field} className="space-y-1">
+                <label
+                  className="block font-medium tracking-wide"
+                  style={{ color: colors.text }}
+                >
+                  {field.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
+                </label>
+                <input
+                  type="password"
+                  name={field}
+                  value={(formData as any)[field] ?? ""}
+                  onChange={handleChange}
+                  className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
+                  style={{
+                    borderColor: colors.border,
+                    backgroundColor: "#1E1E1E",
+                    color: colors.text,
+                  }}
+                  required
+                />
+              </div>
+            ))}
+          </div>
 
-            <div className="space-y-1">
-              <label
-                className="block font-medium tracking-wide"
-                style={{ color: colors.text }}
-              >
-                Profile Photo
-              </label>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-                className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
-                style={{
-                  borderColor: colors.border,
-                  backgroundColor: "#1E1E1E",
-                  color: colors.text,
-                }}
-              />
-            </div>
+          <div className="space-y-1">
+            <label
+              className="block font-medium tracking-wide"
+              style={{ color: colors.text }}
+            >
+              Bio
+            </label>
+            <textarea
+              name="bio"
+              value={formData.bio ?? ""}
+              onChange={handleChange}
+              rows={4}
+              className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
+              style={{
+                borderColor: colors.border,
+                backgroundColor: "#1E1E1E",
+                color: colors.text,
+              }}
+            />
+          </div>
+
+          <div className="space-y-1">
+            <label
+              className="block font-medium tracking-wide"
+              style={{ color: colors.text }}
+            >
+              Profile Photo
+            </label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
+              style={{
+                borderColor: colors.border,
+                backgroundColor: "#1E1E1E",
+                color: colors.text,
+              }}
+            />
           </div>
 
           <div className="pt-4 flex flex-col space-y-4">
