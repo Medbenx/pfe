@@ -10,6 +10,11 @@ const AdminDashboard = () => {
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [showDepromote, setShowDepromote] = useState(false); // ل
+  const [depromoteEmail, setDepromoteEmail] = useState("");  // 
+  const [depromoteStatus, setDepromoteStatus] = useState<any>(null); //
+
+  
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -29,6 +34,37 @@ const AdminDashboard = () => {
       setLoading(false);
     }
   }, []);
+  const handleDepromoteAdmin = () => {
+  if (!depromoteEmail.trim()) {
+    setDepromoteStatus({
+      success: false,
+      message: "Please enter a valid email.",
+    });
+    return;
+  }
+
+  axios
+    .post(
+      "http://localhost:8000/api/admin/depromote",
+      { email: depromoteEmail },
+      { withCredentials: true }
+    )
+    .then(() => {
+      setDepromoteStatus({
+        success: true,
+        message: `${depromoteEmail} is no longer an admin.`,
+      });
+      setDepromoteEmail("");
+      setTimeout(() => setShowDepromote(false), 2000);
+    })
+    .catch((err) => {
+      setDepromoteStatus({
+        success: false,
+        message: err.response?.data?.message || "Failed to depromote admin.",
+      });
+    });
+};
+
 
   if (loading) {
     return (
@@ -163,6 +199,49 @@ const AdminDashboard = () => {
           >
             📧 Newsletter Subscribers
           </Link>
+          <Link
+  href="/admin/dashboard/create-admin"
+  className="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg flex items-center gap-2"
+>
+  ➕ Create Admin
+</Link>
+<button
+  onClick={() => setShowDepromote(!showDepromote)}
+  className="px-6 py-3 bg-pink-600 hover:bg-pink-700 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg flex items-center gap-2"
+>
+  {showDepromote ? "Cancel Depromote" : "🧹 Depromote Admin"}
+</button>
+{showDepromote && (
+  <div className="mt-6 bg-gray-800/50 border border-gray-700 rounded-lg p-6 w-full">
+    <h2 className="text-xl font-semibold mb-4 text-pink-400">Depromote Admin</h2>
+    <div className="flex gap-4">
+      <input
+        type="email"
+        value={depromoteEmail}
+        onChange={(e) => setDepromoteEmail(e.target.value)}
+        placeholder="Enter admin's email"
+        className="flex-1 bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500"
+      />
+      <button
+        onClick={handleDepromoteAdmin}
+        className="px-6 py-2 bg-pink-600 hover:bg-pink-700 rounded-lg transition-all"
+      >
+        Remove Admin Rights
+      </button>
+    </div>
+    {depromoteStatus && (
+      <p
+        className={`mt-2 text-sm ${
+          depromoteStatus.success ? "text-green-400" : "text-red-400"
+        }`}
+      >
+        {depromoteStatus.message}
+      </p>
+    )}
+  </div>
+)}
+
+
         </section>
       </div>
     </div>

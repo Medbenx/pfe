@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\NewsletterController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\AdminUserController;
 
 // ✅ جلب المستخدم الحالي بعد تسجيل الدخول
 Route::middleware(['auth:sanctum'])->get('/user', fn(Request $request) => $request->user());
@@ -61,8 +62,12 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     // newsletter
     Route::get('/newsletters', [DashboardController::class, 'newsletters']);
     Route::get('/newsletters/export-csv', [DashboardController::class, 'exportNewslettersCsv']);
+     
+    // promote user to admin
+     Route::post('/promote', [AdminUserController::class, 'promote']);
+    // demote admin to user
+     Route::post('/depromote', [AdminUserController::class, 'depromote']);
 });
-
 
 // ✅ auth routes
 require __DIR__ . '/auth.php';
