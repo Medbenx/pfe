@@ -58,43 +58,38 @@ const GuideForm: React.FC = () => {
     }
   };
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  try {
-    // خطوة طلب CSRF cookie مهم جداً قبل إرسال الطلبات المحمية
-    await axios.get('http://localhost:8000/sanctum/csrf-cookie', {
-      withCredentials: true,
-    });
-
-    // جهز البيانات
-    const formPayload = new FormData();
-    Object.entries(formData).forEach(([key, value]) => {
-      if (value !== null) {
-        formPayload.append(key, value);
-      }
-    });
-
-    // أرسل البيانات مع الكوكيز
-    const response = await axios.post(
-      'http://localhost:8000/api/guides',
-      formPayload,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await axios.get("http://localhost:8000/sanctum/csrf-cookie", {
         withCredentials: true,
-      }
-    );
+      });
 
-    console.log('Guide created successfully:', response.data);
-    alert('Guide added successfully!');
-  } catch (error: any) {
-    console.error('Error submitting guide full error:', error);
-    console.error('Error submitting guide response data:', error.response?.data);
-    alert('Submission failed. Check console for details.');
-  }
-};
+      const formPayload = new FormData();
+      Object.entries(formData).forEach(([key, value]) => {
+        if (value !== null) {
+          formPayload.append(key, value);
+        }
+      });
 
+      const response = await axios.post(
+        "http://localhost:8000/api/touriste-guides",
+        formPayload,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+        }
+      );
+
+      console.log("Guide created successfully:", response.data);
+      alert("Guide added successfully!");
+    } catch (error: any) {
+      console.error("Error submitting guide:", error);
+      alert("Submission failed. Check console for details.");
+    }
+  };
 
   return (
     <div
@@ -112,7 +107,6 @@ const handleSubmit = async (e: React.FormEvent) => {
           className="absolute inset-0 rounded-xl pointer-events-none"
           style={{ boxShadow: `inset 0 0 50px ${colors.primary}20` }}
         />
-
         <div className="text-center mb-8 flex flex-col items-center">
           <div className="w-24 h-24 mb-4 relative">
             <Image
@@ -138,87 +132,68 @@ const handleSubmit = async (e: React.FormEvent) => {
 
         <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {["name", "email", "phone", "pricePerHour", "location", "language"].map((field) => (
-              <div key={field} className="space-y-1">
-                <label
-                  className="block font-medium tracking-wide"
-                  style={{ color: colors.text }}
-                >
-                  {field.charAt(0).toUpperCase() + field.slice(1)}
-                </label>
-                <input
-                  type={field === "pricePerHour" ? "number" : field === "email" ? "email" : "text"}
-                  name={field}
-                  value={formData[field as keyof FormData] as string}
-                  onChange={handleChange}
-                  className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
-                  style={{
-                    borderColor: colors.border,
-                    backgroundColor: "#1E1E1E",
-                    color: colors.text,
-                  }}
-                  required={field === "name" || field === "email"}
-                />
-              </div>
-            ))}
+            {["name", "email", "phone", "pricePerHour", "location", "language"].map(
+              (field) => (
+                <div key={field} className="space-y-1">
+                  <label
+                    className="block font-medium tracking-wide"
+                    style={{ color: colors.text }}
+                  >
+                    {field.charAt(0).toUpperCase() + field.slice(1)}
+                  </label>
+                  <input
+                    type={
+                      field === "pricePerHour"
+                        ? "number"
+                        : field === "email"
+                        ? "email"
+                        : "text"
+                    }
+                    name={field}
+                    value={formData[field as keyof FormData] as string}
+                    onChange={handleChange}
+                    className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
+                    style={{
+                      borderColor: colors.border,
+                      backgroundColor: "#1E1E1E",
+                      color: colors.text,
+                    }}
+                    required={["name", "email"].includes(field)}
+                  />
+                </div>
+              )
+            )}
           </div>
 
-<<<<<<< HEAD
-            {/* إضافة حقلي كلمة المرور */}
-            {["password", "password_confirmation"].map((field) => (
-              <div key={field} className="space-y-1">
-                <label
-                  className="block font-medium tracking-wide"
-                  style={{ color: colors.text }}
-                >
-                  {field.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
-                </label>
-                <input
-                  type="password"
-                  name={field}
-                  value={(formData as any)[field] ?? ""}
-                  onChange={handleChange}
-                  className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
-                  style={{
-                    borderColor: colors.border,
-                    backgroundColor: "#1E1E1E",
-                    color: colors.text,
-                  }}
-                  required
-                />
-              </div>
-            ))}
-          </div>
-
-          <div className="space-y-1">
-            <label
-              className="block font-medium tracking-wide"
-              style={{ color: colors.text }}
-            >
-              Bio
-            </label>
-            <textarea
-              name="bio"
-              value={formData.bio ?? ""}
-              onChange={handleChange}
-              rows={4}
-              className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
-              style={{
-                borderColor: colors.border,
-                backgroundColor: "#1E1E1E",
-                color: colors.text,
-              }}
-            />
-          </div>
+          {["password", "password_confirmation"].map((field) => (
+            <div key={field} className="space-y-1">
+              <label
+                className="block font-medium tracking-wide"
+                style={{ color: colors.text }}
+              >
+                {field.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
+              </label>
+              <input
+                type="password"
+                name={field}
+                value={(formData as any)[field] ?? ""}
+                onChange={handleChange}
+                className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
+                style={{
+                  borderColor: colors.border,
+                  backgroundColor: "#1E1E1E",
+                  color: colors.text,
+                }}
+                required
+              />
+            </div>
+          ))}
 
           <div className="space-y-1">
             <label
               className="block font-medium tracking-wide"
               style={{ color: colors.text }}
             >
-=======
-          <div className="space-y-1">
-            <label className="block font-medium tracking-wide" style={{ color: colors.text }}>
               Bio
             </label>
             <textarea
@@ -236,8 +211,10 @@ const handleSubmit = async (e: React.FormEvent) => {
           </div>
 
           <div className="space-y-1">
-            <label className="block font-medium tracking-wide" style={{ color: colors.text }}>
->>>>>>> d83b0ba4362834826cad15dcc9a0b07e8572f676
+            <label
+              className="block font-medium tracking-wide"
+              style={{ color: colors.text }}
+            >
               Profile Photo
             </label>
             <input
@@ -257,7 +234,10 @@ const handleSubmit = async (e: React.FormEvent) => {
             <button
               type="submit"
               className="w-full py-3 px-4 rounded-lg font-bold"
-              style={{ backgroundColor: colors.primary, color: colors.lightText }}
+              style={{
+                backgroundColor: colors.primary,
+                color: colors.lightText,
+              }}
             >
               Submit
             </button>
