@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\NewsletterController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\AdminUserController;
 
 // ✅ جلب المستخدم الحالي بعد تسجيل الدخول
 Route::middleware(['auth:sanctum'])->get('/user', fn(Request $request) => $request->user());
@@ -17,7 +18,7 @@ Route::middleware(['auth:sanctum'])->get('/user', fn(Request $request) => $reque
 // ✅ رسالة ترحيبية عند فتح /api
 Route::get('/', fn() => response()->json(['message' => 'Welcome to the API']));
 
-// ✅ مسارات عامة
+// ✅ مسارات عامة (API Resources)
 Route::apiResource('touriste-guides', TouristeGuideController::class)->only([
     'index', 'show', 'store', 'update', 'destroy'
 ]);
@@ -38,17 +39,35 @@ Route::apiResource('users', UserController::class)->only([
     'index', 'update', 'show', 'destroy'
 ]);
 
-// ✅ اختبار الجلسة: هل المستخدم مسجل فعلاً؟
+// ✅ isAuthenticated
 Route::middleware('auth:sanctum')->get('/test-session', function (Request $request) {
     return response()->json([
         'user' => Auth::user(),
     ]);
 });
 
-// ✅ مسارات مسؤول (admin) فقط
+// ✅ admin routes (Admin only)
 Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function () {
+    // statistics
     Route::get('/stats', [DashboardController::class, 'stats']);
+
+    // delete routes
+    Route::delete('/messages/{id}', [DashboardController::class, 'deleteMessage']);
+    Route::delete('/newsletters/{id}', [DashboardController::class, 'deleteNewsletter']);
+
+    // messages
+    Route::get('/messages', [DashboardController::class, 'messages']);
+    Route::get('/messages/export-csv', [DashboardController::class, 'exportMessagesCsv']);
+
+    // newsletter
+    Route::get('/newsletters', [DashboardController::class, 'newsletters']);
+    Route::get('/newsletters/export-csv', [DashboardController::class, 'exportNewslettersCsv']);
+     
+    // promote user to admin
+     Route::post('/promote', [AdminUserController::class, 'promote']);
+    // demote admin to user
+     Route::post('/depromote', [AdminUserController::class, 'depromote']);
 });
 
-// ✅ استيراد auth routes
+// ✅ auth routes
 require __DIR__ . '/auth.php';

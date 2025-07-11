@@ -60,12 +60,18 @@ const GuideForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+<<<<<<< HEAD
       // خطوة طلب CSRF cookie مهم جداً قبل إرسال الطلبات المحمية
+=======
+>>>>>>> 139e5cc8c288aaaaa0f19120674cf28a4655f252
       await axios.get("http://localhost:8000/sanctum/csrf-cookie", {
         withCredentials: true,
       });
 
+<<<<<<< HEAD
       // جهز البيانات
+=======
+>>>>>>> 139e5cc8c288aaaaa0f19120674cf28a4655f252
       const formPayload = new FormData();
       Object.entries(formData).forEach(([key, value]) => {
         if (value !== null) {
@@ -73,7 +79,10 @@ const GuideForm: React.FC = () => {
         }
       });
 
+<<<<<<< HEAD
       // Send the form data to the backend and I'm changing the endpoint
+=======
+>>>>>>> 139e5cc8c288aaaaa0f19120674cf28a4655f252
       const response = await axios.post(
         "http://localhost:8000/api/touriste-guides",
         formPayload,
@@ -88,11 +97,15 @@ const GuideForm: React.FC = () => {
       console.log("Guide created successfully:", response.data);
       alert("Guide added successfully!");
     } catch (error: any) {
+<<<<<<< HEAD
       console.error("Error submitting guide full error:", error);
       console.error(
         "Error submitting guide response data:",
         error.response?.data
       );
+=======
+      console.error("Error submitting guide:", error);
+>>>>>>> 139e5cc8c288aaaaa0f19120674cf28a4655f252
       alert("Submission failed. Check console for details.");
     }
   };
@@ -113,7 +126,6 @@ const GuideForm: React.FC = () => {
           className="absolute inset-0 rounded-xl pointer-events-none"
           style={{ boxShadow: `inset 0 0 50px ${colors.primary}20` }}
         />
-
         <div className="text-center mb-8 flex flex-col items-center">
           <div className="w-24 h-24 mb-4 relative">
             <Image
@@ -139,6 +151,7 @@ const GuideForm: React.FC = () => {
 
         <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+<<<<<<< HEAD
             {[
               "name",
               "email",
@@ -178,15 +191,54 @@ const GuideForm: React.FC = () => {
           </div>
 
           {/* إضافة حقلي كلمة المرور */}
+=======
+            {["name", "email", "phone", "pricePerHour", "location", "language"].map(
+              (field) => (
+                <div key={field} className="space-y-1">
+                  <label
+                    className="block font-medium tracking-wide"
+                    style={{ color: colors.text }}
+                  >
+                    {field.charAt(0).toUpperCase() + field.slice(1)}
+                  </label>
+                  <input
+                    type={
+                      field === "pricePerHour"
+                        ? "number"
+                        : field === "email"
+                        ? "email"
+                        : "text"
+                    }
+                    name={field}
+                    value={formData[field as keyof FormData] as string}
+                    onChange={handleChange}
+                    className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
+                    style={{
+                      borderColor: colors.border,
+                      backgroundColor: "#1E1E1E",
+                      color: colors.text,
+                    }}
+                    required={["name", "email"].includes(field)}
+                  />
+                </div>
+              )
+            )}
+          </div>
+
+>>>>>>> 139e5cc8c288aaaaa0f19120674cf28a4655f252
           {["password", "password_confirmation"].map((field) => (
             <div key={field} className="space-y-1">
               <label
                 className="block font-medium tracking-wide"
                 style={{ color: colors.text }}
               >
+<<<<<<< HEAD
                 {field
                   .replace(/_/g, " ")
                   .replace(/\b\w/g, (l) => l.toUpperCase())}
+=======
+                {field.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
+>>>>>>> 139e5cc8c288aaaaa0f19120674cf28a4655f252
               </label>
               <input
                 type="password"
@@ -203,7 +255,10 @@ const GuideForm: React.FC = () => {
               />
             </div>
           ))}
+<<<<<<< HEAD
           {/* </div> */}
+=======
+>>>>>>> 139e5cc8c288aaaaa0f19120674cf28a4655f252
 
           <div className="space-y-1">
             <label
@@ -214,7 +269,11 @@ const GuideForm: React.FC = () => {
             </label>
             <textarea
               name="bio"
+<<<<<<< HEAD
               value={formData.bio ?? ""}
+=======
+              value={formData.bio}
+>>>>>>> 139e5cc8c288aaaaa0f19120674cf28a4655f252
               onChange={handleChange}
               rows={4}
               className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2"
