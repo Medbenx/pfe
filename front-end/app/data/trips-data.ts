@@ -25,7 +25,7 @@ export const trips = [
       'Hotel pickup and drop-off'
     ],
     recommended: true
-  },
+  },  
   {
     id: 2,
     city: 'Chefchaouen, Morocco',

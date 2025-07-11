@@ -84,19 +84,6 @@ export default function EventsHappenings() {
         "The toughest footrace on Earth - 250km through the Sahara Desert.",
       price: "Registration required",
     },
-    {
-      id: 7, // Next available ID
-      title: "FIFA World Cup 2026",
-      city: "USA, Canada, Mexico", // Host countries
-      date: "June 8 - July 3, 2026", // Tentative dates
-      type: "Sports",
-      season: "Summer",
-      image: "/images/events/worldcup.jpg", // Add your image path
-      description:
-        "The biggest football tournament in the world, hosted across 3 North American countries.",
-      price: "Varies by match", // Or "Ticket sales required"
-      tags: ["important", "global"], // Optional tags
-    },
   ];
 
   const seasons = ["All", "Spring", "Summer", "Fall", "Winter"];
@@ -158,7 +145,7 @@ export default function EventsHappenings() {
               Discover cultural festivals, music celebrations, and unique
               happenings across the kingdom
             </p>
-            <Link href="/events-happenings/7">
+            <Link href="/world-cup-2030">
               <motion.button
                 className="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-lg text-lg"
                 whileHover={{ scale: 1.05 }}

@@ -395,56 +395,6 @@ export default function EventDetails({
         },
       ],
     },
-    {
-      id: 7,
-      title: "FIFA World Cup 2030",
-      city: "USA, Canada, Mexico",
-      date: "June 8 - July 3, 2030",
-      type: "Sports",
-      season: "Summer",
-      image: "/images/events/worldcup.jpg",
-      description:
-        "The largest sporting event in the world - 48 teams compete across 16 host cities in North America. First World Cup hosted by three nations, featuring expanded format and new technologies.",
-      price: "Ticket packages from $250 USD (varies by match)",
-      location:
-        "16 host cities including New York, Los Angeles, Toronto, Mexico City",
-      duration: "26 days (64 matches)",
-      highlights: [
-        "First 48-team World Cup in history",
-        "Opening match in Mexico City",
-        "Final at MetLife Stadium (New Jersey)",
-        "New VAR and semi-automated offside technology",
-        "Fan festivals in all host cities",
-      ],
-      gallery: [
-        {
-          src: "/images/events/worldcup-1.jpg",
-          caption: "2026 Host Cities announcement",
-        },
-        {
-          src: "/images/events/worldcup-2.jpg",
-          caption: "Previous World Cup final celebration",
-        },
-      ],
-      musicTracks: [
-        {
-          title: "World Unity Anthem",
-          artist: "Global Artists Collective",
-          src: "/audio/world-unity.mp3",
-        },
-        {
-          title: "Victory Chant",
-          artist: "Stadium Choir",
-          src: "/audio/victory-chant.mp3",
-        },
-        {
-          title: "The Beautiful Game",
-          artist: "International Orchestra",
-          src: "/audio/beautiful-game.mp3",
-        },
-      ],
-      tags: ["important", "mega-event"], // Optional for filtering
-    },
   ];
 
   // Add this near the top of your component (after the event data)

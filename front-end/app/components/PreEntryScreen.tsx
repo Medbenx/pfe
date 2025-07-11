@@ -1,98 +1,134 @@
+// "use client";
+// import { useState } from "react";
+// import { useRouter } from "next/navigation";
+// import Image from "next/image";
+// import "../styles/PreEntryScreen.css";
+
+// export default function DoorIntro() {
+//   const router = useRouter();
+//   const [opened, setOpened] = useState(false);
+//   const [zoom, setZoom] = useState(false);
+
+//   const handleClick = () => {
+//     if (!opened) {
+//       setOpened(true);
+//       setTimeout(() => {
+//         setZoom(true);
+//         setTimeout(() => router.push("/home"), 1000);
+//       }, 1500);
+//     }
+//   };
+
+//   return (
+//     <div className="preEntryScreen">
+//       <div className={`doorContainer ${zoom ? "zoomEffect" : ""}`}>
+//         {/* Left Door */}
+//         <div className={`leftDoor ${opened ? "openLeft" : ""}`}>
+//           <Image
+//             src="/images/left-door.png"
+//             alt="Left Door"
+//             width={370}
+//             height={700}
+//             className="doorImage"
+//             priority
+//           />
+//         </div>
+        
+//         {/* Right Door */}
+//         <div className={`rightDoor ${opened ? "openRight" : ""}`}>
+//           <Image
+//             src="/images/right-door.png"
+//             alt="Right Door"
+//             width={370}
+//             height={700}
+//             className="doorImage"
+//             priority
+//           />
+//         </div>
+//       </div>
+
+//       <div className="welcomeText">
+//         <h1 className={`titleAnimation ${opened ? "fadeOutText" : ""}`}>
+//           Welcome to Morocco
+//         </h1>
+//       </div>
+
+//       <button 
+//         className={`enterButton ${opened ? "buttonExit" : ""}`}
+//         onClick={handleClick}
+//       >
+//         Entrer
+//       </button>
+
+//       {/* Light effect when doors open */}
+//       {opened && <div className="lightEffect"></div>}
+//     </div>
+//   );
+// }
+
+// PreEntryScreen.tsx
 "use client";
-import { Canvas } from "@react-three/fiber";
-import { useGLTF, useAnimations, OrbitControls } from "@react-three/drei";
-import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Image from "next/image";
 import "../styles/PreEntryScreen.css";
 
-function Door({ onClick, opened }: { onClick: () => void; opened: boolean }) {
-  const group = useRef<any>();
-  const { scene, animations } = useGLTF("/models/door.glb");
-  const { actions } = useAnimations(animations, group);
-
-  useEffect(() => {
-    if (actions["0_idle_closed"]) {
-      actions["0_idle_closed"].play();
-    }
-  }, [actions]);
-
-  useEffect(() => {
-    if (opened && actions["1_open_closed_right"]) {
-      actions["1_open_closed_right"].reset().play();
-    }
-  }, [opened, actions]);
-
-  return <primitive ref={group} object={scene} onClick={onClick} />;
-}
-
-export default function ThreeDoorIntro() {
-  const router = useRouter();
+export default function PreEntryScreen({ onOpen }: { onOpen: () => void }) {
   const [opened, setOpened] = useState(false);
-  const [fadeOut, setFadeOut] = useState(false);
-  const [hovering, setHovering] = useState(false);
+  const [zoom, setZoom] = useState(false);
 
   const handleClick = () => {
     if (!opened) {
       setOpened(true);
       setTimeout(() => {
-        setFadeOut(true);
-        setTimeout(() => router.push("/"), 1000);
-      }, 2000);
+        setZoom(true);
+        setTimeout(() => onOpen(), 1000); // Call onOpen instead of router.push
+      }, 1500);
     }
   };
 
   return (
-    <div className={`preEntryScreen ${fadeOut ? "fadeOut" : ""}`}>
-      <div className="canvasContainer">
-        <Canvas camera={{ position: [0, 1.5, 5], fov: 45 }}>
-          <ambientLight intensity={0.5} />
-          <directionalLight
-            position={[2, 5, 2]}
-            intensity={1}
-            castShadow
-            shadow-mapSize-width={1024}
-            shadow-mapSize-height={1024}
+    <div className="preEntryScreen">
+      <div className={`doorContainer ${zoom ? "zoomEffect" : ""}`}>
+        {/* Left Door */}
+        <div className={`leftDoor ${opened ? "openLeft" : ""}`}>
+          <Image
+            src="/images/left-door.png"
+            alt="Left Door"
+            width={370}
+            height={700}
+            className="doorImage"
+            priority
           />
-          <pointLight position={[-5, 5, 5]} intensity={0.5} color="#f1c40f" />
-          
-          <group position={[0, -1, 0]}> {/* Center and adjust vertical position */}
-            <Door onClick={handleClick} opened={opened} />
-          </group>
-          
-          {opened && (
-            <directionalLight
-              position={[-5, 5, 5]}
-              intensity={1}
-              color="#f1c40f"
-            />
-          )}
-          
-          <OrbitControls
-            enableZoom={false}
-            enablePan={false}
-            minPolarAngle={Math.PI / 3}
-            maxPolarAngle={Math.PI / 2.5}
-            target={[0, 0.5, 0]} // Focus on center of door
+        </div>
+        
+        {/* Right Door */}
+        <div className={`rightDoor ${opened ? "openRight" : ""}`}>
+          <Image
+            src="/images/right-door.png"
+            alt="Right Door"
+            width={370}
+            height={700}
+            className="doorImage"
+            priority
           />
-        </Canvas>
+        </div>
       </div>
 
-      {!opened && (
-        <>
-          <div className="welcomeOverlay">
-            <h1>Welcome to Morocco</h1>
-            <p>Discover the magic behind this door</p>
-          </div>
-          <button
-            className={`openButton ${hovering ? "hover" : ""}`}
-            onClick={handleClick}
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
-          >
-            Click Here to Enter
-          </button>
-        </>
-      )}
+      <div className="welcomeText">
+        <h1 className={`titleAnimation ${opened ? "fadeOutText" : ""}`}>
+          Welcome to Morocco
+        </h1>
+      </div>
+
+      <button 
+        className={`enterButton ${opened ? "buttonExit" : ""}`}
+        onClick={handleClick}
+      >
+        Entrer
+      </button>
+
+      {/* Light effect when doors open */}
+      {opened && <div className="lightEffect"></div>}
     </div>
   );
 }

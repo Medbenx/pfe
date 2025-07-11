@@ -24,9 +24,9 @@ const HotelDetails = ({ hotel }) => {
   const prevStep = () => setBookingStep(prev => prev - 1);
 
   return (
-    <div className="min-h-screen py-16 bg-gradient-to-r from-blue-50 to-amber-50">
+    <div className="min-h-screen  bg-gradient-to-r from-blue-50 to-amber-50">
       {/* Hero Section with Parallax Effect */}
-      <div ref={ref} className="relative h-[60vh] overflow-hidden">
+      <div ref={ref} className="relative h-[80vh] overflow-hidden">
         <motion.div 
           style={{ y: yBg }}
           className="absolute inset-0 z-0"

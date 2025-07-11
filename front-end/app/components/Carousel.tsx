@@ -5,16 +5,16 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 
 const images = [
-  { src: "/images/Streets of Morocco.png", text: "Tetouan - The White Dove", location: "Northern Morocco" },
-  { src: "/images/image2.jpg", text: "Rabat - The Capital", location: "Atlantic Coast" },
-  { src: "/images/image3.jpg", text: "Casablanca - Economic Hub", location: "Central Morocco" },
-  { src: "/images/image4.jpg", text: "Marrakech - The Red City", location: "Southwest Morocco" },
-  { src: "/images/image5.jpg", text: "Fes - Cultural Heart", location: "Northern Morocco" },
-  { src: "/images/image6.jpg", text: "Tangier - Gateway to Europe", location: "Strait of Gibraltar" },
-  { src: "/images/image7.jpg", text: "Chefchaouen - The Blue Pearl", location: "Rif Mountains" },
-  { src: "/images/image8.jpg", text: "Agadir - Beach Paradise", location: "Southern Coast" },
-  { src: "/images/image9.jpg", text: "Meknes - Imperial City", location: "North Central Morocco" },
-  { src: "/images/image10.jpg", text: "Ouarzazate - Desert Gateway", location: "Sahara Desert" },
+  { src: "/images/hero/Streets of Morocco.jpg", text: "Tetouan - The White Dove", location: "Northern Morocco" },
+  { src: "/images/hero/image6.jpg", text: "Tangier - Gateway to Europe", location: "Strait of Gibraltar" },
+  { src: "/images/hero/image7.jpg", text: "Chefchaouen - The Blue Pearl", location: "Rif Mountains" },
+  { src: "/images/hero/image5.jpg", text: "Fes - Cultural Heart", location: "Northern Morocco" },
+  { src: "/images/hero/rabat.jpg", text: "Rabat - The Capital", location: "Atlantic Coast" },
+  { src: "/images/hero/image3.jpg", text: "Casablanca - Economic Hub", location: "Central Morocco" },
+  { src: "/images/hero/image4.jpg", text: "Marrakech - The Red City", location: "Southwest Morocco" },
+  { src: "/images/hero/image8.jpg", text: "Agadir - Beach Paradise", location: "Southern Coast" },
+  { src: "/images/hero/image10.jpg", text: "Ouarzazate - Desert Gateway", location: "Sahara Desert" },
+  { src: "/images/hero/image9.jpg", text: "Dakhla - Coastal Oasis", location: "South Morocco" },
 ];
 
 export default function Carousel() {

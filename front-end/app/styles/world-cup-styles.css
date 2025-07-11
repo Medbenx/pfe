@@ -1,0 +1,391 @@
+/* Base Styles */
+.wc-container {
+  scroll-behavior: smooth;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Hero Section */
+.wc-hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.wc-hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.7);
+}
+
+
+/* Audio Player Styles */
+.wc-audio-player {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 1.5rem 0;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.wc-audio-player:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.wc-audio-label {
+  font-size: 0.9rem;
+  color: white;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.wc-hero-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  z-index: 1;
+}
+
+.wc-hero-title {
+  font-size: 5rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  line-height: 1.1;
+  background: linear-gradient(to right, #ffffff, #f1c40f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.wc-hero-subtitle {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  margin: 1rem 0;
+  letter-spacing: 3px;
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.wc-scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: bounce 2s infinite;
+  color: white;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.wc-scroll-arrow {
+  width: 20px;
+  height: 20px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(-45deg);
+  margin-top: 10px;
+}
+
+/* Content Sections */
+.wc-section {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  padding: 0 10%;
+}
+
+.wc-section-media {
+  flex: 1;
+  position: relative;
+  height: 600px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  margin: 0 30px;
+}
+
+.wc-section-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.wc-section-media:hover .wc-section-image {
+  transform: scale(1.05);
+}
+
+.wc-section-content {
+  flex: 1;
+  padding: 0 50px;
+}
+
+.wc-section-title {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  color: #f1c40f;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.wc-section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100px;
+  height: 3px;
+  background: #f1c40f;
+}
+
+.wc-section-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 15px;
+  scrollbar-width: thin;
+  scrollbar-color: #f1c40f #333;
+}
+
+/* Add to your world-cup-styles.css */
+
+.wc-hero-subtitle-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 1rem 0;
+}
+
+.wc-audio-control {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.wc-audio-control:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.wc-audio-control svg {
+  width: 18px;
+  height: 18px;
+}
+
+.wc-section-text::-webkit-scrollbar {
+  width: 6px;
+}
+
+.wc-section-text::-webkit-scrollbar-track {
+  background: #333;
+  border-radius: 10px;
+}
+
+.wc-section-text::-webkit-scrollbar-thumb {
+  background-color: #f1c40f;
+  border-radius: 10px;
+}
+
+.wc-section-text p {
+  margin-bottom: 1.5rem;
+}
+
+/* Section-specific styles */
+.wc-section-football-land {
+  background: linear-gradient(135deg, #0056b3 0%, #003366 100%);
+}
+
+.wc-section-land-exploits {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+.wc-section-football-people {
+  background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+}
+
+.wc-section-infrastructure {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+}
+
+.wc-section-calendar {
+  background: linear-gradient(135deg, #1c92d2 0%, #0d324d 100%);
+}
+
+.wc-section-training {
+  background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+}
+
+/* Animations */
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .wc-section {
+    flex-direction: column;
+    padding: 80px 5%;
+  }
+
+  .wc-section-media {
+    width: 100%;
+    margin: 0 0 30px 0;
+    height: 400px;
+  }
+
+  .wc-section-content {
+    padding: 0;
+  }
+
+  .wc-section-title {
+    font-size: 2.2rem;
+  }
+
+  .wc-hero-title {
+    font-size: 3.5rem;
+  }
+
+  .wc-hero-subtitle {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .wc-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .wc-section-title {
+    font-size: 1.8rem;
+  }
+
+  .wc-section-text {
+    font-size: 1rem;
+  }
+}
+
+
+
+
+
+/* Banner Section Styles */
+.wc-banner {
+  width: 100%;
+  height: 600px; /* Adjust height as needed */
+  position: relative;
+  background-image: url('/images/world-cup-banner.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.wc-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Dark overlay for better text visibility */
+}
+
+.wc-banner-content {
+  position: relative;
+  z-index: 1;
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.wc-banner-title {
+  font-size: 3.5rem;
+  color: white;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.wc-banner-subtitle {
+  font-size: 1.5rem;
+  color: #f1c40f;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .wc-banner {
+    height: 300px;
+  }
+  
+  .wc-banner-title {
+    font-size: 2.5rem;
+  }
+  
+  .wc-banner-subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wc-banner {
+    height: 250px;
+  }
+  
+  .wc-banner-title {
+    font-size: 2rem;
+  }
+  
+  .wc-banner-subtitle {
+    font-size: 1rem;
+  }
+}

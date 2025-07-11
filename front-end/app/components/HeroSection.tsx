@@ -51,6 +51,7 @@ export default function HeroSection() {
 
       {/* Overlay with Search Bar */}
       <motion.div
+      //here you can see icon working just remove top-1/2
         className="overlay  absolute top-1/2 sm:px-8 transform -translate-x-1/2 -translate-y-1/2 text-center z-10 w-full px-4 mt-[-90px]"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
