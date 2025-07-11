@@ -25,6 +25,8 @@ export default function RootLayout({
   // Paths where footer should be hidden
   const noFooterPaths = [
     "/login",
+    "/main/sign-up",
+    "main/guideform",
     "/main/become-guide",
     "/main/guide-dashboard",
     "/main/guide-dashboard/trips",
@@ -45,7 +47,7 @@ export default function RootLayout({
           params.locale === "ar" ? "font-sans-ar" : "font-sans"
         }`}
       >
-        <Navbar />
+        {showFooter &&<Navbar />}
         <main>{children}</main>
         {showFooter && <FooterSection />}
         <AOSInitializer />
